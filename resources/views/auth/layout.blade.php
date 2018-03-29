@@ -39,31 +39,23 @@
 
                   <!-- Right Side Of Navbar -->
                   <ul class="navbar-nav ml-auto">
-                    <!-- Authentication Links -->
-                    @guest
-                        <li><a class="nav-link" href="{{ route('login') }}">Login</a></li>
-                        <li><a class="nav-link" href="{{ route('register') }}">Register</a></li>
-                    @else
-                        @if(Auth::guard('admin')->check())
-                            <li class="nav-item dropdown">
-                                <a id="navbarDropdown" href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                                    {{ Auth::user()->name }} <span class="caret"></span>
-                                </a>
+                      <li class="nav-item dropdown">
+                          <a id="navbarDropdown" href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                              {{ Auth::user()->name }} <span class="caret"></span>
+                          </a>
 
-                                <ul class="dropdown-menu" aria-labelledby="navbarDropdown" role="menu">
-                                    <a class="dropdown-item" href="{{ route('admin.logout') }}"
-                                       onclick="event.preventDefault();
-                                         document.getElementById('admin-logout-form').submit();">
-                                        Logout
-                                    </a>
+                          <ul class="dropdown-menu" aria-labelledby="navbarDropdown" role="menu">
+                              <a class="dropdown-item" href="{{ route('user.logout') }}"
+                                 onclick="event.preventDefault();
+                                   document.getElementById('logout-form').submit();">
+                                  Logout
+                              </a>
 
-                                    <form id="admin-logout-form" action="{{ route('admin.logout') }}" method="POST" style="display: none;">
-                                        {{ csrf_field() }}
-                                    </form>
-                                </ul>
-                            </li>
-                        @endif
-                    @endguest
+                              <form id="logout-form" action="{{ route('user.logout') }}" method="POST" style="display: none;">
+                                  @csrf
+                              </form>
+                          </ul>
+                      </li>
                   </ul>
               </div>
           </div>
