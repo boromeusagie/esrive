@@ -15,6 +15,9 @@
                     @endif
 
                     You are logged in, {{ Auth::user()->name }}!
+
+                    <example-component></example-component>
+                    <esrive></esrive>
                 </div>
             </div>
         </div>
