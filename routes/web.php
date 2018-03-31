@@ -17,6 +17,8 @@ Route::get('/', function () {
 
 Auth::routes();
 
+Route::get('/user/activation/{token}', 'Auth\RegisterController@userActivation');
+
 //Route::get('/home', 'HomeController@index')->name('home');
 Route::post('/user/logout', 'Auth\LoginController@userLogout')->name('user.logout');
 Route::group(['middleware' => 'auth'], function() {
@@ -29,10 +31,10 @@ Route::group(['middleware' => 'auth'], function() {
         Route::get('ucapan-selamat', 'UserController@ucapanSelamat')->name('user.ucapanselamat');
         Route::get('galeri-foto', 'UserController@galeriFoto')->name('user.galerifoto');
 
-        Route::post('logout', 'Auth\LoginController@userLogout')->name('user.logout');
+        //Route::post('logout', 'Auth\LoginController@userLogout')->name('user.logout');
 
-        Route::post('change-password', 'EditUserController@changePassword')->name('user.changepassword');
-        Route::post('save-data', 'EditUserController@saveData')->name('user.savedata');
+        //Route::post('change-password', 'EditUserController@changePassword')->name('user.changepassword');
+        //Route::post('save-data', 'EditUserController@saveData')->name('user.savedata');
     });
 });
 

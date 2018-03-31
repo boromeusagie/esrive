@@ -11,6 +11,12 @@
                     <form class="form-horizontal" method="POST" action="{{ route('register') }}">
                         {{ csrf_field() }}
 
+                        @if ($message = Session::get('error'))
+                          <div class="alert alert-error">
+                            <p>{{ $message }}</p>
+                          </div>
+                        @endif
+
                         <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }} row">
                             <label for="name" class="col-md-4 control-label">Name</label>
 

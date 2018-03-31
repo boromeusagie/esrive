@@ -8,11 +8,11 @@
                 <div class="card-header">User Dashboard</div>
 
                 <div class="card-body">
-                    @if (session('status'))
-                        <div class="alert alert-success">
-                            {{ session('status') }}
-                        </div>
-                    @endif
+                  @if ($message = Session::get('success'))
+                    <div class="alert alert-success">
+                      {{ $message }}
+                    </div>
+                  @endif
 
                     You are logged in, {{ Auth::user()->name }}!
                 </div>

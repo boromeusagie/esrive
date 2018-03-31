@@ -53,4 +53,37 @@ class LoginController extends Controller
 
         return redirect('/');
     }
+
+    /**
+     * The user has been authenticated.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  mixed  $user
+     * @return mixed
+     */
+    protected function authenticated(Request $request, $user)
+    {
+        if ($user->activated == false)
+        {
+          auth()->logout($user);
+          return redirect()->back()
+                          ->with('warning', "Akun anda belum terverifikasi. Silakan cek email anda.");
+        }
+        return redirect()->route('user.dashboard')->with('success', "Anda berhasil login.");
+    }
+
+    /**
+     * Get the failed login response instance.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Symfony\Component\HttpFoundation\Response
+     *
+     * @throws \Illuminate\Validation\ValidationException
+     */
+    protected function sendFailedLoginResponse(Request $request)
+    {
+      return redirect()->back()
+          ->with('error', "Email dan password tidak sesuai atau belum terdaftar.")
+          ->withInput($request->only($this->username(), 'remember'));
+    }
 }
