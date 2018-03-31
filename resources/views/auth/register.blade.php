@@ -12,7 +12,7 @@
                         {{ csrf_field() }}
 
                         @if ($message = Session::get('error'))
-                          <div class="alert alert-error">
+                          <div class="alert alert-danger">
                             <p>{{ $message }}</p>
                           </div>
                         @endif
