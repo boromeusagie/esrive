@@ -14,7 +14,9 @@
                     </div>
                   @endif
 
-                    You are logged in, {{ Auth::user()->name }}!
+                    You are logged in, {{ $user->name }}!
+                    <br>
+                    You are on {{ \App\UserType::where(['id' => $user->user_type])->pluck('user_type')->first() }}
                 </div>
             </div>
         </div>
