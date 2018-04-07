@@ -38,9 +38,9 @@ class UserController extends Controller
     	return view('user.dashboard', ['user' => Auth::user()]);
     }
 
-    public function editData()
+    public function data()
     {
-    	return view('user.pages.editdata', ['user' => Auth::user()]);
+    	return view('user.data', ['user' => Auth::user()]);
     }
 
     public function pilihTema()

@@ -24,7 +24,7 @@ Route::post('/user/logout', 'Auth\LoginController@userLogout')->name('user.logou
 Route::group(['middleware' => 'auth'], function() {
     Route::group(['prefix' => 'user'], function () {
         Route::get('dashboard', 'UserController@index')->name('user.dashboard');
-        Route::get('edit-data', 'UserController@editData')->name('user.editdata');
+        Route::get('data', 'UserController@data')->name('user.data');
         Route::get('pilih-tema', 'UserController@pilihTema')->name('user.pilihtema');
         Route::get('edit-tampilan', 'UserController@editTampilan')->name('user.edittampilan');
         Route::get('daftar-tamu', 'UserController@daftarTamu')->name('user.daftartamu');
