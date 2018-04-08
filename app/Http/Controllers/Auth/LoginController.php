@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
+use Toastr;
 
 class LoginController extends Controller
 {
@@ -69,7 +70,8 @@ class LoginController extends Controller
           return redirect()->back()
                           ->with('warning', "Akun anda belum terverifikasi. Silakan cek email anda.");
         }
-        return redirect()->route('user.dashboard')->with('success', "Anda berhasil login.");
+        Toastr::success($message = "Anda berhasil login!", $title = "Selamat datang, " . $user->name, $options = ["closeButton" => true, "positionClass" => "toast-top-center"]);
+        return redirect()->route('user.dashboard');
     }
 
     /**

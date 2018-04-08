@@ -46,14 +46,20 @@ File: scss
  *  8. Custom Templates
  */
 @import url("https://fonts.googleapis.com/css?family=Montserrat:300,400,500,600,700");
-/******************* 
-Global Styles 
+/*******************
+Global Styles
 *******************/
 @import url(../scss/icons/font-awesome/css/font-awesome.min.css);
 @import url(../scss/icons/simple-line-icons/css/simple-line-icons.css);
 @import url(../scss/icons/linea-icons/linea.css);
 @import url(../scss/icons/themify-icons/themify-icons.css);
 @import url(../scss/icons/material-design-iconic-font/css/materialdesignicons.min.css);
+@import url(../plugins/bootstrap-datepicker/bootstrap-datepicker.min.css);
+@import url(../plugins/bootstrap-daterangepicker/daterangepicker.css);
+@import url(../plugins/bootstrap-material-datetimepicker/css/bootstrap-material-datetimepicker.css);
+@import url(../plugins/timepicker/bootstrap-timepicker.min.css);
+@import url(../css/pages/card-pages.css);
+@import url(../css/pages/floating-label.css);
 @import url(../css/spinners.css);
 @import url(../css/animate.css);
 * {
@@ -741,6 +747,12 @@ Layouts
   max-width: 1170px;
   margin: 0 auto; }
 
+.progress {
+  height: auto; }
+
+.card-group {
+  margin-bottom: 30px; }
+
 /*
 Template Name: Admin Pro Admin
 Author: Wrappixel
@@ -839,7 +851,7 @@ sidebar navigation
     margin-top: 6px; }
   .sidebar-nav > ul > li > a.active {
     font-weight: 400;
-    background: transparent;
+    background: #242933;
     color: #26c6da; }
   .sidebar-nav > ul > li {
     margin-bottom: 5px; }
@@ -972,8 +984,8 @@ File: scss
 /*Light colors*/
 /*Normal Color*/
 /*Extra Variable*/
-/*============================================================== 
- For all pages 
+/*==============================================================
+ For all pages
  ============================================================== */
 #main-wrapper {
   width: 100%;
@@ -1149,7 +1161,6 @@ File: scss
 .mini-sidebar .top-navbar .navbar-header {
   width: 70px;
   text-align: center;
-  -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
   padding-left: 0px; }
@@ -2494,7 +2505,7 @@ Buttons
   color: #ffffff;
   background-color: #171515; }
 
-/*============================================================== 
+/*==============================================================
  Buttons page
  ============================================================== */
 .button-group .btn {
@@ -2645,7 +2656,7 @@ Form summernote
 .label {
   display: inline-block; }
 
-/*============================================================== 
+/*==============================================================
 Form addons page
 ============================================================== */
 /*Bootstrap select*/
@@ -2689,7 +2700,10 @@ Form addons page
   color: #ffffff;
   border-color: #398bf7; }
 
-/*============================================================== 
+.input-form .btn {
+  padding: 8px 12px; }
+
+/*==============================================================
 Form Material page
  ============================================================== */
 /*Material inputs*/
@@ -2739,13 +2753,13 @@ Form Material page
     border-bottom: 1px solid #398bf7; }
 
 /*******************
-Form validation error 
+Form validation error
 ******************/
 .error .help-block {
   color: #fb3a3a; }
 
 /*******************
-File Upload 
+File Upload
 ******************/
 .fileupload {
   overflow: hidden;
@@ -2762,7 +2776,7 @@ File Upload
     top: 0; }
 
 /*******************
-This is for the checkbox radio button and switch 
+This is for the checkbox radio button and switch
 ******************/
 /* Radio Buttons
    ========================================================================== */
@@ -5170,7 +5184,6 @@ File: scss
 
 .social-widget .soc-content {
   display: -webkit-box;
-  display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
   text-align: center; }
@@ -5364,7 +5377,6 @@ File: scss
 
 .activity-box .activity-item {
   display: -webkit-box;
-  display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
   margin-bottom: 30px; }
@@ -5549,6 +5561,52 @@ File: scss
 /*-------------------*/
 /*Bootstrap 4 hack*/
 /*-------------------*/
+.bootstrap-touchspin .input-group-btn {
+  -webkit-box-align: normal;
+  -ms-flex-align: normal;
+  align-items: normal; }
+
+.form-control-danger, .form-control-success, .form-control-warning {
+  padding-right: 2.25rem;
+  background-repeat: no-repeat;
+  background-position: center right .5625rem;
+  -webkit-background-size: 1.125rem 1.125rem;
+  background-size: 1.125rem 1.125rem; }
+
+.has-success .col-form-label, .has-success .custom-control, .has-success .form-check-label, .has-success .form-control-feedback, .has-success .form-control-label {
+  color: #06d79c; }
+
+.has-success .form-control-success {
+  background-image: url(../../assets/images/icon/success.svg); }
+
+.has-success .form-control {
+  border-color: #06d79c; }
+
+.has-warning .col-form-label, .has-warning .custom-control, .has-warning .form-check-label, .has-warning .form-control-feedback, .has-warning .form-control-label {
+  color: #ffb22b; }
+
+.has-warning .form-control-warning {
+  background-image: url(../../assets/images/icon/warning.svg); }
+
+.has-warning .form-control {
+  border-color: #ffb22b; }
+
+.has-danger .col-form-label, .has-danger .custom-control, .has-danger .form-check-label, .has-danger .form-control-feedback, .has-danger .form-control-label {
+  color: #ef5350; }
+
+.has-danger .form-control-danger {
+  background-image: url(../../assets/images/icon/danger.svg); }
+
+.has-danger .form-control {
+  border-color: #ef5350; }
+
+.input-group-addon [type="radio"]:not(:checked),
+.input-group-addon [type="radio"]:checked,
+.input-group-addon [type="checkbox"]:not(:checked),
+.input-group-addon [type="checkbox"]:checked {
+  position: initial;
+  opacity: 1; }
+
 .invisible {
   visibility: hidden !important; }
 
@@ -5599,13 +5657,12 @@ Author: Wrappixel
 Email: niravjoshi87@gmail.com
 File: scss
 */
-/*============================================================== 
- For Laptop & above all (1650px) 
+/*==============================================================
+ For Laptop & above all (1650px)
  ============================================================== */
 @media (min-width: 1650px) {
   .widget-app-columns {
     -webkit-column-count: 3;
-    -moz-column-count: 3;
     column-count: 3; }
   .campaign {
     height: 365px !important; }
@@ -5620,21 +5677,20 @@ File: scss
   .auto-height {
     min-height: 240px; } }
 
-/*============================================================== 
- For Laptop & above all (1370px) 
+/*==============================================================
+ For Laptop & above all (1370px)
  ============================================================== */
 @media (max-width: 1370px) {
   .widget-app-columns {
     -webkit-column-count: 2;
-    -moz-column-count: 2;
     column-count: 2; }
   .website-visitor {
     height: 353px; }
   .auto-height {
     min-height: 186px; } }
 
-/*-- ============================================================== 
- Small Desktop & above all (1024px) 
+/*-- ==============================================================
+ Small Desktop & above all (1024px)
  ============================================================== */
 @media (min-width: 1024px) {
   .page-wrapper {
@@ -5648,7 +5704,6 @@ File: scss
     transition: 0.2s ease-in; }
   .widget-app-columns {
     -webkit-column-count: 1;
-    -moz-column-count: 1;
     column-count: 1; }
   .inbox-center a {
     width: 200px; }
@@ -5664,17 +5719,15 @@ File: scss
     display: block !important; }
     .d-flex.no-block {
       display: -webkit-box !important;
-      display: -webkit-flex !important;
       display: -ms-flexbox !important;
       display: flex !important; } }
 
-/*-- ============================================================== 
- Ipad & above all(768px) 
+/*-- ==============================================================
+ Ipad & above all(768px)
  ============================================================== */
 @media (min-width: 768px) {
   .navbar-header {
     width: 240px;
-    -webkit-flex-shrink: 0;
     -ms-flex-negative: 0;
     flex-shrink: 0; }
     .navbar-header .navbar-brand {
@@ -5697,8 +5750,8 @@ File: scss
     flex-wrap: nowrap !important;
     -webkit-flex-wrap: nowrap !important; } }
 
-/*-- ============================================================== 
- Phone and below ipad(767px) 
+/*-- ==============================================================
+ Phone and below ipad(767px)
  ============================================================== */
 @media (max-width: 767px) {
   .container-fluid {
@@ -5710,23 +5763,19 @@ File: scss
     .topbar .top-navbar {
       -webkit-box-orient: horizontal;
       -webkit-box-direction: normal;
-      -webkit-flex-direction: row;
       -ms-flex-direction: row;
       flex-direction: row;
-      -webkit-flex-wrap: nowrap;
       -ms-flex-wrap: nowrap;
       flex-wrap: nowrap;
       -webkit-align-items: center; }
       .topbar .top-navbar .navbar-collapse {
         display: -webkit-box;
-        display: -webkit-flex;
         display: -ms-flexbox;
         display: flex;
         width: 100%; }
       .topbar .top-navbar .navbar-nav {
         -webkit-box-orient: horizontal;
         -webkit-box-direction: normal;
-        -webkit-flex-direction: row;
         -ms-flex-direction: row;
         flex-direction: row; }
         .topbar .top-navbar .navbar-nav > .nav-item.show {
@@ -5794,9 +5843,7 @@ File: scss
   ul.timeline:before {
     left: 40px; }
   ul.timeline > li > .timeline-panel {
-    width: "calc(100% - 90px)";
-    width: "calc(100% - 90px)";
-    width: "calc(100% - 90px)"; }
+    width: calc(100% - 90px); }
   ul.timeline > li > .timeline-badge {
     top: 16px;
     left: 15px;

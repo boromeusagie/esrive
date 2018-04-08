@@ -6,22 +6,18 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <!-- Tell the browser to be responsive to screen width -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="generator" content="{{ config('app.name') }} @version('esrive')" />
     <meta name="description" content="">
-    <meta name="author" content="">
+    <meta name="author" content="Boromeus Agie">
     <!-- Favicon icon -->
-    <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('user/images/favicon.png') }}">
-    <title>{{ config('app.name') }}</title>
+    <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('storage/img/esrive/logo-box-dark-36x36px.png') }}">
+    <title>{{ config('app.name') }} | @yield('page_title')</title>
     <!-- Bootstrap Core CSS -->
     <link href="{{ asset('user/plugins/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
-    <link rel="stylesheet" href="{{ asset('user/scss/icons/font-awesome/css/font-awesome.css') }}">
-    <link rel="stylesheet" href="{{ asset('user/scss/icons/linea-icons/linea.css') }}">
-    <link rel="stylesheet" href="{{ asset('user/scss/icons/material-design-iconic-font/css/material-design-iconic-font.css') }}">
-    <link rel="stylesheet" href="{{ asset('user/scss/icons/simple-line-icons/css/simple-line-icons.css') }}">
-    <link rel="stylesheet" href="{{ asset('user/scss/icons/themify-icons/themify-icons.css') }}">
-    <link rel="stylesheet" href="{{ asset('user/css/animate.css') }}">
-    <link rel="stylesheet" href="{{ asset('user/css/spinners.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/toastr.min.css') }}">
     <!-- Custom CSS -->
     <link href="{{ asset('user/css/style.css') }}" rel="stylesheet">
+    <link href="{{ asset('user/css/user.css') }}" rel="stylesheet">
     <!-- You can change the theme colors from here -->
     <link href="{{ asset('user/css/colors/default-dark.css') }}" id="theme" rel="stylesheet">
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -39,7 +35,7 @@
     <div class="preloader">
         <div class="loader">
             <div class="loader__figure"></div>
-            <p class="loader__label">Admin Pro</p>
+            <p class="loader__label">{{ config('app.name') }}</p>
         </div>
     </div>
     <!-- ============================================================== -->
@@ -57,12 +53,12 @@
                 <div class="navbar-header">
                     <a class="navbar-brand" href="#">
                         <!-- Logo icon --><b>
-                            <img src="{{ asset('user/images/logo-icon.png') }}" alt="homepage" class="dark-logo" />
+                            <img src="{{ asset('storage/img/esrive/logo-box-dark-36x36px.png') }}" alt="homepage" class="dark-logo" />
                         </b>
                         <!--End Logo icon -->
                         <!-- Logo text -->
                         <span>
-                            <img src="{{ asset('user/images/logo-text.png') }}" alt="homepage" class="dark-logo" />
+                            <img src="{{ asset('storage/img/esrive/text-dark-36px.png') }}" alt="homepage" class="dark-logo" />
                         </span>
                     </a>
                 </div>
@@ -74,8 +70,17 @@
                     <!-- toggle and nav items -->
                     <!-- ============================================================== -->
                     <ul class="navbar-nav mr-auto">
+                        <li class="nav-item">
+                          <a class="nav-link nav-toggler hidden-md-up waves-effect waves-dark" href="javascript:void(0)">
+                            <i class="ti-menu"></i>
+                          </a>
+                        </li>
                         <!-- This is  -->
-                        <li class="nav-item"> <a class="nav-link nav-toggler hidden-md-up waves-effect waves-dark" href="javascript:void(0)"><i class="ti-menu"></i></a> </li>
+                        <li class="nav-item">
+                          <a class="nav-link sidebartoggler hidden-sm-down waves-effect waves-dark" href="javascript:void(0)">
+                            <i class="ti-menu"></i>
+                          </a>
+                        </li>
                     </ul>
                     <!-- ============================================================== -->
                     <!-- User profile and search -->
@@ -84,24 +89,24 @@
                         <!-- ============================================================== -->
                         <!-- Search -->
                         <!-- ============================================================== -->
-                        <li class="nav-item hidden-xs-down search-box"> <a class="nav-link hidden-sm-down waves-effect waves-dark" href="javascript:void(0)"><i class="ti-search"></i></a>
+                        <!-- <li class="nav-item hidden-xs-down search-box"> <a class="nav-link hidden-sm-down waves-effect waves-dark" href="javascript:void(0)"><i class="ti-search"></i></a>
                             <form class="app-search">
                                 <input type="text" class="form-control" placeholder="Search & enter"> <a class="srh-btn"><i class="ti-close"></i></a>
                             </form>
-                        </li>
+                        </li> -->
                         <!-- ============================================================== -->
                         <!-- Profile -->
                         <!-- ============================================================== -->
                         <li class="nav-item dropdown">
                             <a id="navbarDropdown" href="#" class="nav-link dropdown-toggle waves-effect waves-dark" data-toggle="dropdown" role="button" aria-expanded="false">
-                                <img src="{{ asset('user/images/users/1.jpg') }}" alt="user" class="profile-pic" /></a><span class="caret"></span>
+                                <img src="{{ asset('storage/img/user/noimg.png') }}" alt="user" class="profile-pic" /></a><span class="caret"></span>
                             </a>
 
-                            <div class="dropdown-menu dropdown-menu-right animated flipInY">
+                            <div class="dropdown-menu dropdown-menu-right animated fadeIn">
                               <ul class="dropdown-user">
                                     <li>
                                         <div class="dw-user-box">
-                                            <div class="u-img"><img src="{{ asset('user/images/users/1.jpg') }}" alt="user"></div>
+                                            <div class="u-img"><img src="{{ asset('storage/img/user/noimg.png') }}" alt="user"></div>
                                             <div class="u-text">
                                                 <h4>{{ $user->name }}</h4>
                                                 <p class="text-muted">{{ $user->email }}</p><a href="pages-profile.html" class="btn btn-rounded btn-danger btn-sm">View Profile</a></div>
@@ -193,9 +198,11 @@
                           </a>
                         </li>
                     </ul>
-                    <div class="text-center m-t-30">
-                        <a href="https://wrappixel.com/templates/adminpro/" class="btn waves-effect waves-light btn-info hidden-md-down"> Upgrade to Pro</a>
-                    </div>
+                    @if($user->user_type == 1)
+                      <div class="text-center m-t-30">
+                          <a href="https://wrappixel.com/templates/adminpro/" class="btn waves-effect waves-light btn-danger hidden-md-down"> Upgrade to Pro</a>
+                      </div>
+                    @endif
                 </nav>
                 <!-- End Sidebar navigation -->
             </div>
@@ -209,7 +216,27 @@
         <!-- ============================================================== -->
         <div class="page-wrapper">
             <!-- ============================================================== -->
-            @yield('content')
+            <!-- Container fluid  -->
+            <!-- ============================================================== -->
+            <div class="container-fluid">
+                <!-- ============================================================== -->
+                <!-- Bread crumb and right sidebar toggle -->
+                <!-- ============================================================== -->
+                <div class="row page-titles">
+                    <div class="col-md-5 align-self-center">
+                        <h3 class="text-themecolor">@yield('page_title')</h3>
+                    </div>
+                    <div class="col-md-7 align-self-center">
+                      @if($user->user_type == 1)
+                        <a href="https://wrappixel.com/templates/adminpro/" class="btn waves-effect waves-light btn-danger pull-right hidden-sm-down"> Upgrade to Pro</a>
+                      @endif
+                    </div>
+                </div>
+                @yield('content')
+            </div>
+            <!-- ============================================================== -->
+            <!-- End Container fluid  -->
+            <!-- ============================================================== -->
             <!-- ============================================================== -->
             <!-- ============================================================== -->
             <!-- footer -->
@@ -241,8 +268,15 @@
     <script src="{{ asset('user/js/waves.js') }}"></script>
     <!--Menu sidebar -->
     <script src="{{ asset('user/js/sidebarmenu.js') }}"></script>
+    <script src="{{ asset('js/toastr.min.js') }}"></script>
     <!--Custom JavaScript -->
     <script src="{{ asset('user/js/custom.min.js') }}"></script>
+
+    @yield('script')
+
+    {!! Toastr::render() !!}
+
+    @yield('hidden-div')
 </body>
 
 </html>
