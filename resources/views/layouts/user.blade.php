@@ -9,6 +9,8 @@
     <meta name="generator" content="{{ config('app.name') }} @version('esrive')" />
     <meta name="description" content="">
     <meta name="author" content="Boromeus Agie">
+    <!-- CSRF Token -->
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <!-- Favicon icon -->
     <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('storage/img/esrive/logo-box-dark-36x36px.png') }}">
     <title>{{ config('app.name') }} | @yield('page_title')</title>
@@ -17,9 +19,9 @@
     <link rel="stylesheet" href="{{ asset('css/toastr.min.css') }}">
     <!-- Custom CSS -->
     <link href="{{ asset('user/css/style.css') }}" rel="stylesheet">
-    <link href="{{ asset('user/css/user.css') }}" rel="stylesheet">
     <!-- You can change the theme colors from here -->
     <link href="{{ asset('user/css/colors/default-dark.css') }}" id="theme" rel="stylesheet">
+    <link href="{{ asset('user/css/user.css') }}" rel="stylesheet">
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -154,17 +156,27 @@
                           </a>
                           <ul class="collapse" aria-expanded="false">
                             <li><a href="{{ route('user.data') }}">Edit Undangan</a></li>
-                            <li><a href="#">Edit Tema</a></li>
+                            <li>
+                              <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false">Tema Undangan</a>
+                              <ul aria-expanded="false" class="collapse">
+                                <li>
+                                  <a href="{{ route('user.pilihtema') }}">Pilih Tema</a>
+                                </li>
+                                <li>
+                                  <a href="{{ route('user.edittema') }}">Edit Tema</a>
+                                </li>
+                              </ul>
+                            </li>
                           </ul>
                         </li>
                         <li>
                           <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false">
-                            <i class="mdi mdi-table"></i>
-                            <span class="hide-menu">Table</span>
+                            <i class="mdi mdi-book-open-page-variant"></i>
+                            <span class="hide-menu">Buku Tamu</span>
                           </a>
                           <ul class="collapse" aria-expanded="false">
-                            <li><a href="#">Home</a></li>
-                            <li><a href="#">Profile</a></li>
+                            <li><a href="#">Daftar Tamu</a></li>
+                            <li><a href="#">Ucapan Selamat</a></li>
                           </ul>
                         </li>
                         <li>
@@ -200,7 +212,7 @@
                     </ul>
                     @if($user->user_type == 1)
                       <div class="text-center m-t-30">
-                          <a href="https://wrappixel.com/templates/adminpro/" class="btn waves-effect waves-light btn-danger hidden-md-down"> Upgrade to Pro</a>
+                          <a href="https://wrappixel.com/templates/adminpro/" class="btn waves-effect waves-light btn-danger hidden-md-down">Upgrade to Pro</a>
                       </div>
                     @endif
                 </nav>
@@ -228,7 +240,7 @@
                     </div>
                     <div class="col-md-7 align-self-center">
                       @if($user->user_type == 1)
-                        <a href="https://wrappixel.com/templates/adminpro/" class="btn waves-effect waves-light btn-danger pull-right hidden-sm-down"> Upgrade to Pro</a>
+                        <a href="https://wrappixel.com/templates/adminpro/" class="btn waves-effect waves-light btn-danger pull-right hidden-sm-down">Upgrade to Pro</a>
                       @endif
                     </div>
                 </div>
@@ -269,10 +281,13 @@
     <!--Menu sidebar -->
     <script src="{{ asset('user/js/sidebarmenu.js') }}"></script>
     <script src="{{ asset('js/toastr.min.js') }}"></script>
+
+    @yield('scripts')
+
     <!--Custom JavaScript -->
     <script src="{{ asset('user/js/custom.min.js') }}"></script>
 
-    @yield('script')
+
 
     {!! Toastr::render() !!}
 

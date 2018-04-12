@@ -15,7 +15,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password', 'activated',
+        'name', 'username', 'email', 'password', 'activated',
     ];
 
     /**
@@ -34,4 +34,12 @@ class User extends Authenticatable
      {
        return $this->belongsTo('App\UserType');
      }
+
+     /**
+      * Relationship to Wedding
+      */
+      public function wedding()
+      {
+        return $this->hasOne('App\Wedding', 'foreign_key');
+      }
 }

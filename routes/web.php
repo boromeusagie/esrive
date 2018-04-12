@@ -25,8 +25,10 @@ Route::group(['middleware' => 'auth'], function() {
     Route::group(['prefix' => 'user'], function () {
         Route::get('dashboard', 'UserController@index')->name('user.dashboard');
         Route::get('data', 'UserController@data')->name('user.data');
+        Route::post('edit-data', 'EditInvitationController@editData')->name('user.editdata');
+        Route::post('edit-data-free', 'EditInvitationController@editDataFree')->name('user.editdatafree');
         Route::get('pilih-tema', 'UserController@pilihTema')->name('user.pilihtema');
-        Route::get('edit-tampilan', 'UserController@editTampilan')->name('user.edittampilan');
+        Route::get('edit-tema', 'UserController@editTema')->name('user.edittema');
         Route::get('daftar-tamu', 'UserController@daftarTamu')->name('user.daftartamu');
         Route::get('ucapan-selamat', 'UserController@ucapanSelamat')->name('user.ucapanselamat');
         Route::get('galeri-foto', 'UserController@galeriFoto')->name('user.galerifoto');

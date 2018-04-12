@@ -18,6 +18,8 @@ class CreateUsersTable extends Migration
             $table->string('name');
             $table->string('email')->unique();
             $table->string('password');
+            $table->string('username')->unique();
+            $table->string('user_img')->default('noimg.png');
             $table->boolean('activated')->default(false);
             $table->integer('user_type')->unsigned()->default(1);
             $table->foreign('user_type')->references('id')->on('user_type');

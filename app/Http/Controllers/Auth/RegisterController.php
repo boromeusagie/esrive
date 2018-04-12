@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Http\Request;
+use App\Wedding;
 use Mail;
 use DB;
 
@@ -43,6 +44,14 @@ class RegisterController extends Controller
     }
 
     /**
+     * Make unique Username
+     */
+     public function getUsername()
+     {
+       return str_random(8);
+     }
+
+    /**
      * Get a validator for an incoming registration request.
      *
      * @param  array  $data
@@ -65,10 +74,13 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+        $data['username'] = $this->getUsername();
+
         return User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
+            'username' => $data['username'],
         ]);
     }
 
@@ -91,6 +103,13 @@ class RegisterController extends Controller
             'user_id'  => $user['id'],
             'activation_token'    => $user['link']
           ]);
+
+          $wedding = new Wedding;
+
+          $wedding->user_id = $user['id'];
+          $wedding->wedding_url = $user['username'];
+
+          $wedding->save();
 
           Mail::send('mail.activation', $user, function($message) use($user) {
             $message->to($user['email']);

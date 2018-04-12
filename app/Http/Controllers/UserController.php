@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\UserType;
 use App\User;
+use App\Wedding;
 use Validator;
 use Auth;
 use Image;
@@ -40,17 +41,27 @@ class UserController extends Controller
 
     public function data()
     {
-    	return view('user.data', ['user' => Auth::user()]);
+      setlocale(LC_TIME, 'INDONESIA');
+
+      $user = Auth::user();
+    	return view('user.data', ['user' => Auth::user(), 'user_wedding' => Wedding::find(['user_id' => $user->id])->first(), 'date' => strftime( "%A, %d %B %Y %H:%M", time())]);
+    }
+
+    public function editData(Request $request)
+    {
+      $user = Auth::user();
+
+
     }
 
     public function pilihTema()
     {
-    	return view('user.pages.pilihtema');
+    	return view('user.pilihtema', ['user' => Auth::user()]);
     }
 
-    public function editTampilan()
+    public function editTema()
     {
-    	return view('user.pages.edittampilan');
+    	return view('user.edittema', ['user' => Auth::user()]);
     }
 
     public function daftarTamu()

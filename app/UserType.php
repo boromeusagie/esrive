@@ -9,7 +9,7 @@ class UserType extends Model
     /**
      * Relationship with User
      */
-     public function user()
+     public function users()
      {
        return $this->hasMany('App\User', 'foreign_key');
      }
