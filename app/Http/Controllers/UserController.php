@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\UserType;
@@ -36,32 +37,52 @@ class UserController extends Controller
 
     public function index()
     {
-    	return view('user.dashboard', ['user' => Auth::user()]);
+      $user = Auth::user();
+      $user_wedding = Wedding::find(['user_id' => $user->id])->first();
+
+    	return view('user.dashboard', [
+        'user' => Auth::user(),
+        'user_wedding' => Wedding::find(['user_id' => $user->id])->first(),
+        'userimg' => Storage::url('public/user/' . $user->username . '/' . 'img/' . $user->user_img)
+      ]);
     }
 
     public function data()
     {
-      setlocale(LC_TIME, 'INDONESIA');
-
       $user = Auth::user();
-    	return view('user.data', ['user' => Auth::user(), 'user_wedding' => Wedding::find(['user_id' => $user->id])->first(), 'date' => strftime( "%A, %d %B %Y %H:%M", time())]);
-    }
+      $user_wedding = Wedding::find(['user_id' => $user->id])->first();
 
-    public function editData(Request $request)
-    {
-      $user = Auth::user();
-
-
+    	return view('user.data', [
+        'user' => Auth::user(),
+        'user_wedding' => Wedding::find(['user_id' => $user->id])->first(),
+        'userimg' => Storage::url('public/user/' . $user->username . '/' . 'img/' . $user->user_img),
+        'groompic' => Storage::url('public/user/' . $user->username . '/' . 'img/' . $user_wedding->groom_pic),
+        'bridepic' => Storage::url('public/user/' . $user->username . '/' . 'img/' . $user_wedding->bride_pic)
+      ]);
     }
 
     public function pilihTema()
     {
-    	return view('user.pilihtema', ['user' => Auth::user()]);
+      $user = Auth::user();
+      $user_wedding = Wedding::find(['user_id' => $user->id])->first();
+
+    	return view('user.pilihtema', [
+        'user' => Auth::user(),
+        'user_wedding' => Wedding::find(['user_id' => $user->id])->first(),
+        'userimg' => Storage::url('public/user/' . $user->username . '/' . 'img/' . $user->user_img)
+      ]);
     }
 
     public function editTema()
     {
-    	return view('user.edittema', ['user' => Auth::user()]);
+      $user = Auth::user();
+      $user_wedding = Wedding::find(['user_id' => $user->id])->first();
+
+    	return view('user.edittema', [
+        'user' => Auth::user(),
+        'user_wedding' => Wedding::find(['user_id' => $user->id])->first(),
+        'userimg' => Storage::url('public/user/' . $user->username . '/' . 'img/' . $user->user_img)
+      ]);
     }
 
     public function daftarTamu()

@@ -21,8 +21,8 @@ class CreateUsersTable extends Migration
             $table->string('username')->unique();
             $table->string('user_img')->default('noimg.png');
             $table->boolean('activated')->default(false);
-            $table->integer('user_type')->unsigned()->default(1);
-            $table->foreign('user_type')->references('id')->on('user_type');
+            $table->string('user_type')->default('Pengguna Gratis');
+            $table->foreign('user_type')->references('user_type')->on('user_types');
             $table->rememberToken();
             $table->timestamps();
         });

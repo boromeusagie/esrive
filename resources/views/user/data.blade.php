@@ -61,8 +61,8 @@
                 </div>
                 <div class="card-body">
                   <div class="text-center m-b-40">
-          					<div class="profile-picture">
-          						<img src="{{ asset('storage/img/user/noimg.png') }}" alt="" class="img-circle img-responsive">
+          					<div class="profile-picture" data-toggle="modal" data-target="#groomUpload">
+          						<img src="{{ asset($groompic) }}" alt="" class="img-circle img-responsive">
           					</div>
           					<span class="help-block text-muted"><small>klik foto untuk mengganti</small></span>
           				</div>
@@ -105,8 +105,8 @@
                 </div>
                 <div class="card-body">
                   <div class="text-center m-b-40">
-          					<div class="profile-picture">
-          						<img src="{{ asset('storage/img/user/noimg.png') }}" alt="" class="img-circle img-responsive">
+          					<div class="profile-picture" data-toggle="modal" data-target="#brideUpload">
+          						<img src="{{ asset($bridepic) }}" alt="" class="img-circle img-responsive">
           					</div>
           					<span class="help-block text-muted"><small>klik foto untuk mengganti</small></span>
           				</div>
@@ -356,6 +356,7 @@
 <script src="{{ asset('user/plugins/bootstrap-daterangepicker/daterangepicker.js') }}"></script>
 <script src="{{ asset('user/plugins/bootstrap-material-datetimepicker/js/bootstrap-material-datetimepicker.js') }}"></script>
 <script src="{{ asset('user/plugins/timepicker/bootstrap-timepicker.min.js') }}"></script>
+<script src="{{ asset('user/plugins/cropper-master/dist/cropper.min.js') }}"></script>
 
 <script type="text/javascript">
   $(function() {
@@ -367,86 +368,87 @@
     $('#wedding_rec_begin').bootstrapMaterialDatePicker({ date: false, format: 'HH:mm' });
     $('#wedding_rec_end').bootstrapMaterialDatePicker({ date: false, format: 'HH:mm' });
 
-    $('.profile-picture').on('click', function(){
-   		var modal =
-   		'<div class="modal fade">\
-   		  <div class="modal-dialog">\
-   		   <div class="modal-content">\
-   			<div class="modal-header">\
-   				<button type="button" class="close" data-dismiss="modal">&times;</button>\
-   				<h4 class="blue">Ganti Profile Picture</h4>\
-   			</div>\
-   			\
-   			<form class="no-margin">\
-   			 <div class="modal-body">\
-   				<div class="space-4"></div>\
-   				<div style="width:75%;margin-left:12%;"><input type="file" name="file-input" /></div>\
-   			 </div>\
-   			\
-   			 <div class="modal-footer center">\
-   				<button type="submit" class="btn btn-sm btn-success"><i class="ace-icon fa fa-check"></i> Submit</button>\
-   				<button type="button" class="btn btn-sm" data-dismiss="modal"><i class="ace-icon fa fa-times"></i> Cancel</button>\
-   			 </div>\
-   			</form>\
-   		  </div>\
-   		 </div>\
-   		</div>';
+    function previewGroom(input) {
+
+      var image_groom = $(".img-wrapper-groom > img");
+
+  		if (input.files && input.files[0]) {
+  			var reader = new FileReader();
+
+  			reader.onload = function (e) {
+          image_groom.cropper('destroy');
+  				$(image_groom).attr("src", e.target.result);
+
+  				image_groom.cropper({
+  					aspectRatio: 300 / 300,
+  					viewMode: 1,
+  					resizable: true,
+  					zoomable: false,
+  					rotatable: false,
+  					crop: function(e) {
+  						console.log(e.x);
+  						console.log(e.y);
+  						console.log(e.width);
+  						console.log(e.height);
+  						document.getElementById("width_groom").setAttribute("value", parseInt(e.width));
+  						document.getElementById("height_groom").setAttribute("value", parseInt(e.height));
+  						document.getElementById("x_groom").setAttribute("value", parseInt(e.x));
+  						document.getElementById("y_groom").setAttribute("value", parseInt(e.y));
+  					}
+  				});
+
+			  }
+
+			  reader.readAsDataURL(input.files[0]);
+  		}
+  	}
+
+  	function previewBride(input) {
+
+      var image_bride = $(".img-wrapper-bride > img");
+
+  		if (input.files && input.files[0]) {
+  			var reader = new FileReader();
+
+  			reader.onload = function (e) {
+          image_bride.cropper('destroy');
+  				$(image_bride).attr("src", e.target.result);
+
+  				image_bride.cropper({
+  					aspectRatio: 300 / 300,
+  					viewMode: 1,
+  					resizable: true,
+  					zoomable: false,
+  					rotatable: false,
+  					crop: function(e) {
+  						console.log(e.x);
+  						console.log(e.y);
+  						console.log(e.width);
+  						console.log(e.height);
+  						document.getElementById("width_bride").setAttribute("value", parseInt(e.width));
+  						document.getElementById("height_bride").setAttribute("value", parseInt(e.height));
+  						document.getElementById("x_bride").setAttribute("value", parseInt(e.x));
+  						document.getElementById("y_bride").setAttribute("value", parseInt(e.y));
+  					}
+  				});
+
+			  }
+
+			  reader.readAsDataURL(input.files[0]);
+  		}
 
 
-   		var modal = $(modal);
-   		modal.modal("show").on("hidden", function(){
-   			modal.remove();
-   		});
+  	}
 
-   		var working = false;
+  	$("#input_img_groom").change(function(){
+  		previewGroom(this);
+  	});
 
-   		var form = modal.find('form:eq(0)');
-   		var file = form.find('input[type=file]').eq(0);
-   		file.ace_file_input({
-   			style:'well',
-   			btn_choose:'Klik untuk mengganti foto',
-   			btn_change:null,
-   			no_icon:'ace-icon fa fa-picture-o',
-   			thumbnail:'small',
-   			before_remove: function() {
-   				//don't remove/reset files while being uploaded
-   				return !working;
-   			},
-   			allowExt: ['jpg', 'jpeg', 'png', 'gif'],
-   			allowMime: ['image/jpg', 'image/jpeg', 'image/png', 'image/gif']
-   		});
-
-   		form.on('submit', function(){
-   			if(!file.data('ace_input_files')) return false;
-
-   			file.ace_file_input('disable');
-   			form.find('button').attr('disabled', 'disabled');
-   			form.find('.modal-body').append("<div class='center'><i class='ace-icon fa fa-spinner fa-spin bigger-150 orange'></i></div>");
-
-   			var deferred = new $.Deferred;
-   			working = true;
-   			deferred.done(function() {
-   				form.find('button').removeAttr('disabled');
-   				form.find('input[type=file]').ace_file_input('enable');
-   				form.find('.modal-body > :last-child').remove();
-
-   				modal.modal("hide");
-
-   				var thumb = file.next().find('img').data('thumb');
-   				if(thumb) $('#avatar2').get(0).src = thumb;
-
-   				working = false;
-   			});
+  	$("#input_img_bride").change(function(){
+  		previewBride(this);
+  	});
 
 
-   			setTimeout(function(){
-   				deferred.resolve();
-   			} , parseInt(Math.random() * 800 + 800));
-
-   			return false;
-   		});
-   				
-   	});
   });
 </script>
 
@@ -578,5 +580,94 @@
   </script>
 
   <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyADAyUypMMV6g56jzDBqU7pw7_YFlMBmgI&callback=initMap"></script>
+
+@endsection
+
+@section('hidden-div')
+
+<div class="modal fade modal-upload" id="groomUpload" tabindex="-1" role="dialog" aria-labelledby="brideLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+
+      <div class="modal-header">
+        <h4 class="modal-title" id="brideLabel">Upload Foto Profil Pengantin Pria</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      </div>
+
+      <form action="{{ route('user.groompic') }}" id="groom_image"  enctype="multipart/form-data" class="formset" role="form" method="POST">
+      	@csrf
+      	<div class="modal-body">
+
+      		<div class="form-group{{ $errors->has('groom_pic') ? ' has-error' : '' }}">
+      			<input id="input_img_groom" type="file" name="groom_pic" style="margin-top: 10px;">
+
+      			@if ($errors->has('groom_pic'))
+      				<span class="help-block">
+      					<strong>{{ $errors->first('groom_pic') }}</strong>
+      				</span>
+      			@endif
+
+      			<input id="width_groom" name="width_groom" hidden>
+      			<input id="height_groom" name="height_groom" hidden>
+      			<input id="x_groom" name="x_groom" hidden>
+      			<input id="y_groom" name="y_groom" hidden>
+
+      		</div>
+
+      		<div class="img-wrapper-groom">
+      			<img src="" alt="">
+      		</div>
+
+      	</div>
+      	<div class="modal-footer">
+      		<button type="button" class="btn btn-sm" data-dismiss="modal"><i class="ace-icon fa fa-times"></i> Cancel</button>
+      		<button type="submit" class="btn btn-sm btn-success"><i class="ace-icon fa fa-check"></i> Submit</button>
+      	</div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade modal-upload" id="brideUpload" tabindex="-1" role="dialog" aria-labelledby="brideLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+
+      <div class="modal-header">
+        <h4 class="modal-title" id="brideLabel">Upload Foto Profil Pengantin Wanita</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      </div>
+      <form action="{{ route('user.bridepic') }}" id="bride_image"  enctype="multipart/form-data" class="formset" role="form" method="POST">
+      	@csrf
+      	<div class="modal-body">
+
+      		<div class="form-group{{ $errors->has('bride_pic') ? ' has-error' : '' }}">
+      			<input id="input_img_bride" type="file" name="bride_pic" style="margin-top: 10px;">
+
+      			@if ($errors->has('bride_pic'))
+      				<span class="help-block">
+      					<strong>{{ $errors->first('bride_pic') }}</strong>
+      				</span>
+      			@endif
+
+      			<input id="width_bride" name="width_bride" hidden>
+      			<input id="height_bride" name="height_bride" hidden>
+      			<input id="x_bride" name="x_bride" hidden>
+      			<input id="y_bride" name="y_bride" hidden>
+
+      		</div>
+
+      		<div class="img-wrapper-bride">
+      			<img src="" alt="">
+      		</div>
+
+      	</div>
+      	<div class="modal-footer">
+      		<button type="button" class="btn btn-sm" data-dismiss="modal"><i class="ace-icon fa fa-times"></i> Cancel</button>
+      		<button type="submit" class="btn btn-sm btn-success"><i class="ace-icon fa fa-check"></i> Submit</button>
+      	</div>
+      </form>
+    </div>
+  </div>
+</div>
 
 @endsection

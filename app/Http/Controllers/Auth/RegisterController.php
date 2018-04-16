@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use App\Wedding;
 use Mail;
 use DB;
@@ -110,6 +111,13 @@ class RegisterController extends Controller
           $wedding->wedding_url = $user['username'];
 
           $wedding->save();
+
+          $img_directory = '/public/user/' . $user['username'] . '/img';
+          $file_directory = '/public/user/' . $user['username'] . '/file';
+
+          Storage::makeDirectory($img_directory);
+          Storage::makeDirectory($file_directory);
+          Storage::copy('public/noimg.png', $img_directory . '/noimg.png');
 
           Mail::send('mail.activation', $user, function($message) use($user) {
             $message->to($user['email']);

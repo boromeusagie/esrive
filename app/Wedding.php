@@ -22,4 +22,8 @@ class Wedding extends Model
   {
     return $this->belongsTo('App\User');
   }
+
+  public function weddingTheme() {
+    return $this->belongsTo('App\WeddingTheme');
+  }
 }

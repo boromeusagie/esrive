@@ -32,6 +32,10 @@ class Admin extends Authenticatable
         'password', 'remember_token',
     ];
 
+    public function admin_type() {
+      return $this->belongsTo('App\AdminType');
+    }
+
     /**
      * Send the password reset notification.
      *

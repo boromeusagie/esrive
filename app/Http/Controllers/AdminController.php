@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Admin;
+use App\AdminType;
+use Auth;
 
 class AdminController extends Controller
 {
@@ -22,6 +25,20 @@ class AdminController extends Controller
      */
     public function index()
     {
-        return view('admin.dashboard');
+        $admin = Auth::user();
+        return view('admin.dashboard', [
+          'admin' => $admin
+        ]);
+    }
+
+    public function daftarAdmin()
+    {
+      $admin = Auth::user();
+      $daftaradmins = Admin::all();
+
+      return view('admin.daftaradmin', [
+        'admin' => $admin,
+        'daftaradmins' => $daftaradmins
+      ]);
     }
 }

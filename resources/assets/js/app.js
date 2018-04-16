@@ -16,7 +16,8 @@ window.Vue = require('vue');
  */
 
 Vue.component('example-component', require('./components/ExampleComponent.vue'));
-Vue.component('esrive', require('./components/Esrive.vue'));
+Vue.component('upload-groom', require('./components/UploadGroom.vue'));
+Vue.component('upload-bride', require('./components/UploadBride.vue'));
 
 const app = new Vue({
     el: '#app'

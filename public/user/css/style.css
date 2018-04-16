@@ -58,6 +58,7 @@ Global Styles
 @import url(../plugins/bootstrap-daterangepicker/daterangepicker.css);
 @import url(../plugins/bootstrap-material-datetimepicker/css/bootstrap-material-datetimepicker.css);
 @import url(../plugins/timepicker/bootstrap-timepicker.min.css);
+@import url(../plugins/cropper-master/dist/cropper.min.css);
 @import url(../css/pages/card-pages.css);
 @import url(../css/pages/floating-label.css);
 @import url(../css/spinners.css);
@@ -2577,7 +2578,7 @@ Form-control
   background-color: #06d79c; }
 
 form label {
-  font-weight: 400; }
+  font-weight: 400; color: #1976D2;}
 
 .form-group {
   margin-bottom: 25px; }

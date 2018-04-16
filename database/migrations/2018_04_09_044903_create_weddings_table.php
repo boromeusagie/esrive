@@ -25,6 +25,8 @@ class CreateWeddingsTable extends Migration
           $table->string('bride_nick')->nullable();
           $table->string('bride_pic')->default('noimg.png');
           $table->text('bride_profile')->nullable();
+          $table->integer('wedding_theme')->unsigned();
+          $table->foreign('wedding_theme')->references('id')->on('wedding_themes');
           $table->string('wedding_url')->unique();
           $table->string('wedding_cer')->default('Akad Nikah');
           $table->string('wedding_cer_date')->nullable();

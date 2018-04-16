@@ -13,7 +13,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <!-- Favicon icon -->
     <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('storage/img/esrive/logo-box-dark-36x36px.png') }}">
-    <title>{{ config('app.name') }} | @yield('page_title')</title>
+    <title>@yield('page_title') | {{ config('app.name') }}</title>
     <!-- Bootstrap Core CSS -->
     <link href="{{ asset('user/plugins/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('css/toastr.min.css') }}">
@@ -101,14 +101,14 @@
                         <!-- ============================================================== -->
                         <li class="nav-item dropdown">
                             <a id="navbarDropdown" href="#" class="nav-link dropdown-toggle waves-effect waves-dark" data-toggle="dropdown" role="button" aria-expanded="false">
-                                <img src="{{ asset('storage/img/user/noimg.png') }}" alt="user" class="profile-pic" /></a><span class="caret"></span>
+                                <img src="{{ asset($userimg) }}" alt="user" class="profile-pic" /></a><span class="caret"></span>
                             </a>
 
                             <div class="dropdown-menu dropdown-menu-right animated fadeIn">
                               <ul class="dropdown-user">
                                     <li>
                                         <div class="dw-user-box">
-                                            <div class="u-img"><img src="{{ asset('storage/img/user/noimg.png') }}" alt="user"></div>
+                                            <div class="u-img"><img src="{{ asset($userimg) }}" alt="user"></div>
                                             <div class="u-text">
                                                 <h4>{{ $user->name }}</h4>
                                                 <p class="text-muted">{{ $user->email }}</p><a href="pages-profile.html" class="btn btn-rounded btn-danger btn-sm">View Profile</a></div>
@@ -254,7 +254,7 @@
             <!-- footer -->
             <!-- ============================================================== -->
             <footer class="footer">
-                © {{ date('Y') }} {{ config('app.name') }} @version('esrive')
+                <div class="float-right">© {{ date('Y') }} {{ config('app.name') }} @version('esrive')</div>
             </footer>
             <!-- ============================================================== -->
             <!-- End footer -->
@@ -282,10 +282,10 @@
     <script src="{{ asset('user/js/sidebarmenu.js') }}"></script>
     <script src="{{ asset('js/toastr.min.js') }}"></script>
 
-    @yield('scripts')
-
     <!--Custom JavaScript -->
     <script src="{{ asset('user/js/custom.min.js') }}"></script>
+
+    @yield('scripts')
 
 
 
