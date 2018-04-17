@@ -1,6 +1,8 @@
 <?php
 
+use App\Admin;
 use Illuminate\Http\Request;
+use App\Http\Resources\AdminResource;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,6 +15,9 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
+//Route::middleware('auth:api-admin', function() {
+
+//});
+Route::get('admins', function () {
+    return AdminResource(Admin::find(1));
 });

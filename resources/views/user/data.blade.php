@@ -27,7 +27,7 @@
                           <span class="esrive-input-group-text bg-theme b-0 text-white">http://www.esrive.id/</span>
                         </div>
                         <div class="form-group{{ $errors->has('wedding_url') ? ' has-error' : '' }} m-b-40">
-                          <input type="text" class="form-control" id="wedding_url" aria-describedby="basic-addon3" name="wedding_url" value="{{ isset($user_wedding->wedding_url) ? $user_wedding->wedding_url : "" }}" required {{ $user->user_type == 1 ? 'disabled' : '' }}>
+                          <input type="text" class="form-control" id="wedding_url" aria-describedby="basic-addon3" name="wedding_url" value="{{ isset($user_wedding->wedding_url) ? $user_wedding->wedding_url : "" }}" required {{ $user->user_type == "Pengguna Gratis" ? 'disabled' : '' }}>
 
                           @if ($errors->has('wedding_url'))
                               <span class="help-block text-danger">
@@ -37,7 +37,7 @@
 
                         </div>
                       </div>
-                      @if ($user->user_type == 1)
+                      @if ($user->user_type == "Pengguna Gratis")
                         <span class="help-block text-danger float-right">
                           <small>Upgrade ke PRO</small>
                         </span>
@@ -62,7 +62,7 @@
                 <div class="card-body">
                   <div class="text-center m-b-40">
           					<div class="profile-picture" data-toggle="modal" data-target="#groomUpload">
-          						<img src="{{ asset($groompic) }}" alt="" class="img-circle img-responsive">
+          						<img src="{{ asset('storage/user/' . $user->username . '/img/' . $user_wedding->groom_pic) }}" alt="" class="img-circle img-responsive">
           					</div>
           					<span class="help-block text-muted"><small>klik foto untuk mengganti</small></span>
           				</div>
@@ -106,7 +106,7 @@
                 <div class="card-body">
                   <div class="text-center m-b-40">
           					<div class="profile-picture" data-toggle="modal" data-target="#brideUpload">
-          						<img src="{{ asset($bridepic) }}" alt="" class="img-circle img-responsive">
+          						<img src="{{ asset('storage/user/' . $user->username . '/img/' . $user_wedding->bride_pic) }}" alt="" class="img-circle img-responsive">
           					</div>
           					<span class="help-block text-muted"><small>klik foto untuk mengganti</small></span>
           				</div>

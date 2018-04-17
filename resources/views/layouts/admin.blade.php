@@ -101,14 +101,14 @@
                         <!-- ============================================================== -->
                         <li class="nav-item dropdown">
                             <a id="navbarDropdown" href="#" class="nav-link dropdown-toggle waves-effect waves-dark" data-toggle="dropdown" role="button" aria-expanded="false">
-                                <img src="{{ asset('storage/noimg.png') }}" alt="user" class="profile-pic" /></a><span class="caret"></span>
+                                <img src="{{ asset('storage/admin/img/' . $admin->admin_pic) }}" alt="user" class="profile-pic" /></a><span class="caret"></span>
                             </a>
 
                             <div class="dropdown-menu dropdown-menu-right animated fadeIn">
                               <ul class="dropdown-user">
                                     <li>
                                         <div class="dw-user-box">
-                                            <div class="u-img"><img src="{{ asset('storage/noimg.png') }}" alt="user"></div>
+                                            <div class="u-img"><img src="{{ asset('storage/admin/img/' . $admin->admin_pic) }}" alt="user"></div>
                                             <div class="u-text">
                                                 <h4>{{ $admin->name }}</h4>
                                                 <p class="text-muted">{{ $admin->email }}</p><a href="pages-profile.html" class="btn btn-rounded btn-danger btn-sm">View Profile</a></div>

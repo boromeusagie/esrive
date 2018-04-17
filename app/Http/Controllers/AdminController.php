@@ -25,10 +25,8 @@ class AdminController extends Controller
      */
     public function index()
     {
-        $admin = Auth::user();
-        return view('admin.dashboard', [
-          'admin' => $admin
-        ]);
+        //$admin = Auth::user();
+        return view('admin.dashboard');
     }
 
     public function daftarAdmin()

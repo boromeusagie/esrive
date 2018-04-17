@@ -210,7 +210,7 @@
                           </a>
                         </li>
                     </ul>
-                    @if($user->user_type == 1)
+                    @if($user->user_type == "Pengguna Gratis")
                       <div class="text-center m-t-30">
                           <a href="https://wrappixel.com/templates/adminpro/" class="btn waves-effect waves-light btn-danger hidden-md-down">Upgrade to Pro</a>
                       </div>
@@ -239,7 +239,7 @@
                         <h3 class="text-themecolor">@yield('page_title')</h3>
                     </div>
                     <div class="col-md-7 align-self-center">
-                      @if($user->user_type == 1)
+                      @if($user->user_type == "Pengguna Gratis")
                         <a href="https://wrappixel.com/templates/adminpro/" class="btn waves-effect waves-light btn-danger pull-right hidden-sm-down">Upgrade to Pro</a>
                       @endif
                     </div>

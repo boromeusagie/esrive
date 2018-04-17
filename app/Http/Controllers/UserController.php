@@ -40,11 +40,7 @@ class UserController extends Controller
       $user = Auth::user();
       $user_wedding = Wedding::find(['user_id' => $user->id])->first();
 
-    	return view('user.dashboard', [
-        'user' => Auth::user(),
-        'user_wedding' => Wedding::find(['user_id' => $user->id])->first(),
-        'userimg' => Storage::url('public/user/' . $user->username . '/' . 'img/' . $user->user_img)
-      ]);
+    	return view('user.dashboard');
     }
 
     public function data()
@@ -52,13 +48,7 @@ class UserController extends Controller
       $user = Auth::user();
       $user_wedding = Wedding::find(['user_id' => $user->id])->first();
 
-    	return view('user.data', [
-        'user' => Auth::user(),
-        'user_wedding' => Wedding::find(['user_id' => $user->id])->first(),
-        'userimg' => Storage::url('public/user/' . $user->username . '/' . 'img/' . $user->user_img),
-        'groompic' => Storage::url('public/user/' . $user->username . '/' . 'img/' . $user_wedding->groom_pic),
-        'bridepic' => Storage::url('public/user/' . $user->username . '/' . 'img/' . $user_wedding->bride_pic)
-      ]);
+    	return view('user.data');
     }
 
     public function pilihTema()
