@@ -2,6 +2,7 @@
 
 namespace App;
 
+use Laravel\Passport\HasApiTokens;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use App\Notifications\AdminResetPasswordNotification;
@@ -9,7 +10,7 @@ use App\Notifications\AdminResetPasswordNotification;
 class Admin extends Authenticatable
 {
 
-    use Notifiable;
+    use HasApiTokens, Notifiable;
 
     // declare guard type
     protected $guard = 'admin';

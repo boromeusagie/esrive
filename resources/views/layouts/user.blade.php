@@ -14,6 +14,7 @@
     <!-- Favicon icon -->
     <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('storage/img/esrive/logo-box-dark-36x36px.png') }}">
     <title>@yield('page_title') | {{ config('app.name') }}</title>
+
     <!-- Bootstrap Core CSS -->
     <link href="{{ asset('user/plugins/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('css/toastr.min.css') }}">
@@ -36,8 +37,7 @@
     <!-- ============================================================== -->
     <div class="preloader">
         <div class="loader">
-            <div class="loader__figure"></div>
-            <p class="loader__label">{{ config('app.name') }}</p>
+            <img src="{{ asset('storage/loader.gif') }}" alt="">
         </div>
     </div>
     <!-- ============================================================== -->
@@ -244,7 +244,9 @@
                       @endif
                     </div>
                 </div>
-                @yield('content')
+                <div id="app">
+                  @yield('content')
+                </div>
             </div>
             <!-- ============================================================== -->
             <!-- End Container fluid  -->
@@ -274,6 +276,7 @@
     <!-- Bootstrap tether Core JavaScript -->
     <script src="{{ asset('user/plugins/bootstrap/js/popper.min.js') }}"></script>
     <script src="{{ asset('user/plugins/bootstrap/js/bootstrap.min.js') }}"></script>
+    <script src="{{ asset('js/app.js') }}"></script>
     <!-- slimscrollbar scrollbar JavaScript -->
     <script src="{{ asset('user/js/perfect-scrollbar.jquery.min.js') }}"></script>
     <!--Wave Effects -->
