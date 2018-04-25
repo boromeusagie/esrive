@@ -2,12 +2,12 @@
 
 namespace App\Http\Resources;
 
-use Illuminate\Http\Resources\Json\JsonResource;
+use Illuminate\Http\Resources\Json\Resource;
 
-class AdminResource extends JsonResource
+class UserCollection extends Resource
 {
     /**
-     * Transform the resource into an array.
+     * Transform the resource collection into an array.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return array
@@ -18,9 +18,14 @@ class AdminResource extends JsonResource
           'id' => $this->id,
           'name' => $this->name,
           'email' => $this->email,
-          'admin_type' => $this->admin_type,
+          'username' => $this->username,
+          'activated' => $this->activated,
+          'type' => $this->type,
           'created_at' => $this->created_at,
           'updated_at' => $this->updated_at,
+          'href' => [
+            'link' => route('users.show', $this->id)
+          ]
         ];
     }
 }

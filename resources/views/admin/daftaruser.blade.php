@@ -1,11 +1,11 @@
 @extends('layouts.admin')
 
-@section('page_title', 'Daftar Admin')
+@section('page_title', 'Daftar Pengguna')
 
 @section('content')
 
                 <div class="card">
-                    <div class="card-header">Daftar Admin</div>
+                    <div class="card-header">Daftar Pengguna</div>
 
                     <div class="card-body">
 
@@ -20,12 +20,12 @@
                               </tr>
                             </thead>
                             <tbody>
-                              @foreach ($admins as $admin)
+                              @foreach ($users as $user)
                                 <tr>
-                                  <td>{{ $admin->id }}</td>
-                                  <td>{{ $admin->name }}</td>
-                                  <td>{{ $admin->email }}</td>
-                                  <td>{{ App\AdminType::find($admin->type)->name }}</td>
+                                  <td>{{ $user->id }}</td>
+                                  <td>{{ $user->name }}</td>
+                                  <td>{{ $user->email }}</td>
+                                  <td>{{ App\UserType::find($user->type)->name }}</td>
                                 </tr>
                               @endforeach
                             </tbody>

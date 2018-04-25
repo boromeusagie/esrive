@@ -43,228 +43,209 @@
     <!-- ============================================================== -->
     <!-- Main wrapper - style you can find in pages.scss -->
     <!-- ============================================================== -->
-    <div id="main-wrapper">
-        <!-- ============================================================== -->
-        <!-- Topbar header - style you can find in pages.scss -->
-        <!-- ============================================================== -->
-        <header class="topbar">
-            <nav class="navbar top-navbar navbar-expand-md navbar-light">
-                <!-- ============================================================== -->
-                <!-- Logo -->
-                <!-- ============================================================== -->
-                <div class="navbar-header">
-                    <a class="navbar-brand" href="#">
-                        <!-- Logo icon --><b>
-                            <img src="{{ asset('storage/img/esrive/logo-box-dark-36x36px.png') }}" alt="homepage" class="dark-logo" />
-                        </b>
-                        <!--End Logo icon -->
-                        <!-- Logo text -->
-                        <span>
-                            <img src="{{ asset('storage/img/esrive/text-dark-36px.png') }}" alt="homepage" class="dark-logo" />
-                        </span>
-                    </a>
-                </div>
-                <!-- ============================================================== -->
-                <!-- End Logo -->
-                <!-- ============================================================== -->
-                <div class="navbar-collapse">
-                    <!-- ============================================================== -->
-                    <!-- toggle and nav items -->
-                    <!-- ============================================================== -->
-                    <ul class="navbar-nav mr-auto">
-                        <li class="nav-item">
-                          <a class="nav-link nav-toggler hidden-md-up waves-effect waves-dark" href="javascript:void(0)">
-                            <i class="ti-menu"></i>
-                          </a>
-                        </li>
-                        <!-- This is  -->
-                        <li class="nav-item">
-                          <a class="nav-link sidebartoggler hidden-sm-down waves-effect waves-dark" href="javascript:void(0)">
-                            <i class="ti-menu"></i>
-                          </a>
-                        </li>
-                    </ul>
-                    <!-- ============================================================== -->
-                    <!-- User profile and search -->
-                    <!-- ============================================================== -->
-                    <ul class="navbar-nav my-lg-0">
-                        <!-- ============================================================== -->
-                        <!-- Search -->
-                        <!-- ============================================================== -->
-                        <!-- <li class="nav-item hidden-xs-down search-box"> <a class="nav-link hidden-sm-down waves-effect waves-dark" href="javascript:void(0)"><i class="ti-search"></i></a>
-                            <form class="app-search">
-                                <input type="text" class="form-control" placeholder="Search & enter"> <a class="srh-btn"><i class="ti-close"></i></a>
-                            </form>
-                        </li> -->
-                        <!-- ============================================================== -->
-                        <!-- Profile -->
-                        <!-- ============================================================== -->
-                        <li class="nav-item dropdown">
-                            <a id="navbarDropdown" href="#" class="nav-link dropdown-toggle waves-effect waves-dark" data-toggle="dropdown" role="button" aria-expanded="false">
-                                <img src="{{ asset($userimg) }}" alt="user" class="profile-pic" /></a><span class="caret"></span>
+    <div id="app">
+      <div id="main-wrapper">
+          <!-- ============================================================== -->
+          <!-- Topbar header - style you can find in pages.scss -->
+          <!-- ============================================================== -->
+          <header class="topbar">
+              <nav class="navbar top-navbar navbar-expand-md navbar-light">
+                  <!-- ============================================================== -->
+                  <!-- Logo -->
+                  <!-- ============================================================== -->
+                  <div class="navbar-header">
+                      <a class="navbar-brand" href="#">
+                          <!-- Logo icon --><b>
+                              <img src="{{ asset('storage/img/esrive/logo-box-dark-36x36px.png') }}" alt="homepage" class="dark-logo" />
+                          </b>
+                          <!--End Logo icon -->
+                          <!-- Logo text -->
+                          <span>
+                              <img src="{{ asset('storage/img/esrive/text-dark-36px.png') }}" alt="homepage" class="dark-logo" />
+                          </span>
+                      </a>
+                  </div>
+                  <!-- ============================================================== -->
+                  <!-- End Logo -->
+                  <!-- ============================================================== -->
+                  <div class="navbar-collapse">
+                      <!-- ============================================================== -->
+                      <!-- toggle and nav items -->
+                      <!-- ============================================================== -->
+                      <ul class="navbar-nav mr-auto">
+                          <li class="nav-item">
+                            <a class="nav-link nav-toggler hidden-md-up waves-effect waves-dark" href="javascript:void(0)">
+                              <i class="ti-menu"></i>
                             </a>
-
-                            <div class="dropdown-menu dropdown-menu-right animated fadeIn">
-                              <ul class="dropdown-user">
-                                    <li>
-                                        <div class="dw-user-box">
-                                            <div class="u-img"><img src="{{ asset($userimg) }}" alt="user"></div>
-                                            <div class="u-text">
-                                                <h4>{{ $user->name }}</h4>
-                                                <p class="text-muted">{{ $user->email }}</p><a href="pages-profile.html" class="btn btn-rounded btn-danger btn-sm">View Profile</a></div>
-                                        </div>
-                                    </li>
-                                    <li role="separator" class="divider"></li>
-                                    <li><a href="#"><i class="ti-user"></i> My Profile</a></li>
-                                    <li><a href="#"><i class="ti-wallet"></i> My Balance</a></li>
-                                    <li><a href="#"><i class="ti-email"></i> Inbox</a></li>
-                                    <li role="separator" class="divider"></li>
-                                    <li><a href="#"><i class="ti-settings"></i> Account Setting</a></li>
-                                    <li role="separator" class="divider"></li>
-                                    <li><a href="{{ route('user.logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"><i class="fa fa-power-off"></i> Logout</a>
-                                        <form id="logout-form" action="{{ route('user.logout') }}" method="POST" style="display: none;">
-                                            @csrf
-                                        </form>
-                                    </li>
+                          </li>
+                          <!-- This is  -->
+                          <li class="nav-item">
+                            <a class="nav-link sidebartoggler hidden-sm-down waves-effect waves-dark" href="javascript:void(0)">
+                              <i class="ti-menu"></i>
+                            </a>
+                          </li>
+                      </ul>
+                      <!-- ============================================================== -->
+                      <!-- User profile and search -->
+                      <!-- ============================================================== -->
+                      <ul class="navbar-nav my-lg-0">
+                          <!-- ============================================================== -->
+                          <!-- Search -->
+                          <!-- ============================================================== -->
+                          <!-- <li class="nav-item hidden-xs-down search-box"> <a class="nav-link hidden-sm-down waves-effect waves-dark" href="javascript:void(0)"><i class="ti-search"></i></a>
+                              <form class="app-search">
+                                  <input type="text" class="form-control" placeholder="Search & enter"> <a class="srh-btn"><i class="ti-close"></i></a>
+                              </form>
+                          </li> -->
+                          <!-- ============================================================== -->
+                          <!-- Profile -->
+                          <!-- ============================================================== -->
+                          <li class="nav-item">
+                            <a href="{{ route('user.profile') }}" class="nav-link waves-effect waves-dark">
+                              <img src="{{ asset($userimg) }}" alt="user" class="profile-pic" /><span> Akun Saya</span>
+                            </a>
+                          </li>
+                          <li class="nav-item">
+                            <a href="{{ route('user.logout') }}" class="nav-link" onclick="event.preventDefault(); document.getElementById('logout-form').submit();" style="color: #EF9A9A" onMouseOver="this.style='color:#D50000';" onMouseOut="this.style='color:#EF9A9A';"><i class="fa fa-power-off"></i></a>
+                                <form id="logout-form" action="{{ route('user.logout') }}" method="POST" style="display: none;">
+                                    @csrf
+                                </form>
+                          </li>
+                      </ul>
+                  </div>
+              </nav>
+          </header>
+          <!-- ============================================================== -->
+          <!-- End Topbar header -->
+          <!-- ============================================================== -->
+          <!-- ============================================================== -->
+          <!-- Left Sidebar - style you can find in sidebar.scss  -->
+          <!-- ============================================================== -->
+          <aside class="left-sidebar">
+              <!-- Sidebar scroll-->
+              <div class="scroll-sidebar">
+                  <!-- Sidebar navigation-->
+                  <nav class="sidebar-nav">
+                      <ul id="sidebarnav">
+                          <li>
+                            <a class="waves-effect waves-dark" href="{{ route('user.dashboard') }}" aria-expanded="false">
+                              <i class="mdi mdi-gauge"></i><span class="hide-menu">Dashboard</span>
+                            </a>
+                          </li>
+                          <li>
+                            <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false">
+                              <i class="mdi mdi-account-check"></i><span class="hide-menu">Undangan Saya</span>
+                            </a>
+                            <ul class="collapse" aria-expanded="false">
+                              <li><a href="{{ route('user.data') }}">Edit Undangan</a></li>
+                              <li>
+                                <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false">Tema Undangan</a>
+                                <ul aria-expanded="false" class="collapse">
+                                  <li>
+                                    <a href="{{ route('user.pilihtema') }}">Pilih Tema</a>
+                                  </li>
+                                  <li>
+                                    <a href="{{ route('user.edittema') }}">Edit Tema</a>
+                                  </li>
                                 </ul>
-                            </div>
-                        </li>
-                    </ul>
-                </div>
-            </nav>
-        </header>
-        <!-- ============================================================== -->
-        <!-- End Topbar header -->
-        <!-- ============================================================== -->
-        <!-- ============================================================== -->
-        <!-- Left Sidebar - style you can find in sidebar.scss  -->
-        <!-- ============================================================== -->
-        <aside class="left-sidebar">
-            <!-- Sidebar scroll-->
-            <div class="scroll-sidebar">
-                <!-- Sidebar navigation-->
-                <nav class="sidebar-nav">
-                    <ul id="sidebarnav">
-                        <li>
-                          <a class="waves-effect waves-dark" href="{{ route('user.dashboard') }}" aria-expanded="false">
-                            <i class="mdi mdi-gauge"></i><span class="hide-menu">Dashboard</span>
-                          </a>
-                        </li>
-                        <li>
-                          <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false">
-                            <i class="mdi mdi-account-check"></i><span class="hide-menu">Undangan Saya</span>
-                          </a>
-                          <ul class="collapse" aria-expanded="false">
-                            <li><a href="{{ route('user.data') }}">Edit Undangan</a></li>
-                            <li>
-                              <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false">Tema Undangan</a>
-                              <ul aria-expanded="false" class="collapse">
-                                <li>
-                                  <a href="{{ route('user.pilihtema') }}">Pilih Tema</a>
-                                </li>
-                                <li>
-                                  <a href="{{ route('user.edittema') }}">Edit Tema</a>
-                                </li>
-                              </ul>
-                            </li>
-                          </ul>
-                        </li>
-                        <li>
-                          <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false">
-                            <i class="mdi mdi-book-open-page-variant"></i>
-                            <span class="hide-menu">Buku Tamu</span>
-                          </a>
-                          <ul class="collapse" aria-expanded="false">
-                            <li><a href="#">Daftar Tamu</a></li>
-                            <li><a href="#">Ucapan Selamat</a></li>
-                          </ul>
-                        </li>
-                        <li>
-                          <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false">
-                            <i class="mdi mdi-table"></i>
-                            <span class="hide-menu">Table</span>
-                          </a>
-                          <ul class="collapse" aria-expanded="false">
-                            <li><a href="#">Home</a></li>
-                            <li><a href="#">Profile</a></li>
-                          </ul>
-                        </li>
-                        <li>
-                          <a class="waves-effect waves-dark" href="icon-material.html" aria-expanded="false">
-                            <i class="mdi mdi-emoticon"></i><span class="hide-menu">Icons</span>
-                          </a>
-                        </li>
-                        <li>
-                          <a class="waves-effect waves-dark" href="map-google.html" aria-expanded="false">
-                            <i class="mdi mdi-earth"></i><span class="hide-menu">Map</span>
-                          </a>
-                        </li>
-                        <li>
-                          <a class="waves-effect waves-dark" href="pages-blank.html" aria-expanded="false">
-                            <i class="mdi mdi-book-open-variant"></i><span class="hide-menu">Blank</span>
-                          </a>
-                        </li>
-                        <li>
-                          <a class="waves-effect waves-dark" href="pages-error-404.html" aria-expanded="false">
-                            <i class="mdi mdi-help-circle"></i><span class="hide-menu">404</span>
-                          </a>
-                        </li>
-                    </ul>
-                    @if($user->user_type == "Pengguna Gratis")
-                      <div class="text-center m-t-30">
-                          <a href="https://wrappixel.com/templates/adminpro/" class="btn waves-effect waves-light btn-danger hidden-md-down">Upgrade to Pro</a>
-                      </div>
-                    @endif
-                </nav>
-                <!-- End Sidebar navigation -->
-            </div>
-            <!-- End Sidebar scroll-->
-        </aside>
-        <!-- ============================================================== -->
-        <!-- End Left Sidebar - style you can find in sidebar.scss  -->
-        <!-- ============================================================== -->
-        <!-- ============================================================== -->
-        <!-- Page wrapper  -->
-        <!-- ============================================================== -->
-        <div class="page-wrapper">
-            <!-- ============================================================== -->
-            <!-- Container fluid  -->
-            <!-- ============================================================== -->
-            <div class="container-fluid">
-                <!-- ============================================================== -->
-                <!-- Bread crumb and right sidebar toggle -->
-                <!-- ============================================================== -->
-                <div class="row page-titles">
-                    <div class="col-md-5 align-self-center">
-                        <h3 class="text-themecolor">@yield('page_title')</h3>
-                    </div>
-                    <div class="col-md-7 align-self-center">
-                      @if($user->user_type == "Pengguna Gratis")
-                        <a href="https://wrappixel.com/templates/adminpro/" class="btn waves-effect waves-light btn-danger pull-right hidden-sm-down">Upgrade to Pro</a>
+                              </li>
+                            </ul>
+                          </li>
+                          <li>
+                            <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false">
+                              <i class="mdi mdi-book-open-page-variant"></i>
+                              <span class="hide-menu">Buku Tamu</span>
+                            </a>
+                            <ul class="collapse" aria-expanded="false">
+                              <li><a href="#">Daftar Tamu</a></li>
+                              <li><a href="#">Ucapan Selamat</a></li>
+                            </ul>
+                          </li>
+                          <li>
+                            <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false">
+                              <i class="mdi mdi-table"></i>
+                              <span class="hide-menu">Table</span>
+                            </a>
+                            <ul class="collapse" aria-expanded="false">
+                              <li><a href="#">Home</a></li>
+                              <li><a href="#">Profile</a></li>
+                            </ul>
+                          </li>
+                          <li>
+                            <a class="waves-effect waves-dark" href="icon-material.html" aria-expanded="false">
+                              <i class="mdi mdi-emoticon"></i><span class="hide-menu">Icons</span>
+                            </a>
+                          </li>
+                          <li>
+                            <a class="waves-effect waves-dark" href="map-google.html" aria-expanded="false">
+                              <i class="mdi mdi-earth"></i><span class="hide-menu">Map</span>
+                            </a>
+                          </li>
+                          <li>
+                            <a class="waves-effect waves-dark" href="pages-blank.html" aria-expanded="false">
+                              <i class="mdi mdi-book-open-variant"></i><span class="hide-menu">Blank</span>
+                            </a>
+                          </li>
+                          <li>
+                            <a class="waves-effect waves-dark" href="pages-error-404.html" aria-expanded="false">
+                              <i class="mdi mdi-help-circle"></i><span class="hide-menu">404</span>
+                            </a>
+                          </li>
+                      </ul>
+                      @if($user->type == 1)
+                        <div class="text-center m-t-30">
+                            <a href="https://wrappixel.com/templates/adminpro/" class="btn waves-effect waves-light btn-danger hidden-md-down">Upgrade to Pro</a>
+                        </div>
                       @endif
-                    </div>
-                </div>
-                <div id="app">
+                  </nav>
+                  <!-- End Sidebar navigation -->
+              </div>
+              <!-- End Sidebar scroll-->
+          </aside>
+          <!-- ============================================================== -->
+          <!-- End Left Sidebar - style you can find in sidebar.scss  -->
+          <!-- ============================================================== -->
+          <!-- ============================================================== -->
+          <!-- Page wrapper  -->
+          <!-- ============================================================== -->
+          <div class="page-wrapper">
+              <!-- ============================================================== -->
+              <!-- Container fluid  -->
+              <!-- ============================================================== -->
+              <div class="container-fluid">
+                  <!-- ============================================================== -->
+                  <!-- Bread crumb and right sidebar toggle -->
+                  <!-- ============================================================== -->
+                  <div class="row page-titles">
+                      <div class="col-md-5 align-self-center">
+                          <h3 class="text-themecolor">@yield('page_title')</h3>
+                      </div>
+                      <div class="col-md-7 align-self-center">
+                        @if($user->type == 1)
+                          <a href="https://wrappixel.com/templates/adminpro/" class="btn waves-effect waves-light btn-danger pull-right hidden-sm-down">Upgrade to Pro</a>
+                        @endif
+                      </div>
+                  </div>
                   @yield('content')
-                </div>
-            </div>
-            <!-- ============================================================== -->
-            <!-- End Container fluid  -->
-            <!-- ============================================================== -->
-            <!-- ============================================================== -->
-            <!-- ============================================================== -->
-            <!-- footer -->
-            <!-- ============================================================== -->
-            <footer class="footer">
-                <div class="float-right">© {{ date('Y') }} {{ config('app.name') }} @version('esrive')</div>
-            </footer>
-            <!-- ============================================================== -->
-            <!-- End footer -->
-            <!-- ============================================================== -->
-        </div>
-        <!-- ============================================================== -->
-        <!-- End Page wrapper  -->
-        <!-- ============================================================== -->
+              </div>
+              <!-- ============================================================== -->
+              <!-- End Container fluid  -->
+              <!-- ============================================================== -->
+              <!-- ============================================================== -->
+              <!-- ============================================================== -->
+              <!-- footer -->
+              <!-- ============================================================== -->
+              <footer class="footer">
+                  <div class="float-right">© {{ date('Y') }} {{ config('app.name') }} @version('esrive')</div>
+              </footer>
+              <!-- ============================================================== -->
+              <!-- End footer -->
+              <!-- ============================================================== -->
+          </div>
+          <!-- ============================================================== -->
+          <!-- End Page wrapper  -->
+          <!-- ============================================================== -->
+      </div>
     </div>
     <!-- ============================================================== -->
     <!-- End Wrapper -->
@@ -272,15 +253,19 @@
     <!-- ============================================================== -->
     <!-- All Jquery -->
     <!-- ============================================================== -->
+
     <script src="{{ asset('user/plugins/jquery/jquery.min.js') }}"></script>
+    <script src="{{ asset('js/app.js') }}"></script>
     <!-- Bootstrap tether Core JavaScript -->
     <script src="{{ asset('user/plugins/bootstrap/js/popper.min.js') }}"></script>
     <script src="{{ asset('user/plugins/bootstrap/js/bootstrap.min.js') }}"></script>
-    <script src="{{ asset('js/app.js') }}"></script>
+
+
     <!-- slimscrollbar scrollbar JavaScript -->
     <script src="{{ asset('user/js/perfect-scrollbar.jquery.min.js') }}"></script>
     <!--Wave Effects -->
     <script src="{{ asset('user/js/waves.js') }}"></script>
+
     <!--Menu sidebar -->
     <script src="{{ asset('user/js/sidebarmenu.js') }}"></script>
     <script src="{{ asset('js/toastr.min.js') }}"></script>

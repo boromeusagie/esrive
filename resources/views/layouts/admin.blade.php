@@ -98,35 +98,16 @@
                         <!-- ============================================================== -->
                         <!-- Profile -->
                         <!-- ============================================================== -->
-                        <li class="nav-item dropdown">
-                            <a id="navbarDropdown" href="#" class="nav-link dropdown-toggle waves-effect waves-dark" data-toggle="dropdown" role="button" aria-expanded="false">
-                                <img src="{{ asset('storage/admin/img/' . $admin->admin_pic) }}" alt="user" class="profile-pic" /></a><span class="caret"></span>
-                            </a>
-
-                            <div class="dropdown-menu dropdown-menu-right animated fadeIn">
-                              <ul class="dropdown-user">
-                                    <li>
-                                        <div class="dw-user-box">
-                                            <div class="u-img"><img src="{{ asset('storage/admin/img/' . $admin->admin_pic) }}" alt="user"></div>
-                                            <div class="u-text">
-                                                <h4>{{ $admin->name }}</h4>
-                                                <p class="text-muted">{{ $admin->email }}</p><a href="pages-profile.html" class="btn btn-rounded btn-danger btn-sm">View Profile</a></div>
-                                        </div>
-                                    </li>
-                                    <li role="separator" class="divider"></li>
-                                    <li><a href="#"><i class="ti-user"></i> My Profile</a></li>
-                                    <li><a href="#"><i class="ti-wallet"></i> My Balance</a></li>
-                                    <li><a href="#"><i class="ti-email"></i> Inbox</a></li>
-                                    <li role="separator" class="divider"></li>
-                                    <li><a href="#"><i class="ti-settings"></i> Account Setting</a></li>
-                                    <li role="separator" class="divider"></li>
-                                    <li><a href="{{ route('admin.logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"><i class="fa fa-power-off"></i> Logout</a>
-                                        <form id="logout-form" action="{{ route('admin.logout') }}" method="POST" style="display: none;">
-                                            @csrf
-                                        </form>
-                                    </li>
-                                </ul>
-                            </div>
+                        <li class="nav-item">
+                          <a href="#" class="nav-link waves-effect waves-dark">
+                            <img src="{{ asset('storage/admin/img/' . $admin->admin_pic) }}" alt="user" class="profile-pic" /><span> Akun Saya</span>
+                          </a>
+                        </li>
+                        <li class="nav-item">
+                          <a href="{{ route('admin.logout') }}" class="nav-link" onclick="event.preventDefault(); document.getElementById('logout-form').submit();" style="color: #B71C1C" onMouseOver="this.style='color:#F44336';" onMouseOut="this.style='color:#B71C1C';"><i class="fa fa-power-off"></i></a>
+                              <form id="logout-form" action="{{ route('admin.logout') }}" method="POST" style="display: none;">
+                                  @csrf
+                              </form>
                         </li>
                     </ul>
                 </div>
@@ -164,7 +145,7 @@
                             <span class="hide-menu">Pengguna</span>
                           </a>
                           <ul class="collapse" aria-expanded="false">
-                            <li><a href="#">Daftar Pengguna</a></li>
+                            <li><a href="{{ route('admin.daftaruser') }}">Daftar Pengguna</a></li>
                             <li><a href="#">Kategori Pengguna</a></li>
                           </ul>
                         </li>

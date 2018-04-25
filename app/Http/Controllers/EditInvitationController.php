@@ -225,25 +225,18 @@ class EditInvitationController extends Controller
         $user = Auth::user();
         $wedding = Wedding::find($user->id);
 
-        $width = $request->input('width_groom');
-        $height = $request->input('height_groom');
-        $x = $request->input('x_groom');
-        $y = $request->input('y_groom');
-
-        if($request->hasFile('groom_pic')) {
-            $groom_pic = $request->file('groom_pic');
+        if($request->hasFile('image')) {
+            $groom_pic = $request->file('image');
             $file_groom_pic = $user->username . '-groom-' . time() . '.' . $groom_pic->getClientOriginalExtension();
             $path = public_path('storage/user/'.$user->username.'/'.'img/' . $file_groom_pic);
             $image = Image::make($groom_pic);
-            $image->crop($width, $height, $x, $y);
             $image->save($path);
 
             $wedding->groom_pic = $file_groom_pic;
             $wedding->save();
         }
 
-        Toastr::success('Foto berhasil disimpan!', $title = null, $options = ["closeButton" => true, "positionClass" => "toast-top-center"]);
-        return redirect('/user/data');
+        return response(null, 202);
     }
 
     public function brideProfile(Request $request)
@@ -251,24 +244,17 @@ class EditInvitationController extends Controller
         $user = Auth::user();
         $wedding = Wedding::find($user->id);
 
-        $width = $request->input('width_bride');
-        $height = $request->input('height_bride');
-        $x = $request->input('x_bride');
-        $y = $request->input('y_bride');
-
-        if($request->hasFile('bride_pic')) {
-            $bride_pic = $request->file('bride_pic');
+        if($request->hasFile('image')) {
+            $bride_pic = $request->file('image');
             $file_bride_pic = $user->username . '-bride-' . time() . '.' . $bride_pic->getClientOriginalExtension();
             $path = public_path('storage/user/'.$user->username.'/'.'img/' . $file_bride_pic);
             $image = Image::make($bride_pic);
-            $image->crop($width, $height, $x, $y);
             $image->save($path);
 
             $wedding->bride_pic = $file_bride_pic;
             $wedding->save();
         }
 
-        Toastr::success('Foto berhasil disimpan!', $title = null, $options = ["closeButton" => true, "positionClass" => "toast-top-center"]);
-            return redirect('/user/data');
+        return response(null, 202);
     }
 }

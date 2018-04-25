@@ -1,23 +1,11 @@
 <?php
 
-use App\Admin;
-use Illuminate\Http\Request;
-use App\Http\Resources\AdminResource;
+Route::group(['prefix' => '1.0.0'], function () {
+  Route::apiResource('/admins', 'Api\AdminController');
 
-/*
-|--------------------------------------------------------------------------
-| API Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register API routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| is assigned the "api" middleware group. Enjoy building your API!
-|
-*/
+  Route::apiResource('/users', 'Api\UserController');
 
-//Route::middleware('auth:api-admin', function() {
-
-//});
-Route::get('admins', function () {
-    return AdminResource(Admin::find(1));
+  Route::group(['prefix' => 'users'], function () {
+    Route::apiResource('{user}/wedding', 'Api\WeddingController');
+  });
 });

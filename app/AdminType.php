@@ -7,6 +7,6 @@ use Illuminate\Database\Eloquent\Model;
 class AdminType extends Model
 {
     public function admins() {
-      return $this->hasMany('App\Admin');
+      return $this->hasMany('App\Admin', 'type');
     }
 }

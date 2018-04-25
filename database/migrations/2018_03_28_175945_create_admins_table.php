@@ -18,9 +18,9 @@ class CreateAdminsTable extends Migration
             $table->string('name');
             $table->string('email')->unique();
             $table->string('password');
-            $table->string('admin_type');
+            $table->integer('type')->unsigned();
+            $table->foreign('type')->references('id')->on('admin_types');
             $table->string('admin_pic')->default('noiomg.png');
-            $table->foreign('admin_type')->references('admin_type')->on('admin_types');
             $table->rememberToken();
             $table->timestamps();
         });

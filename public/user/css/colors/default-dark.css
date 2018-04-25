@@ -27,7 +27,7 @@ File: scss
   .topbar .navbar-light .navbar-nav .nav-item > a.nav-link {
     color: #a6b7bf; }
     .topbar .navbar-light .navbar-nav .nav-item > a.nav-link:hover, .topbar .navbar-light .navbar-nav .nav-item > a.nav-link:focus {
-      color: #242a33 !important; }
+      color: #242a33; }
 
 .logo-center .topbar .navbar-header {
   text-align: center;

@@ -107,3 +107,38 @@
 
 .cropper-view-box, .cropper-face
 	border-radius: 50%
+
+.userimg
+  width: 150px
+  height: 150px
+
+  .userimg-hover
+    width: 150px
+    height: 150px
+    border-radius: 50%
+    color: #ffffff
+    position: absolute
+    top: 0
+    left: 50%
+    transform: translateX(-50%)
+    background-color: rgba(158, 158, 158, .5)
+    opacity: 0
+    cursor: pointer
+
+    span
+      position: absolute
+      top: 50%
+      left: 50%
+      transform: translate(-50%, -50%)
+      font-size: 14px
+
+    &:hover
+      transition: opacity .5s ease
+      opacity: 1
+
+.user-type-free
+  background-color: #757575
+  color: #ffffff
+  border-right: #424242 solid 3px
+  border-bottom: #424242 solid 2px
+  width: 50%

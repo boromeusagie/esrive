@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\User;
 use App\Admin;
 use App\AdminType;
 use Auth;
@@ -31,12 +32,19 @@ class AdminController extends Controller
 
     public function daftarAdmin()
     {
-      $admin = Auth::user();
-      $daftaradmins = Admin::all();
+      $admins = Admin::all();
 
       return view('admin.daftaradmin', [
-        'admin' => $admin,
-        'daftaradmins' => $daftaradmins
+        'admins' => $admins,
+      ]);
+    }
+
+    public function daftarUser()
+    {
+      $users = User::all();
+
+      return view('admin.daftaruser', [
+        'users' => $users,
       ]);
     }
 }

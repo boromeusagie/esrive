@@ -10,7 +10,7 @@
 <!-- ============================================================== -->
 <!-- Start Page Content -->
 <!-- ============================================================== -->
-<form action="{{ $user->user_type == 1 ? route('user.editdatafree') : route('user.editdata') }}" method="POST" class="form-material m-t-40" enctype="multipart/form-data">
+<form action="{{ $user->type == 1 ? route('user.editdatafree') : route('user.editdata') }}" method="POST" class="form-material m-t-40" enctype="multipart/form-data">
   @csrf
     <div class="row justify-content-center">
         <div class="col-md-6">
@@ -27,7 +27,7 @@
                           <span class="esrive-input-group-text bg-theme b-0 text-white">http://www.esrive.id/</span>
                         </div>
                         <div class="form-group{{ $errors->has('wedding_url') ? ' has-error' : '' }} m-b-40">
-                          <input type="text" class="form-control" id="wedding_url" aria-describedby="basic-addon3" name="wedding_url" value="{{ isset($user_wedding->wedding_url) ? $user_wedding->wedding_url : "" }}" required {{ $user->user_type == "Pengguna Gratis" ? 'disabled' : '' }}>
+                          <input type="text" class="form-control" id="wedding_url" aria-describedby="basic-addon3" name="wedding_url" value="{{ isset($wedding->wedding_url) ? $wedding->wedding_url : "" }}" required {{ $user->type == 1 ? 'disabled' : '' }}>
 
                           @if ($errors->has('wedding_url'))
                               <span class="help-block text-danger">
@@ -37,7 +37,7 @@
 
                         </div>
                       </div>
-                      @if ($user->user_type == "Pengguna Gratis")
+                      @if ($user->type == 1)
                         <span class="help-block text-danger float-right">
                           <small>Upgrade ke PRO</small>
                         </span>
@@ -61,14 +61,13 @@
                 </div>
                 <div class="card-body">
                   <div class="text-center m-b-40">
-          					<div class="profile-picture" data-toggle="modal" data-target="#groomUpload">
-          						<img src="{{ asset('storage/user/' . $user->username . '/img/' . $user_wedding->groom_pic) }}" alt="" class="img-circle img-responsive">
+          					<div class="profile-picture">
+          						<upload-groom :user="{{ $user }}" :wedding="{{ $wedding }}"></upload-groom>
           					</div>
-          					<span class="help-block text-muted"><small>klik foto untuk mengganti</small></span>
           				</div>
                   <div class="form-group{{ $errors->has('groom_full') ? ' has-error' : '' }} m-b 40">
                     <label for="groom_full">Nama Lengkap</label>
-                    <input type="text" class="form-control" id="groom_full" name="groom_full" value="{{ isset($user_wedding->groom_full) ? $user_wedding->groom_full : "" }}" required>
+                    <input type="text" class="form-control" id="groom_full" name="groom_full" value="{{ isset($wedding->groom_full) ? $wedding->groom_full : "" }}" required>
                     @if ($errors->has('groom_full'))
                         <span class="help-block text-danger">
                             <strong>{{ $errors->first('groom_full') }}</strong>
@@ -77,7 +76,7 @@
                   </div>
                   <div class="form-group{{ $errors->has('groom_nick') ? ' has-error' : '' }} m-b 40">
                     <label for="groom_nick">Nama Panggilan</label>
-                    <input type="text" class="form-control" id="groom_nick" name="groom_nick" value="{{ isset($user_wedding->groom_nick) ? $user_wedding->groom_nick : "" }}" required>
+                    <input type="text" class="form-control" id="groom_nick" name="groom_nick" value="{{ isset($wedding->groom_nick) ? $wedding->groom_nick : "" }}" required>
                     @if ($errors->has('groom_nick'))
                         <span class="help-block text-danger">
                             <strong>{{ $errors->first('groom_nick') }}</strong>
@@ -86,7 +85,7 @@
                   </div>
                   <div class="form-group{{ $errors->has('groom_profile') ? ' has-error' : '' }} m-b-5">
                     <label for="groom_profile">Profil Pengantin Pria</label>
-                    <textarea class="form-control" rows="3" id="groom_profile" name="groom_profile" required>{{ isset($user_wedding->groom_profile) ? $user_wedding->groom_profile : "" }}</textarea>
+                    <textarea class="form-control" rows="3" id="groom_profile" name="groom_profile" required>{{ isset($wedding->groom_profile) ? $wedding->groom_profile : "" }}</textarea>
                     <span class="help-block text-muted">
                       <small>min. 30 karakter</small>
                       <br>
@@ -105,14 +104,13 @@
                 </div>
                 <div class="card-body">
                   <div class="text-center m-b-40">
-          					<div class="profile-picture" data-toggle="modal" data-target="#brideUpload">
-          						<img src="{{ asset('storage/user/' . $user->username . '/img/' . $user_wedding->bride_pic) }}" alt="" class="img-circle img-responsive">
+          					<div class="profile-picture">
+          						<upload-bride :user="{{ $user }}" :wedding="{{ $wedding }}"></upload-bride>
           					</div>
-          					<span class="help-block text-muted"><small>klik foto untuk mengganti</small></span>
           				</div>
                   <div class="form-group{{ $errors->has('bride_full') ? ' has-error' : '' }} m-b 40">
                     <label for="bride_full">Nama Lengkap</label>
-                    <input type="text" class="form-control" id="bride_full" name="bride_full" value="{{ isset($user_wedding->bride_full) ? $user_wedding->bride_full : "" }}" required>
+                    <input type="text" class="form-control" id="bride_full" name="bride_full" value="{{ isset($wedding->bride_full) ? $wedding->bride_full : "" }}" required>
                     @if ($errors->has('bride_full'))
                         <span class="help-block text-danger">
                             <strong>{{ $errors->first('bride_full') }}</strong>
@@ -121,7 +119,7 @@
                   </div>
                   <div class="form-group{{ $errors->has('bride_nick') ? ' has-error' : '' }} m-b 40">
                     <label for="bride_nick">Nama Panggilan</label>
-                    <input type="text" class="form-control" id="bride_nick" name="bride_nick" value="{{ isset($user_wedding->bride_nick) ? $user_wedding->bride_nick : "" }}" required>
+                    <input type="text" class="form-control" id="bride_nick" name="bride_nick" value="{{ isset($wedding->bride_nick) ? $wedding->bride_nick : "" }}" required>
                     @if ($errors->has('bride_nick'))
                         <span class="help-block text-danger">
                             <strong>{{ $errors->first('bride_nick') }}</strong>
@@ -130,7 +128,7 @@
                   </div>
                   <div class="form-group{{ $errors->has('bride_profile') ? ' has-error' : '' }} m-b-5">
                     <label for="bride_profile">Profil Pengantin Wanita</label>
-                    <textarea class="form-control" rows="3" id="bride_profile" name="bride_profile" required>{{ isset($user_wedding->bride_profile) ? $user_wedding->bride_profile : "" }}</textarea>
+                    <textarea class="form-control" rows="3" id="bride_profile" name="bride_profile" required>{{ isset($wedding->bride_profile) ? $wedding->bride_profile : "" }}</textarea>
                     <span class="help-block text-muted">
                       <small>min. 30 karakter</small>
                       <br>
@@ -153,10 +151,10 @@
                   <div class="form-group{{ $errors->has('wedding_cer') ? ' has-error' : '' }}">
                     <label for="wedding_cer">Tipe Upacara Pernikahan</label>
                     <select name="wedding_cer" id="wedding_cer" class="form-control" required>
-                      <option value="Akad Nikah" {{ $user_wedding->wedding_cer == "Akad Nikah" ? "selected" : "" }}>Akad Nikah</option>
-                      <option value="Pemberkatan Pernikahan" {{ $user_wedding->wedding_cer == "Pemberkatan Pernikahan" ? "selected" : "" }}>Pemberkatan Pernikahan</option>
-                      <option value="Upacara Pernikahan" {{ $user_wedding->wedding_cer == "Upacara Pernikahan" ? "selected" : "" }}>Upacara Pernikahan</option>
-                      <option value="Prosesi Pernikahan" {{ $user_wedding->wedding_cer == "Prosesi Pernikahan" ? "selected" : "" }}>Prosesi Pernikahan</option>
+                      <option value="Akad Nikah" {{ $wedding->wedding_cer == "Akad Nikah" ? "selected" : "" }}>Akad Nikah</option>
+                      <option value="Pemberkatan Pernikahan" {{ $wedding->wedding_cer == "Pemberkatan Pernikahan" ? "selected" : "" }}>Pemberkatan Pernikahan</option>
+                      <option value="Upacara Pernikahan" {{ $wedding->wedding_cer == "Upacara Pernikahan" ? "selected" : "" }}>Upacara Pernikahan</option>
+                      <option value="Prosesi Pernikahan" {{ $wedding->wedding_cer == "Prosesi Pernikahan" ? "selected" : "" }}>Prosesi Pernikahan</option>
                     </select>
                     @if ($errors->has('wedding_cer'))
                         <span class="help-block text-danger">
@@ -166,7 +164,7 @@
                   </div>
                   <div class="form-group{{ $errors->has('wedding_cer_date') ? ' has-error' : '' }}">
                     <label for="wedding_cer_date">Tanggal</label>
-                    <input type="text" class="form-control" id="wedding_cer_date" name="wedding_cer_date" value="{{ isset($user_wedding->wedding_cer_date) ? $user_wedding->wedding_cer_date : "" }}" required>
+                    <input type="text" class="form-control" id="wedding_cer_date" name="wedding_cer_date" value="{{ isset($wedding->wedding_cer_date) ? $wedding->wedding_cer_date : "" }}" required>
                     @if ($errors->has('wedding_cer_date'))
                         <span class="help-block text-danger">
                             <strong>{{ $errors->first('wedding_cer_date') }}</strong>
@@ -175,7 +173,7 @@
                   </div>
                   <label>Waktu</label>
                   <div class="input-daterange input-group m-b-20" id="date-range">
-                      <input type="text" class="form-control" name="wedding_cer_begin" id="wedding_cer_begin" value="{{ isset($user_wedding->wedding_cer_begin) ? $user_wedding->wedding_cer_begin : "" }}" required>
+                      <input type="text" class="form-control" name="wedding_cer_begin" id="wedding_cer_begin" value="{{ isset($wedding->wedding_cer_begin) ? $wedding->wedding_cer_begin : "" }}" required>
                       @if ($errors->has('wedding_cer_begin'))
                           <span class="help-block text-danger">
                               <strong>{{ $errors->first('wedding_cer_begin') }}</strong>
@@ -184,7 +182,7 @@
                       <div class="input-group-append">
                           <span class="input-group-text bg-inverse b-0 text-white">sampai</span>
                       </div>
-                      <input type="text" class="form-control" name="wedding_cer_end" id="wedding_cer_end" value="{{ isset($user_wedding->wedding_cer_end) ? $user_wedding->wedding_cer_end : "" }}" required>
+                      <input type="text" class="form-control" name="wedding_cer_end" id="wedding_cer_end" value="{{ isset($wedding->wedding_cer_end) ? $wedding->wedding_cer_end : "" }}" required>
                       @if ($errors->has('wedding_cer_end'))
                           <span class="help-block text-danger">
                               <strong>{{ $errors->first('wedding_cer_end') }}</strong>
@@ -193,7 +191,7 @@
                   </div>
                   <div class="form-group{{ $errors->has('wedding_cer_place') ? ' has-error' : '' }} m-b 40">
                     <label for="wedding_cer_place">Nama Tempat</label>
-                    <input type="text" class="form-control" id="wedding_cer_place" name="wedding_cer_place" value="{{ isset($user_wedding->wedding_cer_place) ? $user_wedding->wedding_cer_place : "" }}" required>
+                    <input type="text" class="form-control" id="wedding_cer_place" name="wedding_cer_place" value="{{ isset($wedding->wedding_cer_place) ? $wedding->wedding_cer_place : "" }}" required>
                     @if ($errors->has('wedding_cer_place'))
                         <span class="help-block text-danger">
                             <strong>{{ $errors->first('wedding_cer_place') }}</strong>
@@ -203,7 +201,7 @@
                   <div class="form-group{{ $errors->has('wedding_cer_address') ? ' has-error' : '' }} m-b 20">
                     <label for="wedding_cer_address">Alamat</label>
                     <div class="input-group">
-                      <input type="text" class="form-control" id="wedding_cer_address" name="wedding_cer_address" value="{{ isset($user_wedding->wedding_cer_address) ? $user_wedding->wedding_cer_address : "" }}" required>
+                      <input type="text" class="form-control" id="wedding_cer_address" name="wedding_cer_address" value="{{ isset($wedding->wedding_cer_address) ? $wedding->wedding_cer_address : "" }}" required>
                       <span class="input-group-btn" style="cursor: pointer;">
           							<input class="btn btn-sm btn-info" type="button" id="cariAkad" value="cari di peta">
           						</span>
@@ -233,8 +231,8 @@
           						</span>
           					@endif
 
-                    <input class="form-control" type="text" name="wedding_cer_lat" id="wedding_cer_lat"  value="{{ isset($user_wedding->wedding_cer_lat) ? $user_wedding->wedding_cer_lat : "" }}" style="display:none">
-                		<input class="form-control" type="text" name="wedding_cer_long" id="wedding_cer_long"  value="{{ isset($user_wedding->wedding_cer_long) ? $user_wedding->wedding_cer_long : "" }}" style="display:none">
+                    <input class="form-control" type="text" name="wedding_cer_lat" id="wedding_cer_lat"  value="{{ isset($wedding->wedding_cer_lat) ? $wedding->wedding_cer_lat : "" }}" style="display:none">
+                		<input class="form-control" type="text" name="wedding_cer_long" id="wedding_cer_long"  value="{{ isset($wedding->wedding_cer_long) ? $wedding->wedding_cer_long : "" }}" style="display:none">
 
                   </div>
                 </div>
@@ -249,9 +247,9 @@
                   <div class="form-group{{ $errors->has('wedding_rec') ? ' has-error' : '' }}">
                     <label for="wedding_rec">Tipe Resepsi Pernikahan</label>
                     <select name="wedding_rec" id="wedding_rec" class="form-control" required>
-                      <option value="Resepsi Pernikahan" {{ $user_wedding->wedding_rec == "Resepsi Pernikahan" ? "selected" : "" }}>Resepsi Pernikahan</option>
-                      <option value="Pesta Pernikahan" {{ $user_wedding->wedding_rec == "Pesta Pernikahan" ? "selected" : "" }}>Pesta Pernikahan</option>
-                      <option value="Syukuran Pernikahan" {{ $user_wedding->wedding_rec == "Syukuran Pernikahan" ? "selected" : "" }}>Syukuran Pernikahan</option>
+                      <option value="Resepsi Pernikahan" {{ $wedding->wedding_rec == "Resepsi Pernikahan" ? "selected" : "" }}>Resepsi Pernikahan</option>
+                      <option value="Pesta Pernikahan" {{ $wedding->wedding_rec == "Pesta Pernikahan" ? "selected" : "" }}>Pesta Pernikahan</option>
+                      <option value="Syukuran Pernikahan" {{ $wedding->wedding_rec == "Syukuran Pernikahan" ? "selected" : "" }}>Syukuran Pernikahan</option>
                     </select>
                     @if ($errors->has('wedding_rec'))
                         <span class="help-block text-danger">
@@ -261,7 +259,7 @@
                   </div>
                   <div class="form-group{{ $errors->has('wedding_rec_date') ? ' has-error' : '' }}">
                     <label for="wedding_rec_date">Tanggal</label>
-                    <input type="text" class="form-control" id="wedding_rec_date" name="wedding_rec_date" id="wedding_rec_date" value="{{ isset($user_wedding->wedding_rec_date) ? $user_wedding->wedding_rec_date : "" }}" required>
+                    <input type="text" class="form-control" id="wedding_rec_date" name="wedding_rec_date" id="wedding_rec_date" value="{{ isset($wedding->wedding_rec_date) ? $wedding->wedding_rec_date : "" }}" required>
                     @if ($errors->has('wedding_rec_date'))
                         <span class="help-block text-danger">
                             <strong>{{ $errors->first('wedding_rec_date') }}</strong>
@@ -270,7 +268,7 @@
                   </div>
                   <label>Waktu</label>
                   <div class="input-daterange input-group m-b-20" id="date-range">
-                      <input type="text" class="form-control" id="wedding_rec_begin" name="wedding_rec_begin" value="{{ isset($user_wedding->wedding_rec_begin) ? $user_wedding->wedding_rec_begin : "" }}" required>
+                      <input type="text" class="form-control" id="wedding_rec_begin" name="wedding_rec_begin" value="{{ isset($wedding->wedding_rec_begin) ? $wedding->wedding_rec_begin : "" }}" required>
                       @if ($errors->has('wedding_rec_begin'))
                           <span class="help-block text-danger">
                               <strong>{{ $errors->first('wedding_rec_begin') }}</strong>
@@ -279,7 +277,7 @@
                       <div class="input-group-append">
                           <span class="input-group-text bg-inverse b-0 text-white">sampai</span>
                       </div>
-                      <input type="text" class="form-control" id="wedding_rec_end" name="wedding_rec_end" value="{{ isset($user_wedding->wedding_rec_end) ? $user_wedding->wedding_rec_end : "" }}" required>
+                      <input type="text" class="form-control" id="wedding_rec_end" name="wedding_rec_end" value="{{ isset($wedding->wedding_rec_end) ? $wedding->wedding_rec_end : "" }}" required>
                       @if ($errors->has('wedding_rec_end'))
                           <span class="help-block text-danger">
                               <strong>{{ $errors->first('wedding_rec_end') }}</strong>
@@ -288,7 +286,7 @@
                   </div>
                   <div class="form-group{{ $errors->has('wedding_rec_place') ? ' has-error' : '' }} m-b 40">
                     <label for="wedding_rec_place">Nama Tempat</label>
-                    <input type="text" class="form-control" id="wedding_rec_place" name="wedding_rec_place" value="{{ isset($user_wedding->wedding_rec_place) ? $user_wedding->wedding_rec_place : "" }}" required>
+                    <input type="text" class="form-control" id="wedding_rec_place" name="wedding_rec_place" value="{{ isset($wedding->wedding_rec_place) ? $wedding->wedding_rec_place : "" }}" required>
                     @if ($errors->has('wedding_rec_place'))
                         <span class="help-block text-danger">
                             <strong>{{ $errors->first('wedding_rec_place') }}</strong>
@@ -298,7 +296,7 @@
                   <div class="form-group{{ $errors->has('wedding_rec_address') ? ' has-error' : '' }} m-b 20">
                     <label for="wedding_rec_address">Alamat</label>
                     <div class="input-group">
-                      <input type="text" class="form-control" id="wedding_rec_address" name="wedding_rec_address" value="{{ isset($user_wedding->wedding_rec_address) ? $user_wedding->wedding_rec_address : "" }}" required>
+                      <input type="text" class="form-control" id="wedding_rec_address" name="wedding_rec_address" value="{{ isset($wedding->wedding_rec_address) ? $wedding->wedding_rec_address : "" }}" required>
                       <span class="input-group-btn" style="cursor: pointer;">
           							<input class="btn btn-sm btn-info" type="button" id="cariResepsi" value="cari di peta">
           						</span>
@@ -328,8 +326,8 @@
           						</span>
           					@endif
 
-                    <input class="form-control" type="text" name="wedding_rec_lat" id="wedding_rec_lat"  value="{{ isset($user_wedding->wedding_rec_lat) ? $user_wedding->wedding_rec_lat : "" }}" style="display:none">
-                		<input class="form-control" type="text" name="wedding_rec_long" id="wedding_rec_long"  value="{{ isset($user_wedding->wedding_rec_long) ? $user_wedding->wedding_rec_long : "" }}" style="display:none">
+                    <input class="form-control" type="text" name="wedding_rec_lat" id="wedding_rec_lat"  value="{{ isset($wedding->wedding_rec_lat) ? $wedding->wedding_rec_lat : "" }}" style="display:none">
+                		<input class="form-control" type="text" name="wedding_rec_long" id="wedding_rec_long"  value="{{ isset($wedding->wedding_rec_long) ? $wedding->wedding_rec_long : "" }}" style="display:none">
 
                   </div>
 

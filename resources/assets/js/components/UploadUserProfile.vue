@@ -1,14 +1,14 @@
 <template>
   <div>
     <div v-if="!viewimage">
-      <img :src="brideImg" class="img-circle img-responsive">
+      <img :src="userImg" class="img-circle img-responsive userimg">
       <br>
-      <button @click="viewCropped" class="m-t-20 btn btn-sm btn-outline-info">Ganti Foto</button>
+      <button @click="viewCropped" class="m-t-20 btn btn-outline-info">Ganti Foto</button>
     </div>
     <div v-else>
       <vue-avatar
-          :width=150
-          :height=150
+          :width=200
+          :height=200
           ref="vueavatar"
           @vue-avatar-editor:image-ready="onImageReady"
           image=""
@@ -42,10 +42,10 @@
       VueAvatar,
       VueAvatarScale
     },
-    props: ['user', 'wedding'],
+    props: ['user'],
     data() {
       return {
-        brideImg: `../storage/user/${this.user.username}/img/${this.wedding.bride_pic}`,
+        userImg: `../storage/user/${this.user.username}/img/${this.user.user_img}`,
         croppedImage: null,
         viewimage: false,
         file: null,
@@ -66,8 +66,16 @@
         let form = new FormData()
         form.append('image', $('input[type=file]')[0].files[0])
         this.file = form
-        axios.post('/user/bride-pic', this.file)
-        this.brideImg = this.croppedImage
+        axios.post('/user/upload-profile', this.file)
+          .then(res =>
+            this.$toasted.show('Foto Profile berhasil disimpan.', {
+              type: 'success',
+              theme: 'bubble',
+              duration: 5000,
+              position: 'top-center'
+            })
+          )
+        this.userImg = this.croppedImage
         this.viewimage = false
       },
       onImageReady(scale){

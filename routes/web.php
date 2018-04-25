@@ -33,6 +33,8 @@ Route::group(['middleware' => 'auth'], function() {
         Route::get('galeri-foto', 'UserController@galeriFoto')->name('user.galerifoto');
         Route::post('groom-pic', 'EditInvitationController@groomProfile')->name('user.groompic');
         Route::post('bride-pic', 'EditInvitationController@brideProfile')->name('user.bridepic');
+        Route::get('profile', 'UserController@profile')->name('user.profile');
+        Route::post('upload-profile', 'UserController@uploadProfile')->name('user.uploadprofile');
         Route::post('logout', 'Auth\LoginController@userLogout')->name('user.logout');
 
         //Route::post('logout', 'Auth\LoginController@userLogout')->name('user.logout');
@@ -52,6 +54,7 @@ Route::group(['middleware' => 'auth:admin'], function () {
   Route::prefix('es-admin')->group(function() {
       Route::get('dashboard', 'AdminController@index')->name('admin.dashboard');
       Route::get('daftar-admin', 'AdminController@daftarAdmin')->name('admin.daftaradmin');
+      Route::get('daftar-user', 'AdminController@daftarUser')->name('admin.daftaruser');
       Route::post('logout', 'AuthAdmin\LoginController@logout')->name('admin.logout');
       Route::get('password/reset', 'AuthAdmin\ForgotPasswordController@showLinkRequestForm')->name('admin.password.request');
       Route::post('password/email', 'AuthAdmin\ForgotPasswordController@sendResetLinkEmail')->name('admin.password.email');
@@ -70,11 +73,11 @@ View::composer(['*'], function ($view) {
   }
   if (Auth::guard()->check()) {
     $user = Auth::user();
-    $user_wedding = App\Wedding::find(['user_id' => $user->id])->first();
+    $wedding = App\Wedding::find(['user_id' => $user->id])->first();
 
     $view->with([
       'user' => $user,
-      'user_wedding' => $user_wedding,
+      'wedding' => $wedding,
       'userimg' => Storage::url('public/user/' . $user->username . '/' . 'img/' . $user->user_img)
     ]);
   }

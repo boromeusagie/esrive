@@ -18,6 +18,7 @@ window.Vue = require('vue');
 Vue.component('example-component', require('./components/ExampleComponent.vue'));
 Vue.component('upload-groom', require('./components/UploadGroom.vue'));
 Vue.component('upload-bride', require('./components/UploadBride.vue'));
+Vue.component('upload-user-profile', require('./components/UploadUserProfile.vue'));
 
 Vue.component(
     'passport-clients',
@@ -33,6 +34,12 @@ Vue.component(
     'passport-personal-access-tokens',
     require('./components/passport/PersonalAccessTokens.vue')
 );
+
+import axios from 'axios'
+import Toasted from 'vue-toasted';
+
+Vue.use(Toasted)
+
 
 const app = new Vue({
     el: '#app'
