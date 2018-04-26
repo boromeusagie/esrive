@@ -155,7 +155,6 @@ class EditInvitationController extends Controller
      $wedding = Wedding::find($user_id);
 
      $validator = Validator::make($request->all(), [
-       'wedding_url' =>  'required|alpha_dash|min:4|unique:weddings,wedding_url,' . $wedding->id,
        'groom_full' => 'required|max:255',
        'groom_nick' => 'required|max:255',
        'bride_full' => 'required|max:255',
@@ -187,10 +186,6 @@ class EditInvitationController extends Controller
        return redirect('/user/data')->withErrors($validator)->withInput();
      }
 
-     $user_id = Auth::user()->id;
-     $wedding = Wedding::find($user_id);
-
-     $wedding->wedding_url = $request->input('wedding_url');
      $wedding->groom_full = $request->input('groom_full');
      $wedding->groom_nick = $request->input('groom_nick');
      $wedding->groom_profile = $request->input('groom_profile');
@@ -256,5 +251,29 @@ class EditInvitationController extends Controller
         }
 
         return response(null, 202);
+    }
+
+    public function saveUrl(Request $request)
+    {
+      $user_id = Auth::user()->id;
+      $wedding = Wedding::find($user_id);
+
+      $validator = Validator::make($request->all(), [
+        'wedding_url' =>  'required|alpha_dash|min:4|unique:weddings,wedding_url,' . $wedding->id
+      ]);
+
+      $errors = $validator->errors();
+
+      if($validator->fails()) {
+        Toastr::error($message = 'URL Gagal disimpan!', $title = null, $options = ["closeButton" => true, "positionClass" => "toast-top-center"]);
+        return redirect('/user/data')->withErrors($validator)->withInput();
+      }
+
+      $wedding->wedding_url = $request->input('wedding_url');
+
+      $wedding->save();
+
+      Toastr::success($message = 'URL Berhasil disimpan!', $title = null, $options = ["closeButton" => true, "positionClass" => "toast-top-center"]);
+      return redirect('/user/data');
     }
 }

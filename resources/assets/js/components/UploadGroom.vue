@@ -1,7 +1,7 @@
 <template>
   <div>
     <div v-if="!viewimage">
-      <img :src="groomImg" class="img-circle img-responsive">
+      <img :src="groomImg" class="img-circle img-responsive profile-circle">
       <br>
       <button @click="viewCropped" class="m-t-20 btn btn-sm btn-outline-info">Ganti Foto</button>
     </div>
@@ -25,9 +25,10 @@
         >
         </vue-avatar-scale>
         <br>
-        <button @click="viewImage" class="m-t-10">Cancel</button>
-        <br>
-        <button v-on:click="saveClicked" class="btn btn-outline-info m-t-10">Upload</button>
+        <div class="m-t-10">
+          <button @click="viewImage" class="btn-sm btn btn-danger">Cancel</button>
+          <button v-on:click="saveClicked" class="btn btn-sm btn-success">Upload</button>
+        </div>
     </div>
   </div>
 </template>
@@ -67,6 +68,14 @@
         form.append('image', $('input[type=file]')[0].files[0])
         this.file = form
         axios.post('/user/groom-pic', this.file)
+          .then(res =>
+            this.$toasted.show('Foto Pria berhasil disimpan.', {
+              type: 'success',
+              theme: 'bubble',
+              duration: 5000,
+              position: 'top-center'
+            })
+          )
         this.groomImg = this.croppedImage
         this.viewimage = false
       },

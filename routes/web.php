@@ -34,6 +34,7 @@ Route::group(['middleware' => 'auth'], function() {
         Route::post('groom-pic', 'EditInvitationController@groomProfile')->name('user.groompic');
         Route::post('bride-pic', 'EditInvitationController@brideProfile')->name('user.bridepic');
         Route::get('profile', 'UserController@profile')->name('user.profile');
+        Route::post('save-url', 'EditInvitationController@saveUrl')->name('user.saveurl');
         Route::post('upload-profile', 'UserController@uploadProfile')->name('user.uploadprofile');
         Route::post('logout', 'Auth\LoginController@userLogout')->name('user.logout');
 
@@ -74,11 +75,15 @@ View::composer(['*'], function ($view) {
   if (Auth::guard()->check()) {
     $user = Auth::user();
     $wedding = App\Wedding::find(['user_id' => $user->id])->first();
+    $hari = array("Minggu","Senin","Selasa","Rabu","Kamis","Jumat","Sabtu");
+    $bulan = array("","Januari","Februari","Maret","April","Mei","Juni","Juli","Agustus","September","Oktober","November","Desember");
 
     $view->with([
       'user' => $user,
       'wedding' => $wedding,
-      'userimg' => Storage::url('public/user/' . $user->username . '/' . 'img/' . $user->user_img)
+      'userimg' => Storage::url('public/user/' . $user->username . '/' . 'img/' . $user->user_img),
+      'hari' => $hari,
+      'bulan' => $bulan
     ]);
   }
 });

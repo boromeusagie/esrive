@@ -102,11 +102,11 @@
                           <!-- ============================================================== -->
                           <li class="nav-item">
                             <a href="{{ route('user.profile') }}" class="nav-link waves-effect waves-dark">
-                              <img src="{{ asset($userimg) }}" alt="user" class="profile-pic" /><span> Akun Saya</span>
+                              <img src="{{ asset($userimg) }}" alt="user" class="profile-pic profile-circle" /><span> Akun Saya</span>
                             </a>
                           </li>
                           <li class="nav-item">
-                            <a href="{{ route('user.logout') }}" class="nav-link" onclick="event.preventDefault(); document.getElementById('logout-form').submit();" style="color: #EF9A9A" onMouseOver="this.style='color:#D50000';" onMouseOut="this.style='color:#EF9A9A';"><i class="fa fa-power-off"></i></a>
+                            <a href="{{ route('user.logout') }}" class="nav-link" onclick="event.preventDefault(); document.getElementById('logout-form').submit();" style="color: #EF9A9A" onMouseOver="this.style='color:#D50000';" onMouseOut="this.style='color:#EF9A9A';" data-toggle="tooltip" data-placement="bottom" title="Log Out"><i class="fa fa-power-off"></i></a>
                                 <form id="logout-form" action="{{ route('user.logout') }}" method="POST" style="display: none;">
                                     @csrf
                                 </form>
@@ -133,22 +133,17 @@
                             </a>
                           </li>
                           <li>
+                            <a class="waves-effect waves-dark" href="{{ route('user.data') }}" aria-expanded="false">
+                              <i class="mdi mdi-clipboard-text"></i><span class="hide-menu">Data Undangan</span>
+                            </a>
+                          </li>
+                          <li>
                             <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false">
-                              <i class="mdi mdi-account-check"></i><span class="hide-menu">Undangan Saya</span>
+                              <i class="mdi mdi-eye"></i><span class="hide-menu">Tampilan Undangan</span>
                             </a>
                             <ul class="collapse" aria-expanded="false">
-                              <li><a href="{{ route('user.data') }}">Edit Undangan</a></li>
-                              <li>
-                                <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false">Tema Undangan</a>
-                                <ul aria-expanded="false" class="collapse">
-                                  <li>
-                                    <a href="{{ route('user.pilihtema') }}">Pilih Tema</a>
-                                  </li>
-                                  <li>
-                                    <a href="{{ route('user.edittema') }}">Edit Tema</a>
-                                  </li>
-                                </ul>
-                              </li>
+                              <li><a href="{{ route('user.pilihtema') }}">Pilih Tema</a></li>
+                              <li><a href="{{ route('user.edittema') }}">Edit Tema</a></li>
                             </ul>
                           </li>
                           <li>
@@ -171,32 +166,7 @@
                               <li><a href="#">Profile</a></li>
                             </ul>
                           </li>
-                          <li>
-                            <a class="waves-effect waves-dark" href="icon-material.html" aria-expanded="false">
-                              <i class="mdi mdi-emoticon"></i><span class="hide-menu">Icons</span>
-                            </a>
-                          </li>
-                          <li>
-                            <a class="waves-effect waves-dark" href="map-google.html" aria-expanded="false">
-                              <i class="mdi mdi-earth"></i><span class="hide-menu">Map</span>
-                            </a>
-                          </li>
-                          <li>
-                            <a class="waves-effect waves-dark" href="pages-blank.html" aria-expanded="false">
-                              <i class="mdi mdi-book-open-variant"></i><span class="hide-menu">Blank</span>
-                            </a>
-                          </li>
-                          <li>
-                            <a class="waves-effect waves-dark" href="pages-error-404.html" aria-expanded="false">
-                              <i class="mdi mdi-help-circle"></i><span class="hide-menu">404</span>
-                            </a>
-                          </li>
                       </ul>
-                      @if($user->type == 1)
-                        <div class="text-center m-t-30">
-                            <a href="https://wrappixel.com/templates/adminpro/" class="btn waves-effect waves-light btn-danger hidden-md-down">Upgrade to Pro</a>
-                        </div>
-                      @endif
                   </nav>
                   <!-- End Sidebar navigation -->
               </div>
@@ -222,7 +192,7 @@
                       </div>
                       <div class="col-md-7 align-self-center">
                         @if($user->type == 1)
-                          <a href="https://wrappixel.com/templates/adminpro/" class="btn waves-effect waves-light btn-danger pull-right hidden-sm-down">Upgrade to Pro</a>
+                          <a href="#" class="btn waves-effect waves-light btn-danger pull-right hidden-sm-down">Upgrade to PREMIUM</a>
                         @endif
                       </div>
                   </div>

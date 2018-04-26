@@ -1,7 +1,7 @@
 <template>
   <div>
     <div v-if="!viewimage">
-      <img :src="userImg" class="img-circle img-responsive userimg">
+      <img :src="userImg" class="img-circle img-responsive userimg profile-circle">
       <br>
       <button @click="viewCropped" class="m-t-20 btn btn-outline-info">Ganti Foto</button>
     </div>
@@ -25,9 +25,10 @@
         >
         </vue-avatar-scale>
         <br>
-        <button @click="viewImage" class="m-t-10">Cancel</button>
-        <br>
-        <button v-on:click="saveClicked" class="btn btn-outline-info m-t-10">Upload</button>
+        <div class="m-t-10">
+          <button @click="viewImage" class="btn-sm btn btn-danger">Cancel</button>
+          <button v-on:click="saveClicked" class="btn btn-sm btn-success">Upload</button>
+        </div>
     </div>
   </div>
 </template>

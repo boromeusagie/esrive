@@ -43,4 +43,16 @@ class User extends Authenticatable
       {
         return $this->hasOne('App\Wedding', 'user_id');
       }
+
+      // public function getCeremonyAttribute()
+      // {
+      //   return \Carbon\Carbon::parse($this->attributes['wedding_cer_date'])
+      //     ->format('d, M Y');
+      // }
+      //
+      // public function getReceptionAttribute()
+      // {
+      //   return \Carbon\Carbon::parse($this->attributes['wedding_rec_date'])
+      //     ->format('d, M Y');
+      // }
 }
