@@ -47839,7 +47839,7 @@ exports = module.exports = __webpack_require__(2)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -47924,6 +47924,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
 
 
 
@@ -47959,7 +47961,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       this.croppedImage = img.toDataURL();
       var image = this.croppedImage;
       var form = new FormData();
-      form.append('image', $('input[type=file]')[0].files[0]);
+      form.append('image', image);
       this.file = form;
       axios.post('/user/groom-pic', this.file).then(function (res) {
         return _this.$toasted.show('Foto Pria berhasil disimpan.', {
@@ -48616,15 +48618,21 @@ var render = function() {
           [
             _c("vue-avatar", {
               ref: "vueavatar",
-              attrs: { width: 150, height: 150, image: "" },
+              attrs: { width: 200, height: 200, image: "" },
               on: { "vue-avatar-editor:image-ready": _vm.onImageReady }
             }),
+            _vm._v(" "),
+            _c("span", { staticClass: "help-block text-muted" }, [
+              _vm._v("Drag foto untuk mengatur")
+            ]),
+            _vm._v(" "),
+            _c("br"),
             _vm._v(" "),
             _c("br"),
             _vm._v(" "),
             _c("vue-avatar-scale", {
               ref: "vueavatarscale",
-              attrs: { width: 200, min: 1, max: 3, step: 0.02 },
+              attrs: { width: 250, min: 1, max: 3, step: 0.02 },
               on: { "vue-avatar-editor-scale:change-scale": _vm.onChangeScale }
             }),
             _vm._v(" "),
@@ -48750,7 +48758,7 @@ exports = module.exports = __webpack_require__(2)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -48767,6 +48775,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__vue_avatar_editor_VueAvatar_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__vue_avatar_editor_VueAvatar_vue__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__vue_avatar_editor_VueAvatarScale_vue__ = __webpack_require__(8);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__vue_avatar_editor_VueAvatarScale_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__vue_avatar_editor_VueAvatarScale_vue__);
+//
+//
 //
 //
 //
@@ -48837,7 +48847,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       this.croppedImage = img.toDataURL();
       var image = this.croppedImage;
       var form = new FormData();
-      form.append('image', $('input[type=file]')[0].files[0]);
+      form.append('image', image);
       this.file = form;
       axios.post('/user/bride-pic', this.file).then(function (res) {
         return _this.$toasted.show('Foto Wanita berhasil disimpan.', {
@@ -48891,15 +48901,21 @@ var render = function() {
           [
             _c("vue-avatar", {
               ref: "vueavatar",
-              attrs: { width: 150, height: 150, image: "" },
+              attrs: { width: 200, height: 200, image: "" },
               on: { "vue-avatar-editor:image-ready": _vm.onImageReady }
             }),
+            _vm._v(" "),
+            _c("span", { staticClass: "help-block text-muted" }, [
+              _vm._v("Drag foto untuk mengatur")
+            ]),
+            _vm._v(" "),
+            _c("br"),
             _vm._v(" "),
             _c("br"),
             _vm._v(" "),
             _c("vue-avatar-scale", {
               ref: "vueavatarscale",
-              attrs: { width: 200, min: 1, max: 3, step: 0.02 },
+              attrs: { width: 250, min: 1, max: 3, step: 0.02 },
               on: { "vue-avatar-editor-scale:change-scale": _vm.onChangeScale }
             }),
             _vm._v(" "),
@@ -49025,7 +49041,7 @@ exports = module.exports = __webpack_require__(2)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -49042,6 +49058,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__vue_avatar_editor_VueAvatar_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__vue_avatar_editor_VueAvatar_vue__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__vue_avatar_editor_VueAvatarScale_vue__ = __webpack_require__(8);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__vue_avatar_editor_VueAvatarScale_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__vue_avatar_editor_VueAvatarScale_vue__);
+//
+//
 //
 //
 //
@@ -49112,8 +49130,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       this.croppedImage = img.toDataURL();
       var image = this.croppedImage;
       var form = new FormData();
-      form.append('image', $('input[type=file]')[0].files[0]);
+      form.append('image', image);
       this.file = form;
+
       axios.post('/user/upload-profile', this.file).then(function (res) {
         return _this.$toasted.show('Foto Profile berhasil disimpan.', {
           type: 'success',
@@ -49155,7 +49174,7 @@ var render = function() {
           _c(
             "button",
             {
-              staticClass: "m-t-20 btn btn-outline-info",
+              staticClass: "m-t-20 btn btn-sm btn-outline-info",
               on: { click: _vm.viewCropped }
             },
             [_vm._v("Ganti Foto")]
@@ -49169,6 +49188,12 @@ var render = function() {
               attrs: { width: 200, height: 200, image: "" },
               on: { "vue-avatar-editor:image-ready": _vm.onImageReady }
             }),
+            _vm._v(" "),
+            _c("span", { staticClass: "help-block text-muted" }, [
+              _vm._v("Drag foto untuk mengatur")
+            ]),
+            _vm._v(" "),
+            _c("br"),
             _vm._v(" "),
             _c("br"),
             _vm._v(" "),

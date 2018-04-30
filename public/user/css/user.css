@@ -2,6 +2,10 @@
   display: none;
 }
 
+#editProfile {
+  display: none;
+}
+
 .web-preview {
   display: block;
   position: relative;
@@ -186,5 +190,15 @@ img.profile-circle {
   border-right: #424242 solid 3px;
   border-bottom: #424242 solid 2px;
   width: 50%;
+  border-radius: 10px 0;
+}
+
+.user-type-premium {
+  background-color: #FFEA00;
+  color: #000000;
+  border-right: #F9A825 solid 3px;
+  border-bottom: #F9A825 solid 2px;
+  width: 50%;
+  border-radius: 10px 0;
 }
 

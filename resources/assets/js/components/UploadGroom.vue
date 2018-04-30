@@ -7,18 +7,20 @@
     </div>
     <div v-else>
       <vue-avatar
-          :width=150
-          :height=150
+          :width=200
+          :height=200
           ref="vueavatar"
           @vue-avatar-editor:image-ready="onImageReady"
           image=""
         >
         </vue-avatar>
+        <span class="help-block text-muted">Drag foto untuk mengatur</span>
+        <br>
         <br>
         <vue-avatar-scale
           ref="vueavatarscale"
           @vue-avatar-editor-scale:change-scale="onChangeScale"
-          :width=200
+          :width=250
           :min=1
           :max=3
           :step=0.02
@@ -65,7 +67,7 @@
         this.croppedImage = img.toDataURL()
         let image = this.croppedImage
         let form = new FormData()
-        form.append('image', $('input[type=file]')[0].files[0])
+        form.append('image', image)
         this.file = form
         axios.post('/user/groom-pic', this.file)
           .then(res =>

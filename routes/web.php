@@ -37,11 +37,8 @@ Route::group(['middleware' => 'auth'], function() {
         Route::post('save-url', 'EditInvitationController@saveUrl')->name('user.saveurl');
         Route::post('upload-profile', 'UserController@uploadProfile')->name('user.uploadprofile');
         Route::post('logout', 'Auth\LoginController@userLogout')->name('user.logout');
-
-        //Route::post('logout', 'Auth\LoginController@userLogout')->name('user.logout');
-
-        //Route::post('change-password', 'EditUserController@changePassword')->name('user.changepassword');
-        //Route::post('save-data', 'EditUserController@saveData')->name('user.savedata');
+        Route::post('change-password', 'EditInvitationController@changePassword')->name('user.changepassword');
+        Route::post('edit-profile', 'EditInvitationController@editProfile')->name('user.editprofile');
     });
 });
 

@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Storage;
 use App\Wedding;
 use Mail;
 use DB;
+use Alert;
 
 class RegisterController extends Controller
 {
@@ -123,11 +124,12 @@ class RegisterController extends Controller
             $message->to($user['email']);
             $message->subject('Esrive Invitation - Activation Code');
           });
+          Alert::success("Register berhasil. Silakan cek email anda untuk aktivasi.")->persistent("Close");
           return redirect()
-                ->route('login')
-                ->with('success', "Register berhasil. Silakan cek email anda untuk aktivasi.");
+                ->route('login');
         }
-        return back()->with('error', $validator->errors());
+        Alert::error("Email anda sudah terdaftar atau tidak tersedia!")->persistent("Close");
+        return back();
     }
 
     /**
@@ -143,12 +145,15 @@ class RegisterController extends Controller
          $user = User::find($check->user_id);
          if ($user->activated == true)
          {
-           return redirect()->route('login')->with('success', "Akun anda sudah aktif. Silakan login.");
+           Alert::success("Akun anda sudah aktif. Silakan login.")->persistent("Close");
+           return redirect()->route('login');
          }
          $user->update(['activated' => true]);
          DB::table('users_activations')->where('activation_token', $token)->delete();
-         return redirect()->route('login')->with('success', "Akun anda sudah berhasil diaktivasi. Silakan login.");
+         Alert::success("Akun anda sudah berhasil diaktivasi. Silakan login.")->persistent("Close");
+         return redirect()->route('login');
        }
-       return redirect()->route('login')->with('warning', "Anda sudah melakukan aktivasi atau token anda tidak valid.");
+       Alert::warning("Anda sudah melakukan aktivasi atau token anda tidak valid.")->persistent("Close");
+       return redirect()->route('login');
      }
 }

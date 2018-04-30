@@ -63,20 +63,18 @@ class UserController extends Controller
       return view('user.profile');
     }
 
-    public function upLoadProfile(Request $request)
+    public function uploadProfile(Request $request)
     {
       $user = Auth::user();
 
-      if($request->hasFile('image')) {
-          $userimg = $request->file('image');
-          $file_image = $user->username . '-profile-' . time() . '.' . $userimg->getClientOriginalExtension();
-          $path = public_path('storage/user/'.$user->username.'/'.'img/' . $file_image);
-          $image = Image::make($userimg);
-          $image->save($path);
+      $userimg = $request->image;
+      $file_image = $user->username . '-profile-' . time() . '.png';
+      $path = public_path('storage/user/'.$user->username.'/'.'img/' . $file_image);
+      $image = Image::make($userimg);
+      $image->save($path);
 
-          $user->user_img = $file_image;
-          $user->save();
-        }
+      $user->user_img = $file_image;
+      $user->save();
 
       return response(null, 202);
       // if($request->hasFile('image')) {

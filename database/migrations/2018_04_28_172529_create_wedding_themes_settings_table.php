@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateWeddingThemesTable extends Migration
+class CreateWeddingThemesSettingsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,10 @@ class CreateWeddingThemesTable extends Migration
      */
     public function up()
     {
-        Schema::create('wedding_themes', function (Blueprint $table) {
+        Schema::create('wedding_themes_settings', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name');
+            $table->integer('wedding_id')->unsigned();
+            $table->foreign('wedding_id')->references('id')->on('weddings');
             $table->timestamps();
         });
     }
@@ -27,6 +28,6 @@ class CreateWeddingThemesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('wedding_themes');
+        Schema::dropIfExists('wedding_themes_settings');
     }
 }

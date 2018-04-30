@@ -20,7 +20,7 @@ class CreateAdminsTable extends Migration
             $table->string('password');
             $table->integer('type')->unsigned();
             $table->foreign('type')->references('id')->on('admin_types');
-            $table->string('admin_pic')->default('noiomg.png');
+            $table->string('admin_pic')->default('noimg.png');
             $table->rememberToken();
             $table->timestamps();
         });

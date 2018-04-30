@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateWeddingThemesTable extends Migration
+class CreateBlogsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,11 @@ class CreateWeddingThemesTable extends Migration
      */
     public function up()
     {
-        Schema::create('wedding_themes', function (Blueprint $table) {
+        Schema::create('blogs', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name');
+            $table->string('title');
+            $table->longText('body');
+            $table->string('thumbnail')->nullable();
             $table->timestamps();
         });
     }
@@ -27,6 +29,6 @@ class CreateWeddingThemesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('wedding_themes');
+        Schema::dropIfExists('blogs');
     }
 }

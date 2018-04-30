@@ -3,7 +3,7 @@
     <div v-if="!viewimage">
       <img :src="userImg" class="img-circle img-responsive userimg profile-circle">
       <br>
-      <button @click="viewCropped" class="m-t-20 btn btn-outline-info">Ganti Foto</button>
+      <button @click="viewCropped" class="m-t-20 btn btn-sm btn-outline-info">Ganti Foto</button>
     </div>
     <div v-else>
       <vue-avatar
@@ -14,6 +14,8 @@
           image=""
         >
         </vue-avatar>
+        <span class="help-block text-muted">Drag foto untuk mengatur</span>
+        <br>
         <br>
         <vue-avatar-scale
           ref="vueavatarscale"
@@ -65,8 +67,9 @@
         this.croppedImage = img.toDataURL()
         let image = this.croppedImage
         let form = new FormData()
-        form.append('image', $('input[type=file]')[0].files[0])
+        form.append('image', image)
         this.file = form
+
         axios.post('/user/upload-profile', this.file)
           .then(res =>
             this.$toasted.show('Foto Profile berhasil disimpan.', {

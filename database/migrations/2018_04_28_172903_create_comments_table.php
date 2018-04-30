@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateWeddingThemesTable extends Migration
+class CreateCommentsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,13 @@ class CreateWeddingThemesTable extends Migration
      */
     public function up()
     {
-        Schema::create('wedding_themes', function (Blueprint $table) {
+        Schema::create('comments', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('blog_id')->unsigned();
+            $table->foreign('blog_id')->references('id')->on('blogs');
             $table->string('name');
+            $table->string('email');
+            $table->text('comment');
             $table->timestamps();
         });
     }
@@ -27,6 +31,6 @@ class CreateWeddingThemesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('wedding_themes');
+        Schema::dropIfExists('comments');
     }
 }

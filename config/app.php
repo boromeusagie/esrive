@@ -150,12 +150,7 @@ return [
         /*
          * Package Service Providers...
          */
-
-       UxWeb\SweetAlert\SweetAlertServiceProvider::class,
-       Kamaln7\Toastr\ToastrServiceProvider::class,
-       SimpleSoftwareIO\QrCode\QrCodeServiceProvider::class,
-       Intervention\Image\ImageServiceProvider::class,
-       Igaster\LaravelTheme\themeServiceProvider::class,
+        Facuz\Theme\ThemeServiceProvider::class,
 
         /*
          * Application Service Providers...
@@ -181,7 +176,6 @@ return [
 
     'aliases' => [
 
-      'Alert' => UxWeb\SweetAlert\SweetAlert::class,
       'App' => Illuminate\Support\Facades\App::class,
       'Artisan' => Illuminate\Support\Facades\Artisan::class,
       'Auth' => Illuminate\Support\Facades\Auth::class,
@@ -198,14 +192,12 @@ return [
       'File' => Illuminate\Support\Facades\File::class,
       'Gate' => Illuminate\Support\Facades\Gate::class,
       'Hash' => Illuminate\Support\Facades\Hash::class,
-      'Image' => Intervention\Image\Facades\Image::class,
       'Lang' => Illuminate\Support\Facades\Lang::class,
       'Log' => Illuminate\Support\Facades\Log::class,
       'Mail' => Illuminate\Support\Facades\Mail::class,
       'Notification' => Illuminate\Support\Facades\Notification::class,
       'Password' => Illuminate\Support\Facades\Password::class,
       'Queue' => Illuminate\Support\Facades\Queue::class,
-      'QrCode' => SimpleSoftwareIO\QrCode\Facades\QrCode::class,
       'Redirect' => Illuminate\Support\Facades\Redirect::class,
       'Redis' => Illuminate\Support\Facades\Redis::class,
       'Request' => Illuminate\Support\Facades\Request::class,
@@ -214,8 +206,7 @@ return [
       'Schema' => Illuminate\Support\Facades\Schema::class,
       'Session' => Illuminate\Support\Facades\Session::class,
       'Storage' => Illuminate\Support\Facades\Storage::class,
-      'Theme' => Igaster\LaravelTheme\Facades\Theme::class,
-      'Toastr' => Kamaln7\Toastr\Facades\Toastr::class,
+      'Theme' => Facuz\Theme\Facades\Theme::class,
       'URL' => Illuminate\Support\Facades\URL::class,
       'Validator' => Illuminate\Support\Facades\Validator::class,
       'View' => Illuminate\Support\Facades\View::class,

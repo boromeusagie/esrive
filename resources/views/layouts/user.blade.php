@@ -18,6 +18,7 @@
     <!-- Bootstrap Core CSS -->
     <link href="{{ asset('user/plugins/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('css/toastr.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('plugins/sweet-alert/dist/sweetalert.css') }}">
     <!-- Custom CSS -->
     <link href="{{ asset('user/css/style.css') }}" rel="stylesheet">
     <!-- You can change the theme colors from here -->
@@ -81,7 +82,7 @@
                           <!-- This is  -->
                           <li class="nav-item">
                             <a class="nav-link sidebartoggler hidden-sm-down waves-effect waves-dark" href="javascript:void(0)">
-                              <i class="ti-menu"></i>
+                              <i class="ti-angle-left"></i>
                             </a>
                           </li>
                       </ul>
@@ -159,14 +160,25 @@
                           <li>
                             <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false">
                               <i class="mdi mdi-table"></i>
-                              <span class="hide-menu">Table</span>
+                              <span class="hide-menu">Laporan Undangan</span>
                             </a>
                             <ul class="collapse" aria-expanded="false">
                               <li><a href="#">Home</a></li>
                               <li><a href="#">Profile</a></li>
                             </ul>
                           </li>
+                          <li>
+                            <a class="waves-effect waves-dark" href="#" aria-expanded="false">
+                              <i class="mdi mdi-qrcode"></i><span class="hide-menu">Scan QR Code</span>
+                            </a>
+                          </li>
+                          <li class="nav-devider"></li>
                       </ul>
+                      <div class="text-center">
+                        <a href="#" class="btn waves-effect waves-light btn-info hidden-md-down">
+                          <i class="mdi mdi-monitor"></i> Lihat Undangan
+                        </a>
+                      </div>
                   </nav>
                   <!-- End Sidebar navigation -->
               </div>
@@ -192,7 +204,7 @@
                       </div>
                       <div class="col-md-7 align-self-center">
                         @if($user->type == 1)
-                          <a href="#" class="btn waves-effect waves-light btn-danger pull-right hidden-sm-down">Upgrade to PREMIUM</a>
+                          <a href="#" class="btn waves-effect waves-light btn-danger pull-right hidden-sm-down">Upgrade ke PREMIUM</a>
                         @endif
                       </div>
                   </div>
@@ -239,15 +251,15 @@
     <!--Menu sidebar -->
     <script src="{{ asset('user/js/sidebarmenu.js') }}"></script>
     <script src="{{ asset('js/toastr.min.js') }}"></script>
+    <script src="{{ asset('plugins/sweet-alert/dist/sweetalert.min.js') }}"></script>
 
     <!--Custom JavaScript -->
     <script src="{{ asset('user/js/custom.min.js') }}"></script>
 
-    @yield('scripts')
-
-
-
+    @include('sweet::alert')
     {!! Toastr::render() !!}
+
+    @yield('scripts')
 
     @yield('hidden-div')
 </body>

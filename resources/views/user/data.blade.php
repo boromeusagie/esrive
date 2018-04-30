@@ -10,61 +10,63 @@
 <!-- ============================================================== -->
 <!-- Start Page Content -->
 <!-- ============================================================== -->
-<div id="dataUndangan">
-  <div class="row justify-content-center">
-      <div class="col-md-6">
-          <div class="card card-outline-esrive">
-              <div class="card-header">
-                <h4 class="m-b-0 text-white">URL Undangan</h4>
-              </div>
-              <div class="card-body">
 
-                <div class="row" style="margin-top:20px">
-                  <div class="col-12">
-                    <form action="{{ $user->type == 2 ? route('user.saveurl') : "#" }}" method="POST" class="form-material">
-                      @csrf
-                      <div class="esrive-input-group">
-                        <div class="esrive-input-group-prepend">
-                          <span class="esrive-input-group-text bg-theme b-0 text-white">http://www.esrive.id/</span>
-                        </div>
-                        <div class="form-group{{ $errors->has('wedding_url') ? ' has-error' : '' }} m-b-40">
-                          <input type="text" class="form-control" id="wedding_url" aria-describedby="basic-addon3" name="wedding_url" value="{{ isset($wedding->wedding_url) ? $wedding->wedding_url : "" }}" required disabled>
+<div class="row justify-content-center">
+    <div class="col-md-6">
+        <div class="card card-outline-esrive">
+            <div class="card-header">
+              <h4 class="m-b-0 text-white">URL Undangan</h4>
+            </div>
+            <div class="card-body">
 
-                          @if ($errors->has('wedding_url'))
-                              <span class="help-block text-danger">
-                                  <strong>{{ $errors->first('wedding_url') }}</strong>
-                              </span>
-                          @endif
-
-                        </div>
+              <div class="row" style="margin-top:20px">
+                <div class="col-12">
+                  <form action="{{ $user->type == 2 ? route('user.saveurl') : "#" }}" method="POST" class="form-material">
+                    @csrf
+                    <div class="esrive-input-group">
+                      <div class="esrive-input-group-prepend">
+                        <span class="esrive-input-group-text bg-theme b-0 text-white">http://www.esrive.id/</span>
                       </div>
-                      @if ($user->type == 1)
-                        <div>
-                          <span class="help-block text-danger float-right">
-                            <small>Upgrade ke PREMIUM untuk mengganti URL undangan</small>
-                          </span>
-                        </div>
-                      @else
-                        <div>
-                          <span class="help-block text-muted float-right">
-                           <small>url undangan anda</small>
-                         </span>
-                        </div>
-                      @endif
-                      @if ($user->type == 2)
-                        <div class="m-t-20">
-                          <button id="editUrl" class="btn btn-sm btn-outline-info" type="button">Edit URL</button>
-                          <button id="cancelUrl" class="btn btn-sm btn-danger" type="button">Cancel</button>
-                          <button id="simpanUrl" class="btn btn-sm btn-success" type="submit">Simpan URL</button>
-                        </div>
-                      @endif
-                    </form>
-                  </div>
+                      <div class="form-group{{ $errors->has('wedding_url') ? ' has-error' : '' }} m-b-40">
+                        <input type="text" class="form-control" id="wedding_url" aria-describedby="basic-addon3" name="wedding_url" value="{{ isset($wedding->wedding_url) ? $wedding->wedding_url : "" }}" required disabled>
+
+                        @if ($errors->has('wedding_url'))
+                            <span class="help-block text-danger">
+                                <strong>{{ $errors->first('wedding_url') }}</strong>
+                            </span>
+                        @endif
+
+                      </div>
+                    </div>
+                    @if ($user->type == 1)
+                      <div>
+                        <span class="help-block text-danger float-right">
+                          <small>Upgrade ke PREMIUM untuk mengganti URL undangan</small>
+                        </span>
+                      </div>
+                    @else
+                      <div>
+                        <span class="help-block text-muted float-right">
+                         <small>url undangan anda</small>
+                       </span>
+                      </div>
+                    @endif
+                    @if ($user->type == 2)
+                      <div class="m-t-20">
+                        <button id="editUrl" class="btn btn-sm btn-outline-info" type="button">Edit URL</button>
+                        <button id="cancelUrl" class="btn btn-sm btn-danger" type="button">Cancel</button>
+                        <button id="simpanUrl" class="btn btn-sm btn-success" type="submit">Simpan URL</button>
+                      </div>
+                    @endif
+                  </form>
                 </div>
               </div>
-          </div>
-      </div>
-  </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="dataUndangan">
   <div class="m-t-20 row text-center">
     <div class="col-12">
       <button id="editButton1" class="btn btn-outline-info" type="button">Edit Undangan</button>
@@ -196,9 +198,9 @@
       </div>
       <div class="row">
           <div class="col-12 col-md-6">
-              <div class="card card-outline-esrive">
+              <div class="card card-outline-warning">
                   <div class="card-header">
-                    <h4 class="m-b-0 text-white">Pengantin Pria</h4>
+                    <h4 class="m-b-0 text-white">Edit Pengantin Pria</h4>
                   </div>
                   <div class="card-body">
                     <div class="form-group{{ $errors->has('groom_full') ? ' has-error' : '' }} m-b 40">
@@ -226,7 +228,9 @@
                         <small>min. 30 karakter</small>
                         <br>
                         @if ($errors->has('groom_profile'))
-                          <strong class="text-danger">{{ $errors->first('groom_profile') }}</strong>
+                          <span class="help-block text-danger">
+                            <strong class="text-danger">{{ $errors->first('groom_profile') }}</strong>
+                          </span>
                         @endif
                       </span>
                     </div>
@@ -234,9 +238,9 @@
               </div>
           </div>
           <div class="col-12 col-md-6">
-              <div class="card card-outline-esrive">
+              <div class="card card-outline-warning">
                   <div class="card-header">
-                    <h4 class="m-b-0 text-white">Pengantin Wanita</h4>
+                    <h4 class="m-b-0 text-white">Edit Pengantin Wanita</h4>
                   </div>
                   <div class="card-body">
                     <div class="form-group{{ $errors->has('bride_full') ? ' has-error' : '' }} m-b 40">
@@ -264,7 +268,9 @@
                         <small>min. 30 karakter</small>
                         <br>
                         @if ($errors->has('bride_profile'))
-                          <strong class="text-danger">{{ $errors->first('bride_profile') }}</strong>
+                          <span class="help-block text-danger">
+                            <strong class="text-danger">{{ $errors->first('bride_profile') }}</strong>
+                          </span>
                         @endif
                       </span>
                     </div>
@@ -274,9 +280,9 @@
       </div>
       <div class="row">
           <div class="col-12 col-md-6">
-              <div class="card card-outline-esrive">
+              <div class="card card-outline-warning">
                   <div class="card-header">
-                    <h4 class="m-b-0 text-white">Upacara Pernikahan</h4>
+                    <h4 class="m-b-0 text-white">Edit Upacara Pernikahan</h4>
                   </div>
                   <div class="card-body">
                     <div class="form-group{{ $errors->has('wedding_cer') ? ' has-error' : '' }}">
@@ -345,22 +351,7 @@
                       @endif
 
                       <div id="map_akad" style="width: 100%; height: 300px; margin-top: 5px;"></div>
-            					@if ($errors->has('wedding_cer_lat'))
-            						<span class="help-block">
-            							<strong>{{ $errors->first('wedding_cer_lat') }}</strong>
-            						</span>
-            					@endif
-            					@if ($errors->has('wedding_cer_long'))
-            						<span class="help-block">
-            							<strong>{{ $errors->first('wedding_cer_long') }}</strong>
-            						</span>
-            					@endif
             					<span class="help-block text-muted"><small>Geser <b>marker <i class="fa fa-map-marker red" aria-hidden="true"></i></b> untuk memperoleh koordinat yang benar</small></span>
-            					@if ($errors->has('wedding_cer_address'))
-            						<span class="help-block">
-            							<strong>{{ $errors->first('wedding_cer_address') }}</strong>
-            						</span>
-            					@endif
 
                       <input class="form-control" type="text" name="wedding_cer_lat" id="wedding_cer_lat"  value="{{ isset($wedding->wedding_cer_lat) ? $wedding->wedding_cer_lat : "" }}" style="display:none">
                   		<input class="form-control" type="text" name="wedding_cer_long" id="wedding_cer_long"  value="{{ isset($wedding->wedding_cer_long) ? $wedding->wedding_cer_long : "" }}" style="display:none">
@@ -370,9 +361,9 @@
               </div>
           </div>
           <div class="col-12 col-md-6">
-              <div class="card card-outline-esrive">
+              <div class="card card-outline-warning">
                   <div class="card-header">
-                    <h4 class="m-b-0 text-white">Resepsi Pernikahan</h4>
+                    <h4 class="m-b-0 text-white">Edit Resepsi Pernikahan</h4>
                   </div>
                   <div class="card-body">
                     <div class="form-group{{ $errors->has('wedding_rec') ? ' has-error' : '' }}">
@@ -440,22 +431,7 @@
                       @endif
 
                       <div id="map_resepsi" style="width: 100%; height: 300px; margin-top: 5px;"></div>
-            					@if ($errors->has('wedding_rec_lat'))
-            						<span class="help-block">
-            							<strong>{{ $errors->first('wedding_rec_lat') }}</strong>
-            						</span>
-            					@endif
-            					@if ($errors->has('wedding_rec_long'))
-            						<span class="help-block">
-            							<strong>{{ $errors->first('wedding_rec_long') }}</strong>
-            						</span>
-            					@endif
             					<span class="help-block text-muted"><small>Geser <b>marker <i class="fa fa-map-marker red" aria-hidden="true"></i></b> untuk memperoleh koordinat yang benar</small></span>
-            					@if ($errors->has('wedding_rec_address'))
-            						<span class="help-block">
-            							<strong>{{ $errors->first('wedding_rec_address') }}</strong>
-            						</span>
-            					@endif
 
                       <input class="form-control" type="text" name="wedding_rec_lat" id="wedding_rec_lat"  value="{{ isset($wedding->wedding_rec_lat) ? $wedding->wedding_rec_lat : "" }}" style="display:none">
                   		<input class="form-control" type="text" name="wedding_rec_long" id="wedding_rec_long"  value="{{ isset($wedding->wedding_rec_long) ? $wedding->wedding_rec_long : "" }}" style="display:none">
@@ -504,37 +480,37 @@
 
     $('#editUrl').on('click', function() {
       $('#editUrl').css('display', 'none');
-      $('#simpanUrl').css('display', 'inline-block');
-      $('#cancelUrl').css('display', 'inline-block');
+      $('#simpanUrl').fadeIn();
+      $('#cancelUrl').fadeIn();
       $('#wedding_url').prop('disabled', false);
       $('#wedding_url').focus();
     });
 
     $('#cancelUrl').on('click', function() {
-      $('#editUrl').css('display', 'block');
+      $('#editUrl').fadeIn();
       $('#simpanUrl').css('display', 'none');
       $('#cancelUrl').css('display', 'none');
       $('#wedding_url').prop('disabled', true);
     });
 
     $('#editButton1').on('click', function() {
-      $('#dataUndangan').css('display', 'none');
-      $('#formUndangan').css('display', 'block');
+      $('#dataUndangan').slideUp();
+      $('#formUndangan').fadeIn();
     });
 
     $('#editButton2').on('click', function() {
-      $('#dataUndangan').css('display', 'none');
-      $('#formUndangan').css('display', 'block');
+      $('#dataUndangan').slideUp();
+      $('#formUndangan').fadeIn();
     });
-    
+
     $('#cancelEdit1').on('click', function() {
-      $('#dataUndangan').css('display', 'block');
-      $('#formUndangan').css('display', 'none');
+      $('#dataUndangan').slideDown();
+      $('#formUndangan').fadeOut();
     });
 
     $('#cancelEdit2').on('click', function() {
-      $('#dataUndangan').css('display', 'block');
-      $('#formUndangan').css('display', 'none');
+      $('#dataUndangan').slideDown();
+      $('#formUndangan').fadeOut();
     });
 
     function previewGroom(input) {
