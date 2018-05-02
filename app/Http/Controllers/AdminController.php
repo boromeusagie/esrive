@@ -7,6 +7,9 @@ use App\User;
 use App\Admin;
 use App\AdminType;
 use Auth;
+use Illuminate\Support\Facades\Artisan;
+use App\WeddingTheme;
+use Toastr;
 
 class AdminController extends Controller
 {
@@ -35,7 +38,7 @@ class AdminController extends Controller
       $admins = Admin::all();
 
       return view('admin.daftaradmin', [
-        'admins' => $admins,
+        'admins' => $admins
       ]);
     }
 
@@ -44,7 +47,40 @@ class AdminController extends Controller
       $users = User::all();
 
       return view('admin.daftaruser', [
-        'users' => $users,
+        'users' => $users
       ]);
+    }
+
+    public function daftarTema()
+    {
+      $themes = WeddingTheme::all();
+
+      return view('admin.daftartema', [
+        'themes' => $themes
+      ]);
+    }
+
+    public function adminType()
+    {
+      $types = AdminType::all();
+
+      return view('admin.admintype', [
+        'types' => $types
+      ]);
+    }
+
+    public function addTheme(Request $request)
+    {
+      $theme = new WeddingTheme;
+
+      $theme->name = $request->input('name');
+      $theme->author = $request->input('author');
+
+      Artisan::call('theme:create', ['name' => $request->input('name')]);
+
+      $theme->save();
+
+      Toastr::success($message = 'Berhasil disimpan!', $title = null, $options = ["closeButton" => true, "positionClass" => "toast-top-center"]);
+      return redirect('es-admin/daftar-tema');
     }
 }

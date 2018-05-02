@@ -92,4 +92,9 @@ class UserController extends Controller
     	return view('user.pages.galerifoto');
     }
 
+    public function caraPembayaran()
+    {
+      return view('user.carapembayaran');
+    }
+
 }

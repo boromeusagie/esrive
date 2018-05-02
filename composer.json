@@ -15,6 +15,7 @@
         "laravel/tinker": "^1.0",
         "oriceon/toastr-5-laravel": "dev-master",
         "pragmarx/version": "^0.2.7",
+        "renatomarinho/laravel-page-speed": "^1.8",
         "simplesoftwareio/simple-qrcode": "^2.0",
         "stevebauman/location": "^3.0",
         "uxweb/sweet-alert": "^1.4"

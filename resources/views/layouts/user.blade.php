@@ -175,7 +175,7 @@
                           <li class="nav-devider"></li>
                       </ul>
                       <div class="text-center">
-                        <a href="#" class="btn waves-effect waves-light btn-info hidden-md-down">
+                        <a href="{{ url($wedding->wedding_url) }}" target="_blank" class="btn waves-effect waves-light btn-info hidden-md-down">
                           <i class="mdi mdi-monitor"></i> Lihat Undangan
                         </a>
                       </div>

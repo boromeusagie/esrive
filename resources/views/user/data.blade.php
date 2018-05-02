@@ -67,7 +67,7 @@
 </div>
 
 <div id="dataUndangan">
-  <div class="m-t-20 row text-center">
+  <div class="m-t-10 row text-center">
     <div class="col-12">
       <button id="editButton1" class="btn btn-outline-info" type="button">Edit Undangan</button>
     </div>
@@ -190,7 +190,7 @@
 {{-- EDIT FORM --}}
 <div id="formUndangan">
 
-  <form action="{{ route('user.editdata') }}" method="POST" class="form-material m-t-40" enctype="multipart/form-data">
+  <form action="{{ route('user.editdata') }}" method="POST" class="form-material m-t-10" enctype="multipart/form-data">
     @csrf
       <div class="text-center m-b-20">
         <button id="cancelEdit1" class="btn btn-danger" type="button">CANCEL</button>

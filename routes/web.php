@@ -39,6 +39,7 @@ Route::group(['middleware' => 'auth'], function() {
         Route::post('logout', 'Auth\LoginController@userLogout')->name('user.logout');
         Route::post('change-password', 'EditInvitationController@changePassword')->name('user.changepassword');
         Route::post('edit-profile', 'EditInvitationController@editProfile')->name('user.editprofile');
+        Route::get('cara-pembayaran', 'UserController@caraPembayaran')->name('user.carapembayaran');
     });
 });
 
@@ -53,13 +54,18 @@ Route::group(['middleware' => 'auth:admin'], function () {
       Route::get('dashboard', 'AdminController@index')->name('admin.dashboard');
       Route::get('daftar-admin', 'AdminController@daftarAdmin')->name('admin.daftaradmin');
       Route::get('daftar-user', 'AdminController@daftarUser')->name('admin.daftaruser');
+      Route::get('daftar-tema', 'AdminController@daftarTema')->name('admin.daftartema');
       Route::post('logout', 'AuthAdmin\LoginController@logout')->name('admin.logout');
       Route::get('password/reset', 'AuthAdmin\ForgotPasswordController@showLinkRequestForm')->name('admin.password.request');
       Route::post('password/email', 'AuthAdmin\ForgotPasswordController@sendResetLinkEmail')->name('admin.password.email');
       Route::get('password/reset/{token}', 'AuthAdmin\ResetPasswordController@showResetForm')->name('admin.password.reset');
       Route::post('password/reset', 'AuthAdmin\ResetPasswordController@reset');
+      Route::get('admin-type', 'AdminController@adminType')->name('admin.type');
+      Route::post('add-theme', 'AdminController@addTheme')->name('admin.addtheme');
   });
 });
+
+Route::get('{url}', 'InvitationController@index')->name('user.invitation');
 
 View::composer(['*'], function ($view) {
   if (Auth::guard('admin')->check()) {

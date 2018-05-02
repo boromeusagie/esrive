@@ -136,7 +136,7 @@
                           </a>
                           <ul class="collapse" aria-expanded="false">
                             <li><a href="{{ route('admin.daftaradmin') }}">Daftar Admin</a></li>
-                            <li><a href="#">Kategori Admin</a></li>
+                            <li><a href="{{ route('admin.type') }}">Kategori Admin</a></li>
                           </ul>
                         </li>
                         <li>
@@ -150,6 +150,11 @@
                           </ul>
                         </li>
                         <li>
+                          <a class="waves-effect waves-dark" href="{{ route('admin.daftartema') }}" aria-expanded="false">
+                            <i class="mdi mdi-emoticon"></i><span class="hide-menu">Themes</span>
+                          </a>
+                        </li>
+                        <li>
                           <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false">
                             <i class="mdi mdi-table"></i>
                             <span class="hide-menu">Table</span>
@@ -158,11 +163,6 @@
                             <li><a href="#">Home</a></li>
                             <li><a href="#">Profile</a></li>
                           </ul>
-                        </li>
-                        <li>
-                          <a class="waves-effect waves-dark" href="icon-material.html" aria-expanded="false">
-                            <i class="mdi mdi-emoticon"></i><span class="hide-menu">Icons</span>
-                          </a>
                         </li>
                         <li>
                           <a class="waves-effect waves-dark" href="map-google.html" aria-expanded="false">
