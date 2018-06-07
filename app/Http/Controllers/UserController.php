@@ -9,6 +9,8 @@ use App\Http\Requests;
 use Auth;
 use Response;
 use Image;
+use App\WeddingTheme;
+use App\Wedding;
 
 class UserController extends Controller
 {
@@ -43,19 +45,14 @@ class UserController extends Controller
       return view('user.pilihtema');
     }
 
-    public function editTema()
-    {
-    	return view('user.edittema');
-    }
-
     public function daftarTamu()
     {
-    	return view('user.pages.daftartamu');
+    	return view('user.daftartamu');
     }
 
     public function ucapanSelamat()
     {
-    	return view('user.pages.ucapanselamat');
+    	return view('user.ucapanselamat');
     }
 
     public function profile()
@@ -97,4 +94,8 @@ class UserController extends Controller
       return view('user.carapembayaran');
     }
 
+    public function editTema()
+    {
+      return view('user.edittema');
+    }
 }

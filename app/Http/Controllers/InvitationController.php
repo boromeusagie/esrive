@@ -21,15 +21,21 @@ class InvitationController extends Controller
     $user = User::find($wedding_url->user_id)->first();
 
     $layout = array(
-      'user' => $wedding_url
+      'wedding' => $wedding_url,
+      'user' => $user
     );
 
 
     $theme = Theme::uses(WeddingTheme::find($wedding_url->wedding_theme)->name);
+    $hari = array("Minggu","Senin","Selasa","Rabu","Kamis","Jumat","Sabtu");
+    $bulan = array("","Januari","Februari","Maret","April","Mei","Juni","Juli","Agustus","September","Oktober","November","Desember");
+
 
     $view = array(
       'user' => $user,
-      'wedding' => $wedding_url
+      'wedding' => $wedding_url,
+      'hari' => $hari,
+      'bulan' => $bulan
     );
 
     return $theme->scope('index', $view)->render();

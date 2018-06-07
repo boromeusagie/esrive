@@ -29,6 +29,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "grapesjs": "^0.14.10",
     "vue-avatar-editor": "^1.0.4",
     "vue-toasted": "^1.1.24"
   }

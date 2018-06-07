@@ -224,8 +224,9 @@
                     <div class="form-group{{ $errors->has('groom_profile') ? ' has-error' : '' }} m-b-5">
                       <label for="groom_profile">Profil Pengantin Pria</label>
                       <textarea class="form-control" rows="3" id="groom_profile" name="groom_profile" required>{{ isset($wedding->groom_profile) ? $wedding->groom_profile : "" }}</textarea>
-                      <span class="help-block text-muted">
-                        <small>min. 30 karakter</small>
+                      <span class="help-block text-muted pull-left" id="groom_text"></span>
+                      <span class="help-block text-muted pull-right">
+                        <small>max. 500 karakter</small>
                         <br>
                         @if ($errors->has('groom_profile'))
                           <span class="help-block text-danger">
@@ -264,8 +265,9 @@
                     <div class="form-group{{ $errors->has('bride_profile') ? ' has-error' : '' }} m-b-5">
                       <label for="bride_profile">Profil Pengantin Wanita</label>
                       <textarea class="form-control" rows="3" id="bride_profile" name="bride_profile" required>{{ isset($wedding->bride_profile) ? $wedding->bride_profile : "" }}</textarea>
-                      <span class="help-block text-muted">
-                        <small>min. 30 karakter</small>
+                      <span class="help-block text-muted pull-left" id="bride_text"></span>
+                      <span class="help-block text-muted pull-right">
+                        <small>max. 500 karakter</small>
                         <br>
                         @if ($errors->has('bride_profile'))
                           <span class="help-block text-danger">
@@ -513,84 +515,22 @@
       $('#formUndangan').fadeOut();
     });
 
-    function previewGroom(input) {
+    var text_max = 500;
 
-      var image_groom = $(".img-wrapper-groom > img");
+  	$('#groom_profile').keyup(function() {
+  		var text_length = $('#groom_profile').val().length;
+  		var text_remaining = text_max - text_length;
 
-  		if (input.files && input.files[0]) {
-  			var reader = new FileReader();
-
-  			reader.onload = function (e) {
-          image_groom.cropper('destroy');
-  				$(image_groom).attr("src", e.target.result);
-
-  				image_groom.cropper({
-  					aspectRatio: 300 / 300,
-  					viewMode: 1,
-  					resizable: true,
-  					zoomable: false,
-  					rotatable: false,
-  					crop: function(e) {
-  						console.log(e.x);
-  						console.log(e.y);
-  						console.log(e.width);
-  						console.log(e.height);
-  						document.getElementById("width_groom").setAttribute("value", parseInt(e.width));
-  						document.getElementById("height_groom").setAttribute("value", parseInt(e.height));
-  						document.getElementById("x_groom").setAttribute("value", parseInt(e.x));
-  						document.getElementById("y_groom").setAttribute("value", parseInt(e.y));
-  					}
-  				});
-
-			  }
-
-			  reader.readAsDataURL(input.files[0]);
-  		}
-  	}
-
-  	function previewBride(input) {
-
-      var image_bride = $(".img-wrapper-bride > img");
-
-  		if (input.files && input.files[0]) {
-  			var reader = new FileReader();
-
-  			reader.onload = function (e) {
-          image_bride.cropper('destroy');
-  				$(image_bride).attr("src", e.target.result);
-
-  				image_bride.cropper({
-  					aspectRatio: 300 / 300,
-  					viewMode: 1,
-  					resizable: true,
-  					zoomable: false,
-  					rotatable: false,
-  					crop: function(e) {
-  						console.log(e.x);
-  						console.log(e.y);
-  						console.log(e.width);
-  						console.log(e.height);
-  						document.getElementById("width_bride").setAttribute("value", parseInt(e.width));
-  						document.getElementById("height_bride").setAttribute("value", parseInt(e.height));
-  						document.getElementById("x_bride").setAttribute("value", parseInt(e.x));
-  						document.getElementById("y_bride").setAttribute("value", parseInt(e.y));
-  					}
-  				});
-
-			  }
-
-			  reader.readAsDataURL(input.files[0]);
-  		}
-
-
-  	}
-
-  	$("#input_img_groom").change(function(){
-  		previewGroom(this);
+  		$('#groom_text').html(text_remaining + ' karakter lagi');
   	});
 
-  	$("#input_img_bride").change(function(){
-  		previewBride(this);
+  	var text_max1 = 500;
+
+  	$('#bride_profile').keyup(function() {
+  		var text_length1 = $('#bride_profile').val().length;
+  		var text_remaining1 = text_max1 - text_length1;
+
+  		$('#bride_text').html(text_remaining1 + ' karakter lagi');
   	});
 
 

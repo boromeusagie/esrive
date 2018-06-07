@@ -1,4 +1,6 @@
 <?php
+use App\Wedding;
+use App\WeddingTheme;
 
 return array(
 
@@ -32,7 +34,7 @@ return array(
 
 		'before' => function($theme)
 		{
-			$theme->setTitle('Esrive Free 01');
+			$theme->setTitle('Esrive Invitation');
 			$theme->setAuthor('Boromeus Agie');
 		},
 

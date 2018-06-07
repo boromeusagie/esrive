@@ -176,8 +176,10 @@
 						<label for="komen_tamu">Ucapan Selamat</label>
 						<textarea name="komen_tamu" id="komen_tamu" rows="5" class="form-red form-control"></textarea>
 					</div>
-					<div class="col-sm-4 col-sm-offset-4">
-						<input type="submit" class="btn btn-red btn-block" value="KIRIM">
+					<div class="row justify-content-center">
+						<div class="col-sm-4">
+							<input type="submit" class="btn btn-red btn-block" value="KIRIM">
+						</div>
 					</div>
 				</form>
 			</div>

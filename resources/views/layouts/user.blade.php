@@ -7,7 +7,7 @@
     <!-- Tell the browser to be responsive to screen width -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="generator" content="{{ config('app.name') }} @version('esrive')" />
-    <meta name="description" content="">
+    <meta name="description" content="User Panel of Esrive Invitation">
     <meta name="author" content="Boromeus Agie">
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
@@ -153,8 +153,8 @@
                               <span class="hide-menu">Buku Tamu</span>
                             </a>
                             <ul class="collapse" aria-expanded="false">
-                              <li><a href="#">Daftar Tamu</a></li>
-                              <li><a href="#">Ucapan Selamat</a></li>
+                              <li><a href="{{ route('user.daftartamu') }}">Daftar Tamu</a></li>
+                              <li><a href="{{ route('user.ucapanselamat') }}">Ucapan Selamat</a></li>
                             </ul>
                           </li>
                           <li>
@@ -195,6 +195,7 @@
               <!-- Container fluid  -->
               <!-- ============================================================== -->
               <div class="container-fluid">
+
                   <!-- ============================================================== -->
                   <!-- Bread crumb and right sidebar toggle -->
                   <!-- ============================================================== -->
@@ -208,7 +209,33 @@
                         @endif
                       </div>
                   </div>
+
+                  @if ($user->type == 0)
+                    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+                    <!-- banner lebar -->
+                    <ins class="adsbygoogle"
+                       style="display:inline-block;width:728px;height:90px"
+                       data-ad-client="ca-pub-9748545430269591"
+                       data-ad-slot="3793183278"></ins>
+                    <script>
+                    (adsbygoogle = window.adsbygoogle || []).push({});
+                    </script>
+                  @endif
+
                   @yield('content')
+
+                  @if ($user->type == 0)
+                    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+                    <!-- banner lebar -->
+                    <ins class="adsbygoogle"
+                       style="display:inline-block;width:728px;height:90px"
+                       data-ad-client="ca-pub-9748545430269591"
+                       data-ad-slot="3793183278"></ins>
+                    <script>
+                    (adsbygoogle = window.adsbygoogle || []).push({});
+                    </script>
+                  @endif
+                  
               </div>
               <!-- ============================================================== -->
               <!-- End Container fluid  -->

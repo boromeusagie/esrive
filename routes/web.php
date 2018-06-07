@@ -78,15 +78,25 @@ View::composer(['*'], function ($view) {
   if (Auth::guard()->check()) {
     $user = Auth::user();
     $wedding = App\Wedding::find(['user_id' => $user->id])->first();
+    $theme = App\WeddingTheme::find($wedding->wedding_theme)->first();
     $hari = array("Minggu","Senin","Selasa","Rabu","Kamis","Jumat","Sabtu");
     $bulan = array("","Januari","Februari","Maret","April","Mei","Juni","Juli","Agustus","September","Oktober","November","Desember");
 
     $view->with([
       'user' => $user,
       'wedding' => $wedding,
+      'theme' => $theme,
       'userimg' => Storage::url('public/user/' . $user->username . '/' . 'img/' . $user->user_img),
       'hari' => $hari,
       'bulan' => $bulan
     ]);
+
+    // $hari = array("Minggu","Senin","Selasa","Rabu","Kamis","Jumat","Sabtu");
+    // $bulan = array("","Januari","Februari","Maret","April","Mei","Juni","Juli","Agustus","September","Oktober","November","Desember");
+    //
+    // $view->with([
+    //   'hari' => $hari,
+    //   'bulan' => $bulan
+    // ]);
   }
 });
