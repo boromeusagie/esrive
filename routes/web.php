@@ -1,4 +1,5 @@
 <?php
+use App\Guest;
 
 /*
 |--------------------------------------------------------------------------
@@ -79,12 +80,14 @@ View::composer(['*'], function ($view) {
     $user = Auth::user();
     $wedding = App\Wedding::find(['user_id' => $user->id])->first();
     $theme = App\WeddingTheme::find($wedding->wedding_theme)->first();
+    $guests = App\Guest::where('wedding_id', $wedding->id)->paginate(15);
     $hari = array("Minggu","Senin","Selasa","Rabu","Kamis","Jumat","Sabtu");
     $bulan = array("","Januari","Februari","Maret","April","Mei","Juni","Juli","Agustus","September","Oktober","November","Desember");
 
     $view->with([
       'user' => $user,
       'wedding' => $wedding,
+      'guests' => $guests,
       'theme' => $theme,
       'userimg' => Storage::url('public/user/' . $user->username . '/' . 'img/' . $user->user_img),
       'hari' => $hari,

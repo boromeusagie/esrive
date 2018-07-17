@@ -19,7 +19,7 @@ class CreateGuestsTable extends Migration
             $table->foreign('wedding_id')->references('id')->on('weddings');
             $table->string('name');
             $table->string('email')->nullable();
-            $table->string('phone');
+            $table->string('phone')->nullable();
             $table->boolean('rsvp');
             $table->text('comment');
             $table->string('qrcode');

@@ -11,6 +11,7 @@ use Response;
 use Image;
 use App\WeddingTheme;
 use App\Wedding;
+use App\Guest;
 
 class UserController extends Controller
 {
@@ -47,6 +48,9 @@ class UserController extends Controller
 
     public function daftarTamu()
     {
+      // $user = Auth::user();
+      // $wedding = Wedding::find(['user_id' => $user->id])->first();
+      // $guests = Guest::where('wedding_id', $wedding->id)->paginate(15);
     	return view('user.daftartamu');
     }
 
@@ -76,7 +80,7 @@ class UserController extends Controller
       return response(null, 202);
       // if($request->hasFile('image')) {
       //   $imagename = $request->image->getClientOriginalName();
-      //   $request->image->storeAs('public/storage')
+      //   $request->image->storeAs('public/storage');
       // }
       // $request->user()->update(['user_img' => $request->image]);
       // $request->user()->user_img = $request->image;
