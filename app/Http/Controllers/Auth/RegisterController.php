@@ -150,6 +150,14 @@ class RegisterController extends Controller
          }
          $user->update(['activated' => true]);
          DB::table('users_activations')->where('activation_token', $token)->delete();
+
+         $user_array = $user->toArray();
+
+         Mail::send('mail.activation_success', $user_array, function($message) use($user_array) {
+           $message->to($user_array['email']);
+           $message->subject('Esrive Invitation - Akun Anda Sudah Aktif');
+         });
+
          Alert::success("Akun anda sudah berhasil diaktivasi. Silakan login.")->persistent("Close");
          return redirect()->route('login');
        }

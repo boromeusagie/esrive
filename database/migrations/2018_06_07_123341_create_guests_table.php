@@ -20,6 +20,7 @@ class CreateGuestsTable extends Migration
             $table->string('name');
             $table->string('email')->nullable();
             $table->string('phone')->nullable();
+            $table->string('guest_token');
             $table->boolean('rsvp');
             $table->text('comment');
             $table->string('qrcode');

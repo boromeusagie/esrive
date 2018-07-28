@@ -100,6 +100,10 @@ class UserController extends Controller
 
     public function editTema()
     {
-      return view('user.edittema');
+      $user = Auth::user();
+      $wedding = Wedding::find(['user_id' => $user->id])->first();
+      $theme = WeddingTheme::find($wedding->wedding_theme)->first();
+      $settingtheme = 'themes.' . $theme->name;
+      return view($settingtheme);
     }
 }

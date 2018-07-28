@@ -16,6 +16,7 @@ class CreateUserTypesTable extends Migration
         Schema::create('user_types', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
+            $table->integer('price');
             $table->timestamps();
         });
     }

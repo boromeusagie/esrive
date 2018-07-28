@@ -16,6 +16,8 @@ class CreateWeddingThemesTable extends Migration
         Schema::create('wedding_themes', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
+            $table->string('author');
+            $table->string('preview')->nullable();
             $table->timestamps();
         });
     }
