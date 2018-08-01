@@ -21,6 +21,7 @@ class CreateUsersTable extends Migration
             $table->string('username')->unique();
             $table->string('user_img')->default('noimg.png');
             $table->boolean('activated')->default(false);
+            $table->string('qrcode');
             $table->integer('type')->unsigned()->default('1');
             $table->foreign('type')->references('id')->on('user_types');
             $table->rememberToken();

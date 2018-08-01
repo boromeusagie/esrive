@@ -42,9 +42,9 @@
           <div class="col-md-12">
               <div class="checkbox checkbox-primary pull-left p-t-0">
                   <input id="checkbox-signup" type="checkbox" class="filled-in chk-col-light-blue" name="remember" {{ old('remember') ? 'checked' : '' }}>
-                  <label for="checkbox-signup"> Remember me </label>
+                  <label for="checkbox-signup"> Ingat Saya </label>
               </div>
-              <a href="javascript:void(0)" id="to-recover" class="text-dark pull-right"><i class="fa fa-lock m-r-5"></i> Forgot pwd?</a> </div>
+              <a href="javascript:void(0)" id="to-recover" class="text-dark pull-right"><i class="fa fa-lock m-r-5"></i> Lupa pwd?</a> </div>
       </div>
       <div class="form-group text-center m-t-20">
           <div class="col-xs-12">
@@ -58,7 +58,7 @@
       </div> --}}
       <div class="form-group m-b-0">
           <div class="col-sm-12 text-center">
-              Don't have an account? <a href="{{ route('register') }}" class="text-primary m-l-5"><b>Sign Up</b></a>
+              Belum punya akun? <a href="{{ route('register') }}" class="text-primary m-l-5"><b>REGISTER</b></a>
           </div>
       </div>
   </form>

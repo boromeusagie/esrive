@@ -2,7 +2,7 @@
     {{-- Header --}}
     @slot('header')
         @component('mail::header', ['url' => config('app.url')])
-            {{ config('app.name') }}
+            <img src="{{ asset('storage/img/esrive/logo-full-dark-100x36px.png') }}" alt="">
         @endcomponent
     @endslot
 
@@ -10,13 +10,21 @@
     {{ $slot }}
 
     {{-- Subcopy --}}
-    @isset($subcopy)
+    @slot('subcopy')
+        @component('mail::subcopy')
+            <p class="center">
+              Follow Us <br>
+              <a href="https://twitter.com/esriveid" target="_blank">Twitter</a> | <a href="https://www.facebook.com/esrive.id/" target="_blank">Facebook</a> | <a href="https://www.instagram.com/esrive.id/" target="_blank">Instagram</a>
+            </p>
+        @endcomponent
+    @endslot
+    {{-- @isset($subcopy)
         @slot('subcopy')
             @component('mail::subcopy')
                 {{ $subcopy }}
             @endcomponent
         @endslot
-    @endisset
+    @endisset --}}
 
     {{-- Footer --}}
     @slot('footer')

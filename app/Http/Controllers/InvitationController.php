@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Wedding;
 use Theme;
+use App\WeddingThemesSetting;
 use App\User;
 use App\WeddingTheme;
 use Illuminate\Notifications\Notifiable;
@@ -19,10 +20,12 @@ class InvitationController extends Controller
 
     $wedding_url = Wedding::where('wedding_url', '=', $url)->first();
     $user = User::find($wedding_url->user_id)->first();
+    // $setting = WeddingThemesSetting::find($wedding_url->id)->first();
 
     $layout = array(
       'wedding' => $wedding_url,
-      'user' => $user
+      'user' => $user,
+      // 'setting' => $setting
     );
 
 
@@ -34,6 +37,7 @@ class InvitationController extends Controller
     $view = array(
       'user' => $user,
       'wedding' => $wedding_url,
+      // 'setting' => $setting,
       'hari' => $hari,
       'bulan' => $bulan
     );

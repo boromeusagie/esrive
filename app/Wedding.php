@@ -27,6 +27,10 @@ class Wedding extends Model
     return $this->belongsTo('App\WeddingTheme');
   }
 
+  public function weddingThemesSetting() {
+    return $this->belongsTo('App\WeddingThemesSetting');
+  }
+
   public function guests() {
     return $this->hasMany('App\Guest');
   }

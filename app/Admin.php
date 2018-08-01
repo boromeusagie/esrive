@@ -37,6 +37,10 @@ class Admin extends Authenticatable
       return $this->belongsTo('App\AdminType');
     }
 
+    public function blogs() {
+      return $this->hasMany('App\Blog');
+    }
+
     /**
      * Send the password reset notification.
      *

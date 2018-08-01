@@ -17,6 +17,10 @@ class CreateWeddingThemesSettingsTable extends Migration
             $table->increments('id');
             $table->integer('wedding_id')->unsigned();
             $table->foreign('wedding_id')->references('id')->on('weddings');
+            $table->string('img_header')->default('default.jpg');
+            $table->string('color_theme')->default('default');
+            $table->string('font')->nullable();
+            $table->string('font_color')->nullable();
             $table->timestamps();
         });
     }

@@ -69,12 +69,12 @@
       </div>
       <div class="form-group text-center m-t-20">
           <div class="col-xs-12">
-              <button class="btn btn-info btn-lg btn-block text-uppercase waves-effect waves-light" type="submit">Sign Up</button>
+              <button class="btn btn-info btn-lg btn-block text-uppercase waves-effect waves-light" type="submit">Register</button>
           </div>
       </div>
       <div class="form-group m-b-0">
           <div class="col-sm-12 text-center">
-              <p>Already have an account? <a href="{{ route('login') }}" class="text-info m-l-5"><b>Sign In</b></a></p>
+              <p>Sudah punya akun? <a href="{{ route('login') }}" class="text-info m-l-5"><b>LOG IN</b></a></p>
           </div>
       </div>
   </form>

@@ -20,6 +20,12 @@ Auth::routes();
 
 Route::get('/user/activation/{token}', 'Auth\RegisterController@userActivation');
 
+Route::get('/mailcheck', function() {
+  $user = App\User::find(16);
+
+  return new App\Mail\WelcomeMessage($user);
+});
+
 //Route::get('/home', 'HomeController@index')->name('home');
 Route::group(['middleware' => 'auth'], function() {
     Route::group(['prefix' => 'user'], function () {
@@ -43,6 +49,20 @@ Route::group(['middleware' => 'auth'], function() {
         Route::get('cara-pembayaran', 'UserController@caraPembayaran')->name('user.carapembayaran');
     });
 });
+
+Route::get('/vtweb', 'VtwebController@vtweb');
+
+Route::get('/vtdirect', 'VtdirectController@vtdirect');
+Route::post('/vtdirect', 'VtdirectController@checkout_process');
+
+Route::get('/vt_transaction', 'TransactionController@transaction');
+Route::post('/vt_transaction', 'TransactionController@transaction_process');
+
+Route::post('/vt_notif', 'VtwebController@notification');
+
+Route::get('/snap', 'SnapController@snap');
+Route::get('/snaptoken', 'SnapController@token');
+Route::post('/snapfinish', 'SnapController@finish');
 
 Route::get('es-admin', function() {
   return redirect('es-admin/login');

@@ -16,7 +16,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'username', 'email', 'password', 'activated', 'user_img',
+        'name', 'username', 'email', 'password', 'activated', 'user_img', 'qrcode',
     ];
 
     /**
@@ -42,6 +42,14 @@ class User extends Authenticatable
       public function wedding()
       {
         return $this->hasOne('App\Wedding', 'user_id');
+      }
+
+      public function testimonial() {
+        return $this->hasOne('App\Testimonial');
+      }
+
+      public function orders() {
+        return $this->hasMany('App\Order');
       }
 
       // public function getCeremonyAttribute()
