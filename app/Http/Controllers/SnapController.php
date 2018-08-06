@@ -20,6 +20,10 @@ class SnapController extends Controller
         Midtrans::$serverKey = 'SB-Mid-server-g139uD_Db1joG_hzRFJpATMI';
         //set is production to true for production mode
         Midtrans::$isProduction = false;
+
+        Veritrans::$serverKey = 'SB-Mid-server-g139uD_Db1joG_hzRFJpATMI';
+        //set is production to true for production mode
+        Veritrans::$isProduction = false;
     }
 
     public function snap()
@@ -32,7 +36,7 @@ class SnapController extends Controller
         $user = Auth::user();
         $order = Order::where('user_id', '=', $user->id)->orderBy('created_at', 'desc')->first();
 
-        error_log('masuk ke snap token dri ajax');
+        // error_log('masuk ke snap token dri ajax');
         $midtrans = new Midtrans;
 
         $transaction_details = array(
@@ -177,7 +181,7 @@ class SnapController extends Controller
         // $notif = new Veritrans_Notification();
 
 
-        $notif = Midtrans::status($order->order_id);
+        $notif = Veritrans::status($order->order_id);
         // $result = json_decode($result);
         // echo $notif->status_message . '<br>';
         // echo 'RESULT <br><pre>';

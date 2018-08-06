@@ -21,7 +21,7 @@
 
               <div class="row" style="margin-top:20px">
                 <div class="col-12">
-                  <form action="{{ $user->type == 2 ? route('user.saveurl') : "#" }}" method="POST" class="form-material">
+                  <form action="{{ $user->type != 1 ? route('user.saveurl') : "#" }}" method="POST" class="form-material">
                     @csrf
                     <div class="esrive-input-group">
                       <div class="esrive-input-group-prepend">
@@ -51,7 +51,7 @@
                        </span>
                       </div>
                     @endif
-                    @if ($user->type == 2)
+                    @if ($user->type != 1)
                       <div class="m-t-20">
                         <button id="editUrl" class="btn btn-sm btn-outline-info" type="button">Edit URL</button>
                         <button id="cancelUrl" class="btn btn-sm btn-danger" type="button">Cancel</button>
@@ -69,7 +69,7 @@
 <div id="dataUndangan">
   <div class="m-t-10 row text-center">
     <div class="col-12">
-      <button id="editButton1" class="btn btn-outline-info" type="button">Edit Undangan</button>
+      <button id="editButton1" class="btn btn-outline-info" type="button">Edit Data Undangan</button>
     </div>
   </div>
   <div class="row m-t-20">
@@ -181,7 +181,7 @@
 
   <div class="m-b-20 row text-center">
     <div class="col-12">
-      <button id="editButton2" class="btn btn-outline-info" type="button">Edit Undangan</button>
+      <button id="editButton2" class="btn btn-outline-info" type="button">Edit Data Undangan</button>
     </div>
   </div>
 </div>
