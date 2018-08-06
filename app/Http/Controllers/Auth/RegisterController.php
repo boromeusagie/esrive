@@ -68,7 +68,7 @@ class RegisterController extends Controller
         return Validator::make($data, [
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
-            'password' => 'required|string|min:6|confirmed',
+            'password' => 'required|string|min:8|confirmed',
         ]);
     }
 
@@ -87,7 +87,8 @@ class RegisterController extends Controller
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
             'username' => $data['username'],
-            'qrcode' => $data['username'] . '.png'
+            'qrcode' => $data['username'] . '.png',
+            'user_ip' => \Request::ip()
         ]);
     }
 
@@ -155,7 +156,7 @@ class RegisterController extends Controller
          $user = User::find($check->user_id);
          if ($user->activated == true)
          {
-           Alert::success("Akun anda sudah aktif. Silakan login.")->persistent("Close");
+           Alert::success("Akun anda sudah berhasil diaktivasi.", "Silakan login.")->persistent("Close");
            return redirect()->route('login');
          }
          $user->update(['activated' => true]);
@@ -163,7 +164,7 @@ class RegisterController extends Controller
 
          Mail::to($user->email)->send(new WelcomeMessage($user));
 
-         Alert::success("Akun anda sudah berhasil diaktivasi. Silakan login.")->persistent("Close");
+         Alert::success("Akun anda sudah berhasil diaktivasi.", "Silakan login.")->persistent("Close");
          return redirect()->route('login');
        }
        Alert::warning("Anda sudah melakukan aktivasi atau token anda tidak valid.")->persistent("Close");

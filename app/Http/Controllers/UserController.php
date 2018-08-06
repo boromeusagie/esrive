@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\Request;
 use App\Http\Requests;
@@ -12,6 +13,7 @@ use Image;
 use App\WeddingTheme;
 use App\Wedding;
 use App\Guest;
+use App\Order;
 
 class UserController extends Controller
 {
@@ -105,5 +107,23 @@ class UserController extends Controller
       $theme = WeddingTheme::find($wedding->wedding_theme)->first();
       $settingtheme = 'themes.' . $theme->name;
       return view($settingtheme);
+    }
+
+    public function beliPaket()
+    {
+      return view('user.belipaket');
+    }
+
+    public function daftarTransaksi()
+    {
+      $user = Auth::user();
+      $orders = Order::where('user_id', '=', $user->id)->get();
+      return view('user.daftartransaksi')->with(['orders' => $orders]);
+    }
+
+    public function transaksi($order_id)
+    {
+      $order = DB::table('orders')->where('order_id', $order_id)->first();
+      return view('user.transaksi')->with(['order' => $order]);
     }
 }

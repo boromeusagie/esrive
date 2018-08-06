@@ -24,6 +24,7 @@ class CreateGuestsTable extends Migration
             $table->boolean('rsvp');
             $table->text('comment');
             $table->string('qrcode');
+            $table->integer('status')->unsigned();
             $table->timestamps();
         });
     }

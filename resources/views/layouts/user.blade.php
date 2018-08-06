@@ -24,12 +24,10 @@
     <!-- You can change the theme colors from here -->
     <link href="{{ asset('user/css/colors/default-dark.css') }}" id="theme" rel="stylesheet">
     <link href="{{ asset('user/css/user.css') }}" rel="stylesheet">
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-<![endif]-->
+    @yield('style')
+    <script type="text/javascript"
+            src="https://app.sandbox.midtrans.com/snap/snap.js"
+            data-client-key="SB-Mid-client-kf4l0INstiI8dku1"></script>
 </head>
 
 <body class="fix-header card-no-border fix-sidebar">
@@ -90,15 +88,7 @@
                       <!-- User profile and search -->
                       <!-- ============================================================== -->
                       <ul class="navbar-nav my-lg-0">
-                          <!-- ============================================================== -->
-                          <!-- Search -->
-                          <!-- ============================================================== -->
-                          <!-- <li class="nav-item hidden-xs-down search-box"> <a class="nav-link hidden-sm-down waves-effect waves-dark" href="javascript:void(0)"><i class="ti-search"></i></a>
-                              <form class="app-search">
-                                  <input type="text" class="form-control" placeholder="Search & enter"> <a class="srh-btn"><i class="ti-close"></i></a>
-                              </form>
-                          </li> -->
-                          <!-- ============================================================== -->
+
                           <!-- Profile -->
                           <!-- ============================================================== -->
                           <li class="nav-item">
@@ -168,6 +158,11 @@
                             </ul>
                           </li>
                           <li>
+                            <a class="waves-effect waves-dark" href="{{ route('user.daftartransaksi') }}" aria-expanded="false">
+                              <i class="mdi mdi-book-multiple"></i><span class="hide-menu">Daftar Transaksi</span>
+                            </a>
+                          </li>
+                          <li>
                             <a class="waves-effect waves-dark" href="#" aria-expanded="false">
                               <i class="mdi mdi-qrcode"></i><span class="hide-menu">Scan QR Code</span>
                             </a>
@@ -205,7 +200,7 @@
                       </div>
                       <div class="col-md-7 align-self-center">
                         @if($user->type == 1)
-                          <a href="#" class="btn waves-effect waves-light btn-danger pull-right hidden-sm-down">Upgrade ke PREMIUM</a>
+                          <a href="{{ route('user.belipaket') }}" class="btn waves-effect waves-light btn-danger pull-right hidden-sm-down">Upgrade</a>
                         @endif
                       </div>
                   </div>
@@ -235,7 +230,7 @@
                     (adsbygoogle = window.adsbygoogle || []).push({});
                     </script>
                   @endif
-                  
+
               </div>
               <!-- ============================================================== -->
               <!-- End Container fluid  -->

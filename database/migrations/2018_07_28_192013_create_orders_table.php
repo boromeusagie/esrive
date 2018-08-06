@@ -17,13 +17,16 @@ class CreateOrdersTable extends Migration
             $table->increments('id');
             $table->integer('user_id')->unsigned();
             $table->foreign('user_id')->references('id')->on('users');
-            $table->string('order_id');
+            $table->string('order_id')->unique();
+            $table->string('name');
+            $table->string('phone');
             $table->integer('price')->unsigned();
             $table->string('product');
-            $table->string('promo_code')->nullable();
+            $table->string('promo_code')->nullable()->unique();
             $table->float('discount')->nullable();
             $table->integer('gross_amount')->unsigned();
             $table->integer('status')->default(1);
+            $table->ipAddress('order_ip');
             $table->timestamps();
         });
     }

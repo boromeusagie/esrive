@@ -1,4 +1,5 @@
 <?php
+use App\User;
 use App\Guest;
 
 /*
@@ -15,6 +16,7 @@ use App\Guest;
 Route::get('/', function () {
     return view('welcome');
 });
+Route::get('paket', 'HomeController@paket')->name('home.paket');
 
 Auth::routes();
 
@@ -46,9 +48,21 @@ Route::group(['middleware' => 'auth'], function() {
         Route::post('logout', 'Auth\LoginController@userLogout')->name('user.logout');
         Route::post('change-password', 'EditInvitationController@changePassword')->name('user.changepassword');
         Route::post('edit-profile', 'EditInvitationController@editProfile')->name('user.editprofile');
+        Route::get('beli-paket', 'UserController@beliPaket')->name('user.belipaket');
+        Route::post('order-paket', 'OrderController@orderPaket')->name('user.orderpaket');
+        Route::group(['prefix' => 'transaksi'], function() {
+          Route::get('/', 'UserController@daftarTransaksi')->name('user.daftartransaksi');
+          Route::get('{order_id}', 'UserController@transaksi')->name('user.transaksi');
+        });
         Route::get('cara-pembayaran', 'UserController@caraPembayaran')->name('user.carapembayaran');
+        Route::post('snapfinish', 'SnapController@finish')->name('snap.finish');
     });
 });
+
+Route::get('/snap', 'SnapController@snap');
+Route::get('/snaptoken', 'SnapController@token');
+Route::get('/notification', 'SnapController@notification')->name('notif.payment');
+
 
 Route::get('/vtweb', 'VtwebController@vtweb');
 
@@ -60,9 +74,12 @@ Route::post('/vt_transaction', 'TransactionController@transaction_process');
 
 Route::post('/vt_notif', 'VtwebController@notification');
 
-Route::get('/snap', 'SnapController@snap');
-Route::get('/snaptoken', 'SnapController@token');
-Route::post('/snapfinish', 'SnapController@finish');
+Route::get('pdf', function() {
+  $user = App\User::find(1);
+  $order = App\Order::find(1);
+  return view('orders.pdf')->with(['user' => $user, 'order' => $order]);
+});
+Route::get('/sendpdf', 'OrderController@sendpdf');
 
 Route::get('es-admin', function() {
   return redirect('es-admin/login');
@@ -101,6 +118,7 @@ View::composer(['*'], function ($view) {
     $wedding = App\Wedding::find(['user_id' => $user->id])->first();
     $theme = App\WeddingTheme::find($wedding->wedding_theme)->first();
     $guests = App\Guest::where('wedding_id', $wedding->id)->paginate(15);
+    // $order = App\Order::find(['user_id' => $user->id])->first();
     $hari = array("Minggu","Senin","Selasa","Rabu","Kamis","Jumat","Sabtu");
     $bulan = array("","Januari","Februari","Maret","April","Mei","Juni","Juli","Agustus","September","Oktober","November","Desember");
 
@@ -109,6 +127,7 @@ View::composer(['*'], function ($view) {
       'wedding' => $wedding,
       'guests' => $guests,
       'theme' => $theme,
+      // 'order' => $order,
       'userimg' => Storage::url('public/user/' . $user->username . '/' . 'img/' . $user->user_img),
       'hari' => $hari,
       'bulan' => $bulan

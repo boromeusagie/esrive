@@ -10,7 +10,7 @@ class Midtrans {
     * @static
     */
   public static $serverKey;
-  
+
   /**
     * true for production
     * false for sandbox mode
@@ -22,13 +22,13 @@ class Midtrans {
     * Default options for every request
     * @static
     */
-    public static $curlOptions = array(); 
+    public static $curlOptions = array();
 
-    const SANDBOX_BASE_URL = 'https://api.sandbox.veritrans.co.id/v2';
-    const PRODUCTION_BASE_URL = 'https://api.veritrans.co.id/v2';
+    const SANDBOX_BASE_URL = 'https://api.sandbox.midtrans.com/v2';
+    const PRODUCTION_BASE_URL = 'https://api.midtrans.com/v2';
     const SNAP_SANDBOX_BASE_URL = 'https://app.sandbox.midtrans.com/snap/v1';
     const SNAP_PRODUCTION_BASE_URL = 'https://app.midtrans.com/snap/v1';
-    
+
 
     public function config($params)
     {
@@ -81,7 +81,7 @@ class Midtrans {
    * @param bool    $post
    */
     public static function remoteCall($url, $server_key, $data_hash, $post = true)
-    { 
+    {
       $ch = curl_init();
 
       $curl_options = array(
@@ -126,31 +126,44 @@ class Midtrans {
       // curl_close($ch);
 
       if ($result === FALSE) {
-        throw new Exception('CURL Error: ' . curl_error($ch), curl_errno($ch));
-      }
-      else {
-        $result_array = json_decode($result);
-        if ($info['http_code'] != 201) {
-        $message = 'Midtrans Error (' . $info['http_code'] . '): '
-            . implode(',', $result_array->error_messages);
-        throw new Exception($message, $info['http_code']);
-
-      }
-        else {
-          return $result_array;
-        }
-      }
+	      throw new Exception('CURL Error: ' . curl_error($ch), curl_errno($ch));
+	    }
+	    else {
+	      $result_array = json_decode($result);
+	      if (!in_array($result_array->status_code, array(200, 201, 202, 407))) {
+	        $message = 'Veritrans Error (' . $result_array->status_code . '): '
+	            . $result_array->status_message;
+	        //throw new Exception($message, $result_array->status_code);
+          throw new Exception($message, $result_array->status_code);
+	      }
+	      else {
+	        return $result_array;
+	      }
+	    }
     }
 
   public static function getSnapToken($params)
   {
-    
+
     $result = Midtrans::post(
         Midtrans::getSnapBaseUrl() . '/transactions',
         Midtrans::$serverKey,
         $params);
 
     return $result->token;
+  }
+
+    /**
+    * Retrieve transaction status
+    * @param string $id Order ID or transaction ID
+    * @return mixed[]
+    */
+  public static function status($id)
+  {
+    return Midtrans::get(
+        Midtrans::getBaseUrl() . '/' . $id . '/status',
+        Midtrans::$serverKey,
+        false);
   }
 
 }

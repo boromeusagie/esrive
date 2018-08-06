@@ -24,6 +24,8 @@ class CreateUsersTable extends Migration
             $table->string('qrcode');
             $table->integer('type')->unsigned()->default('1');
             $table->foreign('type')->references('id')->on('user_types');
+            $table->ipAddress('user_ip');
+            $table->timestamp('last_login')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

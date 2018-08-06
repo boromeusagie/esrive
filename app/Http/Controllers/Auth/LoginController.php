@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use Alert;
 use Toastr;
+use Carbon\Carbon;
 
 class LoginController extends Controller
 {
@@ -71,6 +72,10 @@ class LoginController extends Controller
           Alert::warning("Akun anda belum terverifikasi. Silakan cek email anda.")->persistent("Close");
           return redirect()->back();
         }
+        $user->last_login = Carbon::now();
+        $user->user_ip = $request->getClientIp();
+        $user->save();
+
         Toastr::success($message = "Anda berhasil login!", $title = "Selamat datang, " . $user->name, $options = ["closeButton" => true]);
         return redirect()->route('user.dashboard');
     }

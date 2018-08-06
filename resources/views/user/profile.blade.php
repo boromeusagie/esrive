@@ -18,8 +18,10 @@
           <upload-user-profile :user="{{ $user }}"></upload-user-profile>
           @if ($user->type == 1)
             <h3 class="user-type-free m-t-20 p-10">Free User</h3>
-          @else
+          @elseif ($user->type == 2)
             <h3 class="user-type-premium m-t-20 p-10">Premium</h3>
+          @else
+            <h3 class="user-type-premium m-t-20 p-10">Ultimate</h3>
           @endif
 
         </center>
